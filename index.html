@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory & Warehouse Management — MCQ Practice</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0f1117;--surface:#1a1d27;--surface2:#222536;
+    --border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.15);
+    --text:#f0f2f8;--muted:#7b8099;
+    --accent:#4f8ef7;--accent-dim:rgba(79,142,247,0.12);
+    --green:#22c983;--green-dim:rgba(34,201,131,0.12);
+    --red:#f7545f;--red-dim:rgba(247,84,95,0.12);
+    --yellow:#f5a623;--yellow-dim:rgba(245,166,35,0.12);
+    --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.12);
+    --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.12);
+    --radius:12px;--radius-sm:8px;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+  .shell{max-width:720px;margin:0 auto;padding:0 1.25rem 4rem}
+
+  /* TOPBAR */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;border-bottom:1px solid var(--border);margin-bottom:2rem;gap:1rem}
+  .logo{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
+  .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(0.8)}}
+  .hud{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+  .hud-chip{background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:4px 12px;display:flex;align-items:center;gap:5px}
+  .hud-chip b{color:var(--text);font-weight:500}
+
+  /* PROGRESS */
+  .progress-wrap{margin-bottom:2rem}
+  .progress-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+  .progress-track{height:4px;background:var(--surface2);border-radius:99px;overflow:hidden}
+  .progress-fill{height:4px;border-radius:99px;transition:width 0.4s cubic-bezier(.4,0,.2,1)}
+  .fill-blue{background:linear-gradient(90deg,var(--accent),#7b6ef7)}
+  .fill-purple{background:linear-gradient(90deg,var(--purple),#ec4899)}
+
+  /* QUESTION CARD */
+  .q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:1rem;animation:slideIn 0.25s ease}
+  @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .q-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+  .eyebrow-blue{color:var(--accent)}
+  .eyebrow-purple{color:var(--purple)}
+  .q-text{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--text);margin-bottom:1.5rem}
+  .options{display:flex;flex-direction:column;gap:8px}
+  .opt{display:flex;align-items:flex-start;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;cursor:pointer;text-align:left;color:var(--text);font-size:14px;line-height:1.55;transition:border-color 0.15s,background 0.15s,transform 0.1s;width:100%}
+  .opt:hover:not(:disabled){border-color:var(--border-hover);background:#272a3a;transform:translateX(2px)}
+  .opt:disabled{cursor:default;transform:none}
+  .opt-letter{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--muted);flex-shrink:0;margin-top:1px;transition:background 0.15s,color 0.15s,border-color 0.15s}
+  .opt.correct{background:var(--green-dim);border-color:var(--green)}
+  .opt.correct .opt-letter{background:var(--green);border-color:var(--green);color:#fff}
+  .opt.wrong{background:var(--red-dim);border-color:var(--red)}
+  .opt.wrong .opt-letter{background:var(--red);border-color:var(--red);color:#fff}
+  .feedback{margin-top:1rem;padding:12px 16px;border-radius:var(--radius-sm);font-size:13px;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+  .feedback.correct-fb{background:var(--green-dim);border:1px solid rgba(34,201,131,0.3);color:#6ee7b7}
+  .feedback.wrong-fb{background:var(--red-dim);border:1px solid rgba(247,84,95,0.3);color:#fca5a5}
+  .feedback-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .feedback-text strong{display:block;margin-bottom:3px;font-size:13px}
+
+  /* NAV BUTTONS */
+  .nav{display:flex;gap:8px;margin-top:1.25rem}
+  .btn{padding:10px 20px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:border-color 0.15s,background 0.15s;font-family:'Inter',sans-serif}
+  .btn:hover{border-color:var(--border-hover);background:#272a3a}
+  .btn:disabled{opacity:.35;cursor:default}
+  .btn.primary-blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary-blue:hover{background:#3d7de8;border-color:#3d7de8}
+  .btn.primary-purple{background:var(--purple);border-color:var(--purple);color:#fff}
+  .btn.primary-purple:hover{background:#8b5cf6;border-color:#8b5cf6}
+  .btn.primary-blue:disabled,.btn.primary-purple:disabled{opacity:.35;cursor:default}
+
+  /* START SCREEN */
+  #screen-start{padding:2rem 0}
+  .start-hero{text-align:center;padding-bottom:2rem}
+  .start-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);border:1px solid rgba(79,142,247,0.25);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1.5rem}
+  .start-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,38px);font-weight:700;line-height:1.2;letter-spacing:-0.5px;margin-bottom:1rem;color:var(--text)}
+  .start-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto;line-height:1.7}
+  .topic-section-title{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;margin-top:2rem}
+  .topic-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.topic-cards{grid-template-columns:1fr}}
+  .topic-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;cursor:pointer;text-align:left;transition:border-color 0.2s,transform 0.15s,background 0.15s;position:relative;overflow:hidden}
+  .topic-card:hover{transform:translateY(-2px)}
+  .topic-card.topic-blue:hover{border-color:rgba(79,142,247,0.5);background:rgba(79,142,247,0.05)}
+  .topic-card.topic-purple:hover{border-color:rgba(167,139,250,0.5);background:rgba(167,139,250,0.05)}
+  .topic-card.topic-teal:hover{border-color:rgba(45,212,191,0.5);background:rgba(45,212,191,0.05)}
+  .topic-card-icon{font-size:22px;margin-bottom:10px;display:block}
+  .topic-card-num{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+  .num-blue{color:var(--accent)}
+  .num-purple{color:var(--purple)}
+  .num-teal{color:var(--teal)}
+  .fill-teal{background:linear-gradient(90deg,var(--teal),#22c983)}
+  .eyebrow-teal{color:var(--teal)}
+  .btn.primary-teal{background:var(--teal);border-color:var(--teal);color:#0f1117}
+  .btn.primary-teal:hover{background:#14b8a6;border-color:#14b8a6}
+  .btn.primary-teal:disabled{opacity:.35;cursor:default}
+  .topic-card-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3}
+  .topic-card-sub{font-size:12px;color:var(--muted);line-height:1.5}
+  .topic-card-q{position:absolute;top:1rem;right:1rem;font-size:11px;color:var(--muted);background:var(--surface2);border-radius:99px;padding:3px 10px;border:1px solid var(--border)}
+  .topic-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .topic-pill{font-size:11px;padding:3px 8px;border-radius:99px;border:1px solid}
+  .pill-blue{color:var(--accent);border-color:rgba(79,142,247,0.3);background:var(--accent-dim)}
+  .pill-purple{color:var(--purple);border-color:rgba(167,139,250,0.3);background:var(--purple-dim)}
+  .pill-teal{color:var(--teal);border-color:rgba(45,212,191,0.3);background:var(--teal-dim)}
+
+  /* RESULTS */
+  #screen-results{display:none}
+  .results-hero{text-align:center;padding:2.5rem 0 2rem}
+  .score-ring-wrap{position:relative;width:140px;height:140px;margin:0 auto 1.5rem}
+  .score-ring-wrap svg{transform:rotate(-90deg)}
+  .score-ring-bg{fill:none;stroke:var(--surface2);stroke-width:8}
+  .score-ring-fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)}
+  .score-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+  .score-pct{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--text);display:block;line-height:1;margin-bottom:3px}
+  .score-label{font-size:11px;color:var(--muted)}
+  .results-grade{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;margin-bottom:8px}
+  .results-sub{font-size:14px;color:var(--muted);margin-bottom:2rem}
+  .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2rem}
+  .res-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center}
+  .res-stat-num{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;display:block;margin-bottom:3px}
+  .res-stat-num.green{color:var(--green)}
+  .res-stat-num.red{color:var(--red)}
+  .res-stat-num.yellow{color:var(--yellow)}
+  .res-stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+  .section-title{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;padding-top:1.5rem;border-top:1px solid var(--border)}
+  .review-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:8px}
+  .review-card.wrong-card{border-color:rgba(247,84,95,0.25)}
+  .review-q{font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;line-height:1.5}
+  .review-q .q-num-badge{display:inline-block;background:var(--surface2);border-radius:4px;padding:1px 6px;font-size:11px;color:var(--muted);margin-right:6px}
+  .review-answers{display:flex;flex-direction:column;gap:4px}
+  .review-your{font-size:12px;color:#fca5a5;display:flex;align-items:flex-start;gap:6px}
+  .review-correct{font-size:12px;color:#6ee7b7;display:flex;align-items:flex-start;gap:6px}
+  .review-exp{font-size:12px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);line-height:1.5}
+  .all-correct{background:var(--green-dim);border:1px solid rgba(34,201,131,0.3);border-radius:var(--radius);padding:1.5rem;text-align:center;color:#6ee7b7;font-size:14px}
+  .results-topic-badge{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:0.04em;margin-bottom:1rem}
+  .badge-blue{background:var(--accent-dim);border:1px solid rgba(79,142,247,0.3);color:var(--accent)}
+  .badge-purple{background:var(--purple-dim);border:1px solid rgba(167,139,250,0.3);color:var(--purple)}
+  .badge-teal{background:var(--teal-dim);border:1px solid rgba(45,212,191,0.3);color:var(--teal)}
+  .results-actions{display:flex;gap:8px;margin-top:1.5rem;justify-content:center;flex-wrap:wrap}
+
+  @media(max-width:500px){
+    .topbar{flex-direction:column;align-items:flex-start}
+    .topic-cards{grid-template-columns:1fr}
+    .results-grid{grid-template-columns:repeat(3,1fr)}
+    .q-text{font-size:15px}
+    .start-title{font-size:24px}
+    .results-actions{flex-direction:column}
+    .results-actions .btn{text-align:center}
+  }
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="logo"><div class="logo-dot"></div>IWM Quiz</div>
+    <div class="hud" id="hud" style="display:none">
+      <div class="hud-chip">Q <b id="hud-q">1</b>/<b id="hud-total">50</b></div>
+      <div class="hud-chip">✓ <b id="hud-right" style="color:var(--green)">0</b></div>
+      <div class="hud-chip">✗ <b id="hud-wrong" style="color:var(--red)">0</b></div>
+    </div>
+  </div>
+
+  <!-- SCREEN: START -->
+  <div id="screen-start">
+    <div class="start-hero">
+      <div class="start-badge">📦 Inventory &amp; Warehouse Management</div>
+      <h1 class="start-title">MCQ Practice<br>Final Exam Prep</h1>
+      <p class="start-sub">Three topics, three quizzes. Pick a topic below to start practicing.</p>
+    </div>
+    <div class="topic-section-title">Choose a topic</div>
+    <div class="topic-cards">
+      <div class="topic-card topic-blue" onclick="startQuiz('wh')">
+        <span class="topic-card-q">50 Qs</span>
+        <span class="topic-card-icon">🏭</span>
+        <div class="topic-card-num num-blue">Topic 1</div>
+        <div class="topic-card-title">Warehouse Operations</div>
+        <div class="topic-card-sub">KPIs, sampling plans, layout design, storage systems, picking methods, lean 5S &amp; visual management.</div>
+        <div class="topic-pills">
+          <span class="topic-pill pill-blue">KPIs</span>
+          <span class="topic-pill pill-blue">5S</span>
+          <span class="topic-pill pill-blue">AQL</span>
+          <span class="topic-pill pill-blue">Storage</span>
+          <span class="topic-pill pill-blue">Picking</span>
+        </div>
+      </div>
+      <div class="topic-card topic-purple" onclick="startQuiz('nv')">
+        <span class="topic-card-q">25 Qs</span>
+        <span class="topic-card-icon">📰</span>
+        <div class="topic-card-num num-purple">Topic 2</div>
+        <div class="topic-card-title">The Newsvendor Model</div>
+        <div class="topic-card-sub">Single-period stochastic inventory, critical ratio, underage &amp; overage costs, normal &amp; uniform demand.</div>
+        <div class="topic-pills">
+          <span class="topic-pill pill-purple">Critical Ratio</span>
+          <span class="topic-pill pill-purple">Cu &amp; Co</span>
+          <span class="topic-pill pill-purple">Normal Dist.</span>
+          <span class="topic-pill pill-purple">Uniform Dist.</span>
+        </div>
+      </div>
+      <div class="topic-card topic-teal" onclick="startQuiz('si')">
+        <span class="topic-card-q">31 Qs</span>
+        <span class="topic-card-icon">📊</span>
+        <div class="topic-card-num num-teal">Topic 3</div>
+        <div class="topic-card-title">Stochastic Inventory Models</div>
+        <div class="topic-card-sub">Safety stocks, service levels, empirical &amp; statistical distributions, continuous &amp; periodic review, stochastic lot-sizing.</div>
+        <div class="topic-pills">
+          <span class="topic-pill pill-teal">Safety Stock</span>
+          <span class="topic-pill pill-teal">Fill Rate</span>
+          <span class="topic-pill pill-teal">CSL</span>
+          <span class="topic-pill pill-teal">Periodic Review</span>
+          <span class="topic-pill pill-teal">MILP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: QUIZ -->
+  <div id="screen-quiz" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="prog-label">Question 1 of 50</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:2%"></div></div>
+    </div>
+    <div id="q-area"></div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div id="screen-results">
+    <div class="results-hero">
+      <div class="results-topic-badge" id="res-topic-badge"></div>
+      <div class="score-ring-wrap">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle class="score-ring-bg" cx="70" cy="70" r="58"/>
+          <circle class="score-ring-fill" id="ring-fill" cx="70" cy="70" r="58" stroke-dasharray="364.4" stroke-dashoffset="364.4"/>
+        </svg>
+        <div class="score-center">
+          <span class="score-pct" id="res-pct">0%</span>
+          <span class="score-label" id="res-fraction">0/50</span>
+        </div>
+      </div>
+      <div class="results-grade" id="res-grade"></div>
+      <div class="results-sub" id="res-sub"></div>
+      <div class="results-grid">
+        <div class="res-stat"><span class="res-stat-num green" id="res-correct">0</span><span class="res-stat-label">Correct</span></div>
+        <div class="res-stat"><span class="res-stat-num red" id="res-wrong">0</span><span class="res-stat-label">Wrong</span></div>
+        <div class="res-stat"><span class="res-stat-num yellow" id="res-score-pct">0%</span><span class="res-stat-label">Score</span></div>
+      </div>
+    </div>
+    <div id="review-section"></div>
+    <div class="results-actions">
+      <button class="btn" id="btn-retake" onclick="retake()">Retake This Quiz</button>
+      <button class="btn" onclick="backToMenu()">← Back to Topics</button>
+      <button class="btn" onclick="window.print()">Print Results</button>
+    </div>
+  </div>
+
+</div>
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+const TOPICS={
+  wh:{
+    label:'Warehouse Operations',
+    color:'blue',
+    accent:'var(--accent)',
+    fillClass:'fill-blue',
+    eyebrowClass:'eyebrow-blue',
+    primaryBtn:'primary-blue',
+    badgeClass:'badge-blue',
+    questions:[
+      {q:"What does OLT stand for in warehouse KPIs?",o:["Order Loading Time","Order Lead Time","Output Logistics Tracker","Outbound Label Tag"],a:1,e:"OLT = Order Lead Time, measured as Shipment Date − Order Date."},
+      {q:"How is Warehouse Capacity Utilization (WCU) calculated?",o:["Total Space / Occupied Space × 100","Occupied Space / Total Warehouse Space × 100","Orders Processed / Labour Hours","Shipment Date − Order Date"],a:1,e:"WCU = (Occupied Space / Total Warehouse Space) × 100."},
+      {q:"Dock-to-Stock Time (DST) measures the duration from when a shipment arrives at the dock until:",o:["The invoice is paid","The items are stocked and recorded in the inventory system","The items are shipped to customers","The quality inspection is complete"],a:1,e:"DST = Time goods are stocked & recorded − Time goods arrived at dock."},
+      {q:"Warehouse Labour Productivity (WLP) is calculated as:",o:["Orders Processed / Labour Hours Worked","Labour Hours Worked / Orders Processed","Total Revenue / Number of Workers","Shipments / Warehouse Area"],a:0,e:"WLP = Orders Processed / Labour Hours Worked."},
+      {q:"Putaway Cycle Time (PCT) measures:",o:["Time from order receipt to shipment","Time required to store received goods in their designated locations","Time to process a customer invoice","Time goods spend in transit"],a:1,e:"PCT = Time Goods Stored − Time Goods Received."},
+      {q:"Which of the following is NOT one of the key warehouse processes?",o:["Receiving","Procurement","Picking","Cross-Docking"],a:1,e:"Procurement is a supply chain activity outside the warehouse. The key processes include Receiving, Storage, Put-Away, Picking, Packing, Shipping, Inventory Control, and Cross-Docking."},
+      {q:"Cross-Docking in a warehouse means:",o:["Storing goods at maximum height","Transferring goods directly from receiving to shipping","Inspecting goods for quality defects","Picking items in batches"],a:1,e:"Cross-Docking transfers goods directly from receiving to shipping, bypassing storage entirely."},
+      {q:"In Acceptance Sampling, 'Tightened' inspection is applied when:",o:["The vendor's quality history is exceptionally good","Inspection starts for the first time","The vendor's recent quality level has deteriorated","Five consecutive lots have been accepted"],a:2,e:"Tightened inspection is used when the vendor's recent quality level has declined (deteriorated)."},
+      {q:"Which inspection level is used at the START of inspection activity?",o:["Tightened","Reduced","Normal","Accelerated"],a:2,e:"Normal inspection is used at the start of inspection activity."},
+      {q:"According to ANSI/ASQ Z1.4 switching rules, you switch from Normal to Tightened when:",o:["10 consecutive lots are accepted","5 consecutive lots are accepted","2 out of 5 or fewer consecutive lots are not accepted","The supplier improves quality"],a:2,e:"You switch from Normal to Tightened when 2 out of 5 or fewer consecutive lots are not accepted."},
+      {q:"You switch from Tightened to 'Discontinue Inspection' when:",o:["5 consecutive lots are accepted","5 lots are not accepted while on tightened inspection","Supplier improves quality","10 consecutive lots are acceptable"],a:1,e:"If 5 lots are not accepted while on tightened inspection, inspection is discontinued."},
+      {q:"AQL stands for:",o:["Average Quality Limit","Acceptable Quality Level","Automated Quality Log","Aggregate Queue Length"],a:1,e:"AQL = Acceptable Quality Level — the general standard of inspection rules."},
+      {q:"What is the AQL range for MAJOR defects?",o:["0.01% to 0.1%","1% to 2.5%","4% to 6.5%","10% to 15%"],a:1,e:"AQL for major defects = 1% to 2.5%."},
+      {q:"The FIRST step in selecting a sampling plan is:",o:["Choose the sample size from the master table","Decide AQL and choice of sampling plan","Determine the acceptance number","Perform 100% inspection"],a:1,e:"Step 1 is to decide the AQL and choose the type of sampling plan."},
+      {q:"For a lot of 40,000 shoes under General Inspection Level II, the Sample Size Code Letter is:",o:["K","M","N","P"],a:2,e:"For lot size 35,001–150,000 under General Inspection Level II, the code letter is N."},
+      {q:"Which warehouse layout type has receiving and shipping on the SAME wall?",o:["I-shaped layout","L-shaped layout","U-shaped layout","T-shaped layout"],a:2,e:"The U-shaped layout has both receiving and shipping on the same wall."},
+      {q:"The I-shaped warehouse layout is best described as:",o:["Receiving and shipping on the same side","Receiving on one end and shipping on the opposite end","Receiving and shipping on adjacent sides","No fixed receiving or shipping area"],a:1,e:"In an I-shaped layout, receiving is on one end and shipping on the opposite end — goods flow in a straight line."},
+      {q:"The four principles of Warehouse Design are summarized by the acronym:",o:["FLOW","FACT","LEAN","RACK"],a:1,e:"FACT = Flow, Accessibility, Capacity, Traceability — the four warehouse design principles."},
+      {q:"According to the Capacity principle, exceeding what utilization level leads to gridlock?",o:["70%","80%","85%","95%"],a:2,e:"The Capacity principle warns that exceeding 85% utilization leads to gridlock and significant productivity loss."},
+      {q:"Which storage system is BEST suited for long metal rods, piping, and bar stock?",o:["Pallet racks","Flow racks","Cantilever racks","Bin shelving"],a:2,e:"Cantilever racks are ideal for long items like metal rods, tubing, and pipes due to their unobstructed horizontal arms."},
+      {q:"Flow racks primarily enable which inventory management principle?",o:["LIFO (Last In, First Out)","FIFO (First In, First Out)","ABC analysis","Random access"],a:1,e:"Flow racks use conveyors allowing easy FIFO control — items loaded at the back come out first at the front."},
+      {q:"Which storage system is described as 'the most basic type of static storage'?",o:["Pallet racks","Drive-in racks","Bin shelving","Modular storage drawers"],a:2,e:"Bin shelving is described as the most basic type of static storage available."},
+      {q:"Drive-in pallet racks are designed so that:",o:["Goods slide automatically to the front","Forklifts can drive into the racks between uprights","Each pallet is individually accessible","Items are sorted by weight"],a:1,e:"Drive-in pallet racks allow forklifts to drive into the racks between structure uprights and pallet support rails."},
+      {q:"What is the Nominal (Theoretical) Capacity of a 100 ft × 100 ft × 25 ft warehouse?",o:["10,000 sq ft","25,000 cubic ft","250,000 cubic ft","2,500 cubic ft"],a:2,e:"Nominal Capacity = Length × Width × Height = 100 × 100 × 25 = 250,000 cubic ft."},
+      {q:"If nominal capacity is 250,000 cu ft and non-storage space is 30,000 cu ft, Maximum Storage Capacity is:",o:["280,000 cubic ft","30,000 cubic ft","220,000 cubic ft","200,000 cubic ft"],a:2,e:"Maximum Storage Capacity = Total Volume − Non-Storage Areas = 250,000 − 30,000 = 220,000 cubic ft."},
+      {q:"In Q1 of the pallet exercise (200' × 4' rows, 48\"×40\" pallets, 2\" spacing, stacked 3 high), the total pallets is:",o:["57","114","342","171"],a:2,e:"57 pallets per row × 3 high × 2 rows = 342 pallets total."},
+      {q:"Honeycombing in a warehouse refers to:",o:["A bee-shaped warehouse layout","Space lost due to ineffective use of cube capacity","The pattern created by pallet racks","A method of diagonal pallet stacking"],a:1,e:"Honeycombing is the percentage of storage space lost due to ineffective cube use — occurs when locations are only partially filled."},
+      {q:"Aisle allowance is defined as:",o:["Maximum weight a forklift can carry","Percentage of warehouse space occupied by aisles","Height clearance above pallet racks","Distance between receiving and shipping docks"],a:1,e:"Aisle allowance is the percentage of warehouse space occupied by aisles within a storage area."},
+      {q:"A warehouse stores 37 pallets across 14 positions stacked 3 high. What is the cube utilization?",o:["37%","42%","88%","100%"],a:2,e:"14 positions × 3 high = 42 capacity. Cube utilization = 37/42 × 100 = 88%."},
+      {q:"In warehouse location labeling, what do 'Bays' represent?",o:["Left and right sides of an aisle","Column dividers separating sections within a row","The smallest inventory storage locations","Vertical levels within a rack"],a:1,e:"Bays are column dividers that separate each section within a row."},
+      {q:"A location coded A-01-01-3-A represents Area, Row, Bay, Level, and:",o:["Aisle","Position within the level","Zone","SKU code"],a:1,e:"The full code is: AREA – ROW – BAY – LEVEL – POS (position within the level)."},
+      {q:"ABC Analysis in warehouse picking places high-volume items:",o:["At the back of the warehouse","Near the front to reduce travel time","At maximum rack height","In a separate secured zone"],a:1,e:"After ABC analysis, the highest-volume items (C - Green) are at the front; lowest-volume (A - Red) go to the back."},
+      {q:"Batch Picking is described as:",o:["Picking one order at a time completely before moving on","Picking multiple orders simultaneously by grouping items in the same area","Dividing pickers into zones","Using only automated systems"],a:1,e:"Batch picking: a worker collects SKUs for several orders in a single trip, grouping items in the same area."},
+      {q:"Zone Picking divides the warehouse into sections where:",o:["Each picker handles all zones in sequence","Each picker is assigned to a specific zone only","Zones are rotated daily among pickers","Goods are sorted by weight zones"],a:1,e:"In Zone Picking, each picker is assigned to a specific zone. Multi-zone orders are consolidated before shipping."},
+      {q:"An important layout principle for optimizing picking efficiency is:",o:["Honeycombing","Moving goods in a straight line (one-directional flow)","Zone-based colour coding","Using only gravity conveyors"],a:1,e:"Moving goods in a straight line increases movement velocities, reduces travel time and distance, and improves safety."},
+      {q:"Gravity conveyors move goods by:",o:["Electric motor on a belt","Goods using their own weight to move down an incline","Pneumatic pressure","Forklift assistance"],a:1,e:"Gravity conveyors are inclined and goods use their own weight to move down through a fixed path on wheels or rollers."},
+      {q:"Products with IRREGULAR surfaces are best suited for which conveyor type?",o:["Roller conveyors","Belt conveyors","Gravity roller conveyors","Towline conveyors"],a:1,e:"Products with irregular surfaces use belt conveyors; heavy, regular items use roller (automated) conveyors."},
+      {q:"Reach trucks are designed to work primarily in:",o:["Wide open floor areas","Narrow aisles","Outdoor yards","Cross-docking areas"],a:1,e:"Reach trucks are designed for narrow aisles, with the operator riding in a stand-up position."},
+      {q:"The main advantage of forklift trucks over other material handling equipment is:",o:["They can only operate on fixed paths","Their mobility to travel anywhere in the warehouse","They never require fuel or charging","They are the cheapest option"],a:1,e:"The great advantage of forklifts is their mobility to travel anywhere in the warehouse."},
+      {q:"The 5S methodology creates a workplace that is:",o:["Fully automated, digital, and paperless","Self-explaining, self-ordering, and self-improving","Large, open, and unstructured","Divided into maximum security zones"],a:1,e:"The 5S & visual management system creates a workplace that is self-explaining, self-ordering, and self-improving."},
+      {q:"What does 'Seiri' (Sort) mean in an industrial context?",o:["Keep the workplace swept and clean","Distinguish necessary from unnecessary items and eliminate what is not needed","Establish a neat layout for easy retrieval","Make a habit of maintaining established procedures"],a:1,e:"Seiri industrial definition: distinguish between necessary and unnecessary things, and get rid of what you do not need."},
+      {q:"The Red Tag Movement is used to:",o:["Mark hazardous chemicals","Assist the decision of whether to throw away or save an item","Identify high-priority orders","Label premium SKUs"],a:1,e:"Red Tag Movement helps decide 'throw away or save' — tag every item at month start, remove when used, decide at month end."},
+      {q:"Seiton (Set in Order) is industrially defined as:",o:["A way of eliminating search","A cleaning schedule","A standard for inspection","A method for tracking inventory"],a:0,e:"Seiton industrial definition: it is a way of eliminating search, ensuring everything has a designated place."},
+      {q:"The '30 Second Rule' in Seiton means:",o:["Clean any spill within 30 seconds","Every item must be retrievable within 30 seconds","Complete picking within 30 seconds per order","Receive shipments within 30 seconds of arrival"],a:1,e:"The 30 Second Rule: arrange tools/items so that you can retrieve any item within 30 seconds."},
+      {q:"The Three F Standard for properly storing items includes Fixed Location, Fixed Item, and:",o:["Fixed Label","Fixed Quantity","Fixed Worker","Fixed Zone"],a:1,e:"Three F Standard: Fixed location, Fixed item, and Fixed quantity — only a pre-determined amount of items is allowed."},
+      {q:"Seiso (Shine) means:",o:["Standardize cleaning procedures","Eliminate trash, filth, and foreign matter; cleaning as a form of inspection","Establish neat storage layout","Sort necessary from unnecessary items"],a:1,e:"Seiso: eliminating trash, filth, and foreign matter for a cleaner workplace — cleaning also serves as inspection."},
+      {q:"Seiketsu (Standardize) is the result of:",o:["Hiring experienced warehouse staff","Doing Sort, Set-in-Order, and Shine properly","Installing automated storage systems","Conducting annual audits"],a:1,e:"Standardize is the result of properly completing the first three steps: Sort (Seiri), Set-in-Order (Seiton), and Shine (Seiso)."},
+      {q:"In floor marking color coding standards, YELLOW markings designate:",o:["Material storage areas","Aisleways, traffic lanes, and work cells","QA inspection areas","Defects and scrap"],a:1,e:"Yellow markings designate aisleways & traffic lanes and work cells."},
+      {q:"Shitsuke (Sustain) is defined as:",o:["A one-time deep cleaning event","Doing the right things as a matter of course; maintaining what has been accomplished","Sorting items by frequency of use","Installing new shelving systems"],a:1,e:"Shitsuke (Self-discipline/Sustain): doing the right things as a matter of course, purpose is to maintain what has been accomplished."},
+      {q:"Visual Metrics in a lean warehouse are used to:",o:["Label where items belong","Track accident frequency only","Make staff aware of data and quantify the path to targets using charts & graphs","Create mistake-proofed environments with signboards"],a:2,e:"Visual Metrics make staff aware of data/information (charts & graphs) and quantify the path to targets for success."},
+      {q:"In the tricolour material pull indicator system, what does a RED indicator signal?",o:["Stock level is healthy","Stock is getting low — prepare to restock","Resupply is needed immediately","Item is expired and must be discarded"],a:2,e:"Red = resupply needed immediately. Green = healthy stock. Yellow = warning, stock getting low."}
+    ]
+  },
+  nv:{
+    label:'The Newsvendor Model',
+    color:'purple',
+    accent:'var(--purple)',
+    fillClass:'fill-purple',
+    eyebrowClass:'eyebrow-purple',
+    primaryBtn:'primary-purple',
+    badgeClass:'badge-purple',
+    questions:[
+      {q:"The Newsvendor Model is primarily used for:",o:["Continuous replenishment of fast-moving goods","Ordering perishables and items with limited useful lives in a single period","Planning annual production schedules","Managing multi-location inventory networks"],a:1,e:"The Newsvendor Model is a single-period stochastic inventory model designed for perishables and items with limited useful lives."},
+      {q:"Which of the following items has a probable lifetime of just ONE DAY according to the lecture?",o:["Smartphone","Seasonal clothing","Newspaper","Vegetables"],a:2,e:"A newspaper has a probable lifetime of just 1 day — the classic motivation for the Newsvendor Model."},
+      {q:"What is the probable lifetime of blood stored in a blood bank?",o:["7 days","14 days","21 days","30 days"],a:2,e:"Blood stored in a blood bank has a probable lifetime of 21 days."},
+      {q:"Which of the following is a key element of the Newsvendor Model?",o:["Multiple replenishment opportunities throughout the period","Certain and known demand","One chance to order before demand is realized","Zero holding cost for leftover inventory"],a:2,e:"A key element is that the decision-maker has only ONE chance to order (long) before demand is realized."},
+      {q:"The Newsvendor Model assumes the setup (ordering) cost is:",o:["Equal to the purchase cost","Proportional to order quantity","Zero","Fixed regardless of quantity"],a:2,e:"One of the model's assumptions is zero setup (ordering) cost."},
+      {q:"Underage cost (Cu) in the Newsvendor Model is generally defined as:",o:["Cost per unit minus salvage value per unit","Revenue per unit minus cost per unit (unrealized profit per unit)","Total revenue divided by units sold","Holding cost per unsold unit"],a:1,e:"Cu (Underage cost) = Revenue per unit − Cost per unit. It represents the unrealized profit per unit when a stockout occurs."},
+      {q:"Overage cost (Co) in the Newsvendor Model is defined as:",o:["Revenue per unit minus cost per unit","Cost per unit minus salvage value per unit","Purchase price plus holding cost","Shortage penalty per unit"],a:1,e:"Co (Overage cost) = Cost per unit − Salvage value per unit. It is the loss per unit left over at the end of the period."},
+      {q:"If demand D > order quantity Q in the Newsvendor Model, the result is:",o:["Overstock — excess inventory remains","Stockout — unmet demand occurs","No cost is incurred","Salvage value is collected"],a:1,e:"When D > Q, a stockout (shortage) occurs. The underage cost Cu × (D − Q) is incurred."},
+      {q:"If demand D < order quantity Q in the Newsvendor Model, the result is:",o:["Stockout — unmet demand occurs","Overstock — leftover units must be salvaged or discarded","No cost is incurred","Additional orders are placed"],a:1,e:"When D < Q, overstock occurs. The overage cost Co × (Q − D) is incurred for the leftover units."},
+      {q:"The Critical Ratio formula is:",o:["F(Q*) = Co / (Co + Cu)","F(Q*) = Cu / (Co + Cu)","F(Q*) = Cu × Co","F(Q*) = (Co − Cu) / Co"],a:1,e:"The Critical Ratio CR = Cu / (Co + Cu). This is the optimal cumulative probability (service level) the order quantity Q* must satisfy."},
+      {q:"In terms of revenue, cost, and salvage, the Critical Ratio can be written as:",o:["(Cost − Salvage) / (Revenue − Salvage)","(Revenue − Cost) / (Revenue − Salvage)","(Revenue − Salvage) / (Revenue − Cost)","(Cost − Revenue) / (Revenue − Salvage)"],a:1,e:"CR = Cu / (Co + Cu) = (Revenue − Cost) / (Revenue − Salvage)."},
+      {q:"A HIGH Critical Ratio (CR → 1) implies:",o:["Overstocking cost dominates; order conservatively","Understocking cost is very high; order more inventory","Demand is perfectly known","Salvage value equals the selling price"],a:1,e:"High CR → understocking (shortage) cost is very high → order more inventory to maintain a high service level."},
+      {q:"A LOW Critical Ratio (CR → 0) implies:",o:["Understocking cost dominates; order more","Overstocking cost is high; order less and accept some stockout risk","Demand is deterministic","Revenue equals cost"],a:1,e:"Low CR → overstocking cost is high (excess inventory is expensive or perishable) → order less and accept some stockout risk."},
+      {q:"The optimal order quantity Q* is obtained from:",o:["The mean of the demand distribution only","The corresponding percentile of the demand distribution matching the Critical Ratio","The maximum possible demand","The mode of the demand distribution"],a:1,e:"Q* is obtained from the percentile of the demand distribution that equals the Critical Ratio F(Q*) = Cu/(Co+Cu)."},
+      {q:"In the Mrs. Kandell Christmas Tree example: Cost = $25, Price = $55, Salvage = $15. What is Cu?",o:["$10","$25","$30","$40"],a:2,e:"Cu = Revenue − Cost = $55 − $25 = $30 (unrealized profit per unit if a tree is not available)."},
+      {q:"In the Mrs. Kandell Christmas Tree example, what is Co (overage cost)?",o:["$30","$15","$10","$25"],a:2,e:"Co = Cost − Salvage = $25 − $15 = $10 (loss per unsold tree)."},
+      {q:"In the Mrs. Kandell example, the Critical Ratio is:",o:["0.25","0.50","0.75","0.85"],a:2,e:"CR = Cu / (Co + Cu) = 30 / (10 + 30) = 30/40 = 0.75."},
+      {q:"In the Mrs. Kandell example, what is the expected demand E(D)?",o:["28","29","30","31"],a:1,e:"E(D) = 22×0.05 + 24×0.10 + 26×0.15 + 28×0.20 + 30×0.20 + 32×0.15 + 34×0.10 + 36×0.05 = 29 trees."},
+      {q:"Given CR = 0.75 and the cumulative distribution F(D) for the Christmas tree problem, the optimal Q* is approximately:",o:["28","30","31","32"],a:2,e:"The first demand value where F(D) ≥ 0.75 is D = 32, where F(32) = 0.85. But interpolating between F(30)=0.70 and F(32)=0.85, optimum ≈ 31."},
+      {q:"In the H&N shirt example (Cost=$35, Price=$55, Salvage=$30), the Critical Ratio is:",o:["0.57","0.67","0.80","0.90"],a:2,e:"CR = (Revenue − Cost)/(Revenue − Salvage) = (55−35)/(55−30) = 20/25 = 0.80."},
+      {q:"For the H&N shirt example with normally distributed demand (μ=200, σ=25) and CR=0.80, the Z-value used is:",o:["0.52","0.67","0.84","1.28"],a:2,e:"CR = 0.80 means area to the left = 0.80, so area between 0 and Z = 0.80 − 0.50 = 0.30. From the normal table, Z ≈ 0.84."},
+      {q:"The formula for optimal order quantity under normally distributed demand is:",o:["Q* = μ / σ","Q* = μ − Zσ","Q* = μ + Zσ","Q* = Z × σ"],a:2,e:"Q* = μ + Zσ, where Z corresponds to the Critical Ratio percentile of the standard normal distribution."},
+      {q:"In the H&N shirt example with normal distribution (μ=200, σ=25, Z=0.84), Q* equals:",o:["179 shirts","200 shirts","221 shirts","246 shirts"],a:2,e:"Q* = μ + Zσ = 200 + 0.84 × 25 = 200 + 21 = 221 shirts."},
+      {q:"The formula for optimal order quantity under uniformly distributed demand is:",o:["Q* = BL + Cr × BU","Q* = BL + Cr × (BU − BL)","Q* = (BL + BU) / 2","Q* = BU − Cr × (BU − BL)"],a:1,e:"For uniform distribution: Q* = BL + [Cr × (BU − BL)], where BL is lower bound, BU is upper bound, and Cr is the Critical Ratio."},
+      {q:"In the H&N shirt example with uniform distribution (min=100, max=300) and CR=0.80, Q* equals:",o:["180 shirts","200 shirts","240 shirts","260 shirts"],a:3,e:"Q* = BL + Cr × (BU − BL) = 100 + 0.80 × (300 − 100) = 100 + 0.80 × 200 = 100 + 160 = 260 shirts."}
+    ]
+  },
+  si:{
+    label:'Stochastic Inventory Models',
+    color:'teal',
+    accent:'var(--teal)',
+    fillClass:'fill-teal',
+    eyebrowClass:'eyebrow-teal',
+    primaryBtn:'primary-teal',
+    badgeClass:'badge-teal',
+    questions:[
+      {q:"What distinguishes stochastic inventory models from deterministic models?",o:["Stochastic models assume zero lead time","Stochastic models treat demand and/or lead time as random variables","Stochastic models always use periodic review","Stochastic models require larger order quantities"],a:1,e:"In stochastic models, demand and/or lead time are random variables with known probability distributions, unlike deterministic models which assume certainty."},
+      {q:"Safety (buffer) stock is defined as:",o:["The maximum amount of inventory ever held","On-hand inventory during lead time plus an additional buffer to guard against uncertainty","The difference between reorder point and order quantity","Average daily demand multiplied by lead time"],a:1,e:"Safety (buffer) stock = on-hand inventory expected during lead time + buffer. It reduces the probability of a stockout."},
+      {q:"A stockout occurs when:",o:["Inventory exceeds the reorder point","On-hand inventory falls to zero before a replenishment order arrives","Safety stock is too high","The order quantity is larger than demand"],a:1,e:"A stockout is an inventory shortage — demand exceeds available inventory. Safety stock is maintained to reduce this risk."},
+      {q:"Cycle Service Level (CSL) is defined as:",o:["The proportion of customer demands met from stock on hand","The proportion of order cycles in which NO stockout occurs","Total items delivered on time divided by total items ordered","The probability that an order is placed"],a:1,e:"Cycle Service Level (Beta) = proportion of replenishment cycles in which no stockout occurs. If no stockout in 8 of 12 cycles, CSL = 8/12 = 67%."},
+      {q:"Fill Rate (Alpha Service Level) is defined as:",o:["Proportion of cycles with no stockout","Proportion of customer demands satisfied from inventory on hand","Number of orders placed per year","Reorder point divided by lead time demand"],a:1,e:"Fill Rate (Alpha) = total units delivered on time / total units ordered. Example: 259/300 = 86%."},
+      {q:"In the 12-cycle service level example (Total demand=300, stockouts=41), what is the Fill Rate?",o:["67%","75%","86%","92%"],a:2,e:"Fill Rate = (300 − 41)/300 = 259/300 = 86%. This differs from the CSL of 67% (8/12 cycles with no stockout)."},
+      {q:"In the empirical distribution method for safety stock with variable demand, the safety stock for an 85% service level is:",o:["Maximum demand at 85th percentile","The difference between demand at the 85th percentile and the average demand","Average demand minus minimum demand","Standard deviation of demand × Z-value"],a:1,e:"SS = D_sl − d̄. From the CPD graph, SS₈₅% = P₈₅ − d̄ = 390 − 250 = 140 units."},
+      {q:"In the empirical demand example (item cost $50, carrying rate 20%), the carrying cost of safety stock at 95% service level is:",o:["$1,400","$2,000","$1,000","$2,500"],a:1,e:"CSS = Cc × SS₉₅% = (20% × $50) × 200 = $10 × 200 = $2,000."},
+      {q:"For the variable lead time example with 40 observations, the average lead time (50th percentile) was found to be:",o:["4.0 days","4.7 days","5.0 days","7.0 days"],a:1,e:"From the CPD graph, the average lead time at the 50th percentile = 4.7 days."},
+      {q:"In the variable lead time example, the safety stock needed for an 85% service level is:",o:["1.0 days","2.3 days","4.7 days","7.0 days"],a:1,e:"SS₈₅% = LT_sl − L̄ = 7 − 4.7 = 2.3 days' usage."},
+      {q:"When demand is variable and lead time is CONSTANT, the reorder point formula is:",o:["R = d̄ × L + Z × σ_d × L","R = d̄ × L + Z × σ_d × √L","R = d × L̄ + Z × d × σ_L","R = d̄ × L̄ + Z × √(L̄σ_d² + d̄²σ_L²)"],a:1,e:"Variable demand, constant lead time: R = d̄·L + Z·σ_d·√L. The safety stock is Z·σ_d·√L."},
+      {q:"When demand is CONSTANT and lead time is variable, the safety stock formula is:",o:["Z × σ_d × √L","Z × d × σ_L","Z × √(L̄σ_d² + d̄²σ_L²)","d̄ × L̄"],a:1,e:"Constant demand, variable lead time: SS = Z × d × σ_L, where σ_L is the standard deviation of lead time."},
+      {q:"When BOTH demand and lead time are variable, the safety stock is:",o:["Z × σ_d × √L̄","Z × d × σ_L","Z × √(L̄ × σ_d² + d̄² × σ_L²)","d̄ × L̄ + Z × σ_d"],a:2,e:"Variable demand AND variable lead time: SS = Z × √(L̄·σ_d² + d̄²·σ_L²). Both demand and lead time variabilities are combined."},
+      {q:"In the variable demand / constant lead time example (d̄=100, σ_d=8, L=5 days, Z=1.04 for 85%), the reorder point R is:",o:["500","509","519","524"],a:2,e:"R = d̄×L + Z×σ_d×√L = 100×5 + 1.04×8×√5 = 500 + 1.04×8×2.236 = 500 + 18.6 ≈ 519 units."},
+      {q:"Using MS Excel, the Cycle Service Level is calculated with the function:",o:["NORM.S.INV(s, d̄L, σ_d)","NORM.DIST(s, d̄L, σ_d, TRUE)","NORM.DIST(SS/σ, 0, 1, 0)","NORMINV(CR, μ, σ)"],a:1,e:"Cycle Service Level = NORM.DIST(s, d̄L, σ_d, TRUE), where s = reorder level, d̄L = lead time demand, σ_d = standard deviation of lead time demand."},
+      {q:"In the cycle service level example (reorder level=1000, lead time demand=500, σ=300), the CSL is:",o:["0.75","0.85","0.90","0.95"],a:3,e:"CSL = NORM.DIST(1000, 500, 300, TRUE) = 0.95. The Z-value is (1000−500)/300 = 1.67, which corresponds to ~0.95."},
+      {q:"The Expected Shortage per Cycle (Es) formula using Excel functions is:",o:["Es = σ × NORM.DIST(SS/σ, 0,1,0) − SS × [1 − NORM.DIST(SS/σ, 0,1,1)]","Es = SS × NORM.DIST(SS/σ, 0,1,1)","Es = σ × (1 − NORM.DIST(SS/σ, 0,1,1))","Es = d̄ × L × (1 − CSL)"],a:0,e:"Es = σ × NORMDIST(SS/σ, 0,1,0) − SS[1 − NORMDIST(SS/σ, 0,1,1)]. This integrates the shortage over the demand exceeding the ROP."},
+      {q:"In the Es example (Q=500, SS=75, σ=60), the standardized value SS/σ is:",o:["0.80","1.00","1.25","1.50"],a:2,e:"Standardized value = SS/σ = 75/60 = 1.25. This z-value is used to compute both PDF and CDF in the Es formula."},
+      {q:"In the Es example (Q=500, SS=75, σ=60), the Expected Shortage per cycle Es ≈:",o:["1.5 units","3.0 units","5.0 units","7.5 units"],a:1,e:"Es = 60 × NORMDIST(1.25, 0,1,0) − 75 × [1 − NORMDIST(1.25, 0,1,1)] = 60×0.1827 − 75×(1−0.8944) ≈ 10.96 − 7.92 ≈ 3.0 units."},
+      {q:"Fill Rate for the replenishment policy is computed as:",o:["(Q + Es)/Q","(Q − Es)/Q","Es/Q","Q/(Q + Es)"],a:1,e:"Fill Rate = (Q − Es)/Q. In the example: (500 − 3)/500 = 0.994 = 99.4%."},
+      {q:"In the variable demand / constant lead time full example (d̄=100, σ_d=8, L=5, Q=424, SS=19, σ_LT=17.9), the fill rate is approximately:",o:["95.0%","97.5%","99.0%","99.68%"],a:3,e:"Es = 17.9 × NORM.DIST(19/17.9, 0,1,0) − 19×[1−NORM.DIST(19/17.9,0,1,1)] ≈ 1.32. Fill rate = (424−1.32)/424 = 0.9968 = 99.68%."},
+      {q:"In the Periodic Review model with variable demand and constant lead time, the optimal review period T* is:",o:["√(2C₀/DC_c)","2C₀/(DC_c)","√(DC_c/2C₀)","C₀/DC_c"],a:0,e:"T* = √(2C₀/DC_c). This is analogous to the EOQ-derived cycle time."},
+      {q:"In the Periodic Review model, Safety Stock with variable demand and constant lead time is:",o:["Z × σ_d × √L","Z × σ_d × √(T+L)","Z × d × σ_L","Z × √[(T+L)σ_d² + d̄²σ_L²]"],a:1,e:"SS = Z × σ_d × √(T+L). Both review period T and lead time L are included because stockout can occur over both intervals."},
+      {q:"The Maximum Inventory Level S in the periodic review (variable demand, constant lead time) model is:",o:["d̄(T+L) + Z×σ_d×√(T+L)","d̄×T + Z×σ_d×√L","d̄×L + Z×σ_d×√T","Z×σ_d×√(T+L)"],a:0,e:"S = d̄(T+L) + Z×σ_d×√(T+L). It covers expected demand over the review period plus lead time, plus safety stock."},
+      {q:"In the Periodic Review example (D=5500/yr, C₀=$43, C_c=35%×$100, d̄=15/day, σ_d=3, L=5 days, Z=1.28), the optimal review period T* in days is:",o:["5.0 days","7.7 days","10.0 days","14.0 days"],a:1,e:"T* = √(2×43/(5500×35)) = 0.0211 years × 365 = 7.7 days."},
+      {q:"In the same periodic review example, Safety Stock SS is approximately:",o:["9 units","13.6 units","20 units","27 units"],a:1,e:"SS = Z×σ_d×√(T+L) = 1.28×3×√(7.7+5) = 1.28×3×√12.7 ≈ 1.28×3×3.56 ≈ 13.6 units."},
+      {q:"Order quantity in the periodic review model when on-hand inventory I=24 units and S=204 units is:",o:["24 units","90 units","180 units","204 units"],a:2,e:"Order Quantity Q = S − I = 204 − 24 = 180 units."},
+      {q:"In the Single-Stage Stochastic Lot-Sizing MILP Model, the binary variable y_t represents:",o:["The inventory level at end of period t","Whether a setup (order) is placed (=1) or not (=0) in period t","The probability of stockout in period t","The demand forecast for period t"],a:1,e:"y_t ∈ {0,1} is a binary variable: y_t=1 indicates a setup or order is placed in period t; y_t=0 means no order."},
+      {q:"The Chance Constraint in the single-stage stochastic lot-sizing model is expressed as:",o:["I_t ≥ α for all t","P(I_t ≥ 0) ≥ α for all t","q_t ≤ D_t × y_t for all t","Σd_t = D_T"],a:1,e:"The chance constraint P(I_t ≥ 0) ≥ α ensures that the probability of non-negative inventory in each period meets the service level α."},
+      {q:"The Deterministic Form of the stochastic chance constraint is written as:",o:["Σ(I_(t-1) + q_t) − Σd_t ≥ F⁻¹_(1,v)(α)","P(I_t ≥ 0) ≥ α","q_t ≤ D_t × y_t","Minimize Σ(p_t×q_t + s_t×y_t + h_t×I_t)"],a:0,e:"The deterministic equivalent replaces the chance constraint with: Σ(I_(t-1)+q_t) − Σd_t ≥ F⁻¹_(1,v)(α), where F⁻¹ is the inverse CDF of cumulative demand."},
+      {q:"The objective function of the Single-Stage Stochastic Lot-Sizing MILP model minimizes:",o:["Only setup costs","Only inventory holding costs","The sum of production costs, setup costs, and inventory holding costs over all periods","The probability of stockout across all periods"],a:2,e:"Minimize Σ{p_t×q_t + s_t×y_t + h_t×I_t}: total production (ordering) cost + setup cost + inventory holding cost across all T periods."}
+    ]
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+let activeTopic=null, cur=0, score=0, wrongCnt=0, answered=[];
+
+// ── QUIZ CONTROL ──────────────────────────────────────────────────────────
+function startQuiz(topicKey){
+  activeTopic=topicKey;
+  cur=0; score=0; wrongCnt=0; answered=[];
+  const t=TOPICS[topicKey];
+  document.getElementById('screen-start').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  const hud=document.getElementById('hud');
+  hud.style.display='flex';
+  document.getElementById('hud-total').textContent=t.questions.length;
+  document.getElementById('prog-fill').className='progress-fill '+t.fillClass;
+  render();
+}
+
+function render(){
+  const t=TOPICS[activeTopic];
+  const Q=t.questions;
+  if(cur>=Q.length){showResults();return;}
+  const q=Q[cur];
+  const prev=answered[cur];
+  document.getElementById('hud-q').textContent=cur+1;
+  document.getElementById('hud-right').textContent=score;
+  document.getElementById('hud-wrong').textContent=wrongCnt;
+  const pct=Math.round((cur+1)/Q.length*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent='Question '+(cur+1)+' of '+Q.length;
+  document.getElementById('prog-pct').textContent=pct+'%';
+
+  const opts=q.o.map((o,i)=>{
+    let cls='opt';
+    if(prev!==undefined){
+      if(i===q.a) cls+=' correct';
+      else if(i===prev) cls+=' wrong';
+    }
+    return `<button class="${cls}" onclick="pick(${i})" ${prev!==undefined?'disabled':''}>
+      <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+      <span>${o}</span>
+    </button>`;
+  }).join('');
+
+  let fb='';
+  if(prev!==undefined){
+    const ok=prev===q.a;
+    fb=`<div class="feedback ${ok?'correct-fb':'wrong-fb'}">
+      <span class="feedback-icon">${ok?'✓':'✗'}</span>
+      <div class="feedback-text"><strong>${ok?'Correct!':'Incorrect.'}</strong>${q.e}</div>
+    </div>`;
+  }
+
+  const isLast=cur===Q.length-1;
+  document.getElementById('q-area').innerHTML=`
+    <div class="q-card">
+      <div class="q-eyebrow ${t.eyebrowClass}">${t.label} — Question ${cur+1} of ${Q.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${opts}</div>
+      ${fb}
+    </div>
+    <div class="nav">
+      <button class="btn" onclick="go(-1)" ${cur===0?'disabled':''}>← Prev</button>
+      <button class="btn ${t.primaryBtn}" onclick="go(1)" ${prev===undefined||isLast?'disabled':''}>Next →</button>
+      ${isLast&&prev!==undefined?`<button class="btn ${t.primaryBtn}" onclick="showResults()">See Results →</button>`:''}
+    </div>`;
+}
+
+function pick(i){
+  if(answered[cur]!==undefined)return;
+  answered[cur]=i;
+  if(i===TOPICS[activeTopic].questions[cur].a) score++;
+  else wrongCnt++;
+  render();
+}
+
+function go(dir){
+  const len=TOPICS[activeTopic].questions.length;
+  cur=Math.max(0,Math.min(len-1,cur+dir));
+  render();
+}
+
+function showResults(){
+  const t=TOPICS[activeTopic];
+  const Q=t.questions;
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-results').style.display='block';
+  document.getElementById('hud').style.display='none';
+
+  const pct=Math.round(score/Q.length*100);
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('res-fraction').textContent=score+'/'+Q.length;
+  document.getElementById('res-correct').textContent=score;
+  document.getElementById('res-wrong').textContent=wrongCnt;
+  document.getElementById('res-score-pct').textContent=pct+'%';
+
+  const badge=document.getElementById('res-topic-badge');
+  badge.className='results-topic-badge '+t.badgeClass;
+  badge.textContent=t.label;
+
+  const btn=document.getElementById('btn-retake');
+  btn.className='btn '+t.primaryBtn;
+
+  let grade='',sub='',color='';
+  if(pct>=90){grade='Excellent work!';sub='Outstanding performance. You are very well prepared.';color='var(--green)';}
+  else if(pct>=75){grade='Good job!';sub='Strong performance. Review the highlighted questions to reach the top.';color=t.accent;}
+  else if(pct>=60){grade='Keep studying.';sub='A decent attempt. Focus on the topics you missed.';color='var(--yellow)';}
+  else{grade='Needs more review.';sub='Go back through the lecture material and try again.';color='var(--red)';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=color;
+  document.getElementById('res-sub').textContent=sub;
+
+  const ring=document.getElementById('ring-fill');
+  const circumference=364.4;
+  ring.style.stroke=color;
+  setTimeout(()=>{ring.style.strokeDashoffset=circumference-(pct/100*circumference);},100);
+
+  const wrongItems=Q.map((q,i)=>({q,i,ans:answered[i]})).filter(x=>x.ans!==undefined&&x.ans!==x.q.a);
+  let html='';
+  if(wrongItems.length===0){
+    html=`<div class="section-title">Review</div><div class="all-correct">🎉 You answered every question correctly — perfect score!</div>`;
+  } else {
+    html=`<div class="section-title">Questions to review (${wrongItems.length})</div>`;
+    wrongItems.forEach(({q,i,ans})=>{
+      html+=`<div class="review-card wrong-card">
+        <div class="review-q"><span class="q-num-badge">#${i+1}</span>${q.q}</div>
+        <div class="review-answers">
+          <div class="review-your">✗ Your answer: ${String.fromCharCode(65+ans)}. ${q.o[ans]}</div>
+          <div class="review-correct">✓ Correct: ${String.fromCharCode(65+q.a)}. ${q.o[q.a]}</div>
+        </div>
+        <div class="review-exp">${q.e}</div>
+      </div>`;
+    });
+  }
+  document.getElementById('review-section').innerHTML=html;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function retake(){
+  startQuiz(activeTopic);
+  document.getElementById('screen-results').style.display='none';
+}
+
+function backToMenu(){
+  document.getElementById('screen-results').style.display='none';
+  document.getElementById('screen-start').classList.remove('hidden');
+  document.getElementById('hud').style.display='none';
+  activeTopic=null;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
