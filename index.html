@@ -18,6 +18,7 @@
     --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.12);
     --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.12);
     --radius:12px;--radius-sm:8px;
+    --orange:#f97316;--orange-dim:rgba(249,115,22,0.12);
   }
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
@@ -87,16 +88,25 @@
   .topic-card.topic-blue:hover{border-color:rgba(79,142,247,0.5);background:rgba(79,142,247,0.05)}
   .topic-card.topic-purple:hover{border-color:rgba(167,139,250,0.5);background:rgba(167,139,250,0.05)}
   .topic-card.topic-teal:hover{border-color:rgba(45,212,191,0.5);background:rgba(45,212,191,0.05)}
+  .topic-card.topic-orange:hover{border-color:rgba(249,115,22,0.5);background:rgba(249,115,22,0.05)}
   .topic-card-icon{font-size:22px;margin-bottom:10px;display:block}
   .topic-card-num{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
   .num-blue{color:var(--accent)}
   .num-purple{color:var(--purple)}
   .num-teal{color:var(--teal)}
+  .num-orange{color:var(--orange)}
   .fill-teal{background:linear-gradient(90deg,var(--teal),#22c983)}
+  .fill-orange{background:linear-gradient(90deg,var(--orange),#f59e0b)}
   .eyebrow-teal{color:var(--teal)}
+  .eyebrow-orange{color:var(--orange)}
   .btn.primary-teal{background:var(--teal);border-color:var(--teal);color:#0f1117}
   .btn.primary-teal:hover{background:#14b8a6;border-color:#14b8a6}
   .btn.primary-teal:disabled{opacity:.35;cursor:default}
+  .btn.primary-orange{background:var(--orange);border-color:var(--orange);color:#fff}
+  .btn.primary-orange:hover{background:#ea6c00;border-color:#ea6c00}
+  .btn.primary-orange:disabled{opacity:.35;cursor:default}
+  .pill-orange{color:var(--orange);border-color:rgba(249,115,22,0.3);background:var(--orange-dim)}
+  .badge-orange{background:var(--orange-dim);border:1px solid rgba(249,115,22,0.3);color:var(--orange)}
   .topic-card-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3}
   .topic-card-sub{font-size:12px;color:var(--muted);line-height:1.5}
   .topic-card-q{position:absolute;top:1rem;right:1rem;font-size:11px;color:var(--muted);background:var(--surface2);border-radius:99px;padding:3px 10px;border:1px solid var(--border)}
@@ -171,7 +181,7 @@
     <div class="start-hero">
       <div class="start-badge">📦 Inventory &amp; Warehouse Management</div>
       <h1 class="start-title">MCQ Practice<br>Final Exam Prep</h1>
-      <p class="start-sub">Three topics, three quizzes. Pick a topic below to start practicing.</p>
+      <p class="start-sub">Four topics, four quizzes. Pick a topic below to start practicing.</p>
     </div>
     <div class="topic-section-title">Choose a topic</div>
     <div class="topic-cards">
@@ -214,6 +224,19 @@
           <span class="topic-pill pill-teal">CSL</span>
           <span class="topic-pill pill-teal">Periodic Review</span>
           <span class="topic-pill pill-teal">MILP</span>
+        </div>
+      </div>
+      <div class="topic-card topic-orange" onclick="startQuiz('dl')">
+        <span class="topic-card-q">60 Qs</span>
+        <span class="topic-card-icon">📦</span>
+        <div class="topic-card-num num-orange">Topic 4</div>
+        <div class="topic-card-title">Dynamic Lot Sizing</div>
+        <div class="topic-card-sub">DEL model assumptions, Lot-for-Lot, Part-Period Balancing, Silver-Meal, Least Unit Cost, Wagner-Whitin &amp; MILP formulation.</div>
+        <div class="topic-pills">
+          <span class="topic-pill pill-orange">Lot-for-Lot</span>
+          <span class="topic-pill pill-orange">Silver-Meal</span>
+          <span class="topic-pill pill-orange">Wagner-Whitin</span>
+          <span class="topic-pill pill-orange">MILP</span>
         </div>
       </div>
     </div>
@@ -403,6 +426,82 @@ const TOPICS={
       {q:"The Chance Constraint in the single-stage stochastic lot-sizing model is expressed as:",o:["I_t ≥ α for all t","P(I_t ≥ 0) ≥ α for all t","q_t ≤ D_t × y_t for all t","Σd_t = D_T"],a:1,e:"The chance constraint P(I_t ≥ 0) ≥ α ensures that the probability of non-negative inventory in each period meets the service level α."},
       {q:"The Deterministic Form of the stochastic chance constraint is written as:",o:["Σ(I_(t-1) + q_t) − Σd_t ≥ F⁻¹_(1,v)(α)","P(I_t ≥ 0) ≥ α","q_t ≤ D_t × y_t","Minimize Σ(p_t×q_t + s_t×y_t + h_t×I_t)"],a:0,e:"The deterministic equivalent replaces the chance constraint with: Σ(I_(t-1)+q_t) − Σd_t ≥ F⁻¹_(1,v)(α), where F⁻¹ is the inverse CDF of cumulative demand."},
       {q:"The objective function of the Single-Stage Stochastic Lot-Sizing MILP model minimizes:",o:["Only setup costs","Only inventory holding costs","The sum of production costs, setup costs, and inventory holding costs over all periods","The probability of stockout across all periods"],a:2,e:"Minimize Σ{p_t×q_t + s_t×y_t + h_t×I_t}: total production (ordering) cost + setup cost + inventory holding cost across all T periods."}
+    ]
+  },
+  dl:{
+    label:'Dynamic Lot Sizing',
+    color:'orange',
+    accent:'var(--orange)',
+    fillClass:'fill-orange',
+    eyebrowClass:'eyebrow-orange',
+    primaryBtn:'primary-orange',
+    badgeClass:'badge-orange',
+    questions:[
+      {q:"What does 'Lot-Sizing' mean in inventory management?",o:["Deciding how large a warehouse should be","Deciding how many product units to produce or order in a period","Deciding when to place a purchase order","Choosing between suppliers based on unit price"],a:1,e:"Lot-Sizing means deciding how many product units to produce or order in a given period to meet demand at minimum cost."},
+      {q:"The Dynamic Lot Sizing (DEL) problem differs from the EOQ model primarily because:",o:["EOQ uses dynamic demand while DEL uses constant demand","DEL has a finite planning horizon with discrete periods and dynamic demand","DEL assumes infinite planning horizon and continuous review","DEL does not consider holding costs"],a:1,e:"DEL has a finite planning horizon divided into discrete periods with dynamic (time-varying) demand, while EOQ assumes constant demand over an infinite horizon with continuous review."},
+      {q:"The EOQ model assumes which type of planning horizon?",o:["Finite","Discrete","Infinite","Stochastic"],a:2,e:"The EOQ model assumes an infinite planning horizon with continuous time and constant demand."},
+      {q:"In the DEL model, inventory is reviewed:",o:["Continuously at any point in time","Only at the beginning of each period","Randomly based on demand triggers","Only at the end of the planning horizon"],a:1,e:"The DEL model is a periodic review system — inventory is reviewed only at the beginning of each period."},
+      {q:"Which of the following is an assumption of the Dynamic Economic Lot-size (DEL) model?",o:["Demand is constant and uniform across all periods","Replenishment lead time is zero","Backorders are permitted","Storage capacity is limited"],a:1,e:"A key DEL assumption is zero replenishment lead time — products ordered are received in full instantaneously at the start of the period."},
+      {q:"The DEL model is classified as a:",o:["Multi-item, multi-level, capacitated lot-sizing model","Single-item, single-level, uncapacitated lot-sizing model","Multi-echelon, stochastic inventory model","Continuous review, fixed reorder-point model"],a:1,e:"The DEL model is a single-item, single-level, uncapacitated lot-sizing model with a finite horizon."},
+      {q:"The original Dynamic Version of the Economic Lot Size model was published in:",o:["Management Science, 1958","Operations Research, 1960","Journal of Inventory Management, 1965","Harvard Business Review, 1955"],a:0,e:"The seminal paper 'A Dynamic Version of the Economic Lot Size Model' by Wagner & Whitin was published in Management Science, October 1958, Volume 5, Number 1, pp. 89-96."},
+      {q:"Who authored the foundational paper on the Dynamic Lot Sizing problem?",o:["Silver and Meal","Wagner and Whitin","Ford and Fulkerson","Dantzig and Wolsey"],a:1,e:"Harvey M. Wagner (Stanford University) and Thomson M. Whitin (MIT) authored the foundational paper on the Dynamic Version of the Economic Lot Size Model."},
+      {q:"In the DEL model, backorders are:",o:["Encouraged to reduce ordering frequency","Permitted only in the final period","Not permitted","Charged at a separate penalty cost"],a:2,e:"One of the DEL model assumptions is that backorders are not permitted — demand must be fully met in each period."},
+      {q:"Which solution approach gives the OPTIMAL (not heuristic) solution to the uncapacitated DEL problem?",o:["Lot-for-Lot","Part-Period Balancing","Silver-Meal","Wagner-Whitin (Dynamic Programming)"],a:3,e:"The Wagner-Whitin method uses a recursive dynamic programming algorithm that guarantees the optimal solution for the uncapacitated DEL problem."},
+      {q:"The Lot-for-Lot heuristic places an order at the start of each period for:",o:["The average demand across all periods","Exactly the demand of that specific period only","The cumulative remaining demand","Half the total planning horizon demand"],a:1,e:"Lot-for-Lot: place an order at the start of each period for a quantity equal to the demand for that period. Holding cost = 0 per period, but ordering cost is paid every period."},
+      {q:"Using Lot-for-Lot for the corn flour example (Jan=36, Feb=60, Mar=85, Apr=11, May=39, Jun=75; OC=$80, CC=$1.75/unit/period), the total inventory cost is:",o:["$480.00","$687.00","$747.75","$736.00"],a:2,e:"Lot-for-Lot: Ordering cost = 6 × $80 = $480. Carrying costs = $31.5+$52.5+$74.4+$9.6+$34.1+$65.6 = $267.75. TIC = $747.75."},
+      {q:"In the Lot-for-Lot method, the carrying cost for January (demand = 36 units, holding cost = $1.75/unit/period) using average inventory is:",o:["$63.00","$45.50","$31.50","$18.00"],a:2,e:"Carrying cost = $1.75 × average inventory = $1.75 × (36+0)/2 = $1.75 × 18 = $31.50."},
+      {q:"The Part-Period Balancing heuristic is based on the concept of:",o:["Minimising the number of orders placed","Balancing the ordering cost with the holding cost","Minimising per-period cost across an order horizon","Ordering enough for the fewest periods possible"],a:1,e:"Part-Period Balancing balances the total holding cost over an order horizon against the order cost, choosing the horizon where they are closest."},
+      {q:"In Part-Period Balancing, iteration continues until:",o:["All periods are covered","Total holding cost exceeds the order cost","The carrying cost equals zero","The order quantity reaches the total demand"],a:1,e:"Stop the iteration when total holding costs > order cost. The order horizon with holding cost closest to the order cost is selected."},
+      {q:"In Part-Period Balancing, the Closeness Factor C_r is computed as:",o:["C_r = C_h × Σ(2t-1)d_t/2","C_r = |C_0 − C_h × Σ(2t-1)d_t/2|","C_r = C_0 / C_h","C_r = C_h × d_t"],a:1,e:"C_r = |C_0 − C_h × Σ(2t-1)d_t/2|. The order horizon with the smallest C_r (closest total holding cost to order cost) is selected."},
+      {q:"In Part-Period Balancing (corn flour example, OC=$80, CC=$1.75), the holding cost for a 1-period January horizon is:",o:["$63.00","$31.50","$15.75","$52.50"],a:1,e:"Holding cost = $1.75 × (36/2) = $1.75 × 18 = $31.50. Since $31.50 < $80, extend the horizon to 2 months."},
+      {q:"In Part-Period Balancing, when the holding cost for Jan+Feb horizon equals $189 (> OC=$80), the decision is to:",o:["Order for both January and February from the start","Place a separate order just for January (36 units)","Cancel the February order","Use Lot-for-Lot for the remaining periods"],a:1,e:"Since C_r for 1 period ($48.5) < C_r for 2 periods ($109), the smallest C_r is for the 1-period horizon, so order 36 units for January only."},
+      {q:"In Part-Period Balancing for the corn flour example, April's order (50 units) covers:",o:["April only","April and May","April, May, and June","March and April"],a:1,e:"In iteration 4, the 2-period (Apr+May) C_r=$32 < 1-period (Apr) C_r=$70.37, so order 50 units in April to cover April AND May demand."},
+      {q:"The total inventory cost using Part-Period Balancing for the corn flour example is:",o:["$747.75","$687.00","$736.01","$761.00"],a:2,e:"Part-Period Balancing solution: 5 orders (Jan, Feb, Mar, Apr covering Apr+May, Jun) with TIC = $400 ordering + $336.01 holding = $736.01."},
+      {q:"The Silver-Meal heuristic selects an order horizon by minimising:",o:["Total inventory cost over the planning horizon","Total holding cost per period","Total inventory cost per period (Per Period Cost)","Total ordering cost across all periods"],a:2,e:"Silver-Meal minimises the Per Period Cost (PPC) = Total inventory cost / number of periods. Extend the order horizon as long as PPC decreases."},
+      {q:"In Silver-Meal, you extend the order horizon to T periods only if:",o:["PPC(T) > PPC(T-1)","PPC(T) < PPC(T-1)","PPC(T) = PPC(T-1)","Holding cost(T) > Order cost"],a:1,e:"Continue extending the horizon as long as PPC decreases. Stop when PPC(T) > PPC(T-1) and use T-1 periods as the order horizon."},
+      {q:"In Silver-Meal (corn flour, OC=$80, CC=$1.75), the Per Period Cost for a January-only horizon is:",o:["$269.00","$134.50","$111.50","$80.00"],a:2,e:"PPC(Jan) = (OC + Holding cost) / 1 = ($80 + $31.50) / 1 = $111.50."},
+      {q:"In Silver-Meal, when PPC(Jan+Feb) = $134.50 > PPC(Jan) = $111.50, the decision is:",o:["Order for Jan and Feb together","Order for January only (36 units)","Continue extending to a 3-month horizon","Skip January and start from February"],a:1,e:"PPC increased when extending to 2 months, so stop at 1 month. Order 36 units for January only."},
+      {q:"In Silver-Meal for the corn flour example, the March order covers which months?",o:["March only","March and April","March, April, and May","March and February"],a:1,e:"PPC(Mar)=$154.38, PPC(Mar+Apr)=$91.63 (decreases), PPC(Mar+Apr+May)=$117.96 (increases). So order covers March and April — 96 units."},
+      {q:"The Silver-Meal total inventory cost for the corn flour example is:",o:["$747.75","$736.01","$687.00","$761.00"],a:2,e:"Silver-Meal solution: Jan=36, Feb=60, Mar=96 (covers Mar+Apr), May=39, Jun=75. TIC = $400 ordering + $287 holding = $687.00."},
+      {q:"The Least Unit Cost (LUC) heuristic is most similar to which other method?",o:["Lot-for-Lot","Part-Period Balancing","Silver-Meal","Wagner-Whitin"],a:2,e:"The Least Unit Cost heuristic is similar to Silver-Meal. The key difference: Silver-Meal divides total cost by number of PERIODS; LUC divides by number of UNITS in the order horizon."},
+      {q:"In the Least Unit Cost heuristic, the decision criterion per horizon is:",o:["Minimise per-period inventory cost","Minimise per-unit inventory cost (total cost / total units)","Balance holding vs. ordering cost","Minimise number of setups"],a:1,e:"LUC minimises Per Unit Cost (PUC) = Total inventory cost / Total units in the order horizon. Extend horizon while PUC decreases."},
+      {q:"In LUC (corn flour, OC=$80, CC=$1.75), the Per Unit Cost for a January-only order (36 units) is approximately:",o:["$3.097","$2.802","$1.750","$4.250"],a:0,e:"PUC(Jan) = ($80 + $31.5) / 36 = $111.5 / 36 = $3.097 per unit."},
+      {q:"In LUC for the corn flour example, when PUC(Jan+Feb) = $2.802 < PUC(Jan) = $3.097, the decision is:",o:["Order for January only","Extend to consider 3 months (Jan+Feb+Mar)","Stop and order 96 units for January","Switch to Lot-for-Lot"],a:1,e:"PUC decreased when extending to 2 months, so continue extending. Check 3-month horizon (Jan+Feb+Mar)."},
+      {q:"In LUC, PUC(Jan+Feb+Mar) = $3.540 > PUC(Jan+Feb) = $2.802. The optimal order at January's start is:",o:["181 units (Jan+Feb+Mar)","36 units (Jan only)","96 units (Jan+Feb)","85 units (Mar only)"],a:2,e:"PUC increased at 3 months, so the optimal order horizon is Jan+Feb. Order 96 units (36+60) at the start of January."},
+      {q:"The total inventory cost using Least Unit Cost for the corn flour example is:",o:["$687.00","$736.01","$747.75","$761.00"],a:3,e:"LUC solution: Jan=96 (covers Jan+Feb), Mar=85, Apr=50 (covers Apr+May), Jun=75. TIC = $320 ordering + $441 holding = $761.00."},
+      {q:"Which heuristic gave the LOWEST total inventory cost for the corn flour example?",o:["Lot-for-Lot ($747.75)","Part-Period Balancing ($736.01)","Silver-Meal ($687.00)","Least Unit Cost ($761.00)"],a:2,e:"Silver-Meal produced the lowest TIC of $687.00, which is also equal to the Wagner-Whitin optimal solution of $687.00."},
+      {q:"The Wagner-Whitin method is based on which optimisation technique?",o:["Linear Programming","Simulation","Dynamic Programming (recursive algorithm)","Greedy search"],a:2,e:"Wagner-Whitin uses a recursive Dynamic Programming algorithm, solving sub-problems of increasing size to find the globally optimal lot-sizing policy."},
+      {q:"The Wagner-Whitin Property states that under an optimal policy:",o:["Every period must have a positive production quantity","Either the inventory carried into period t+1 is zero OR the production quantity in t+1 is zero","Orders must be placed every period","Inventory at the end of the planning horizon must be maximised"],a:1,e:"The Wagner-Whitin Property: in an optimal solution, either the carryover inventory into period t+1 is zero OR the order quantity in period t+1 is zero — you never carry stock and order simultaneously."},
+      {q:"In Wagner-Whitin (corn flour example), TC₁ for covering January's demand (36 units) alone is:",o:["$52.50","$80.00","$111.50","$269.00"],a:2,e:"TC₁ = OC + Holding cost = $80 + $1.75×(36/2) = $80 + $31.50 = $111.50."},
+      {q:"In Wagner-Whitin Iteration 2, Option 1 covers Jan & Feb with one January order. The total cost for this option is:",o:["$244.00","$269.00","$111.50","$132.50"],a:1,e:"Option 1 (Jan order covers Jan+Feb): OC + $1.75×(36/2 + 3×60/2) = $80 + $189 = $269. Option 2 (TC₁ + Feb order): $111.5+$80+$52.5=$244. Min = $244 (Option 2)."},
+      {q:"In Wagner-Whitin, TC₂ (best cost to cover Jan and Feb) equals:",o:["$111.50","$244.00","$269.00","$398.37"],a:1,e:"TC₂ = min(Option 1 = $269, Option 2 = $244) = $244. The best policy is separate orders for January and February."},
+      {q:"In Wagner-Whitin Iteration 3, the minimum cost to cover January through March (TC₃) is:",o:["$398.37","$640.88","$467.13","$244.00"],a:0,e:"Option 3 (TC₂ + March order alone) = $244 + $80 + $74.375 = $398.37. This beats Option 1 ($640.88) and Option 2 ($467.13). TC₃ = $398.37."},
+      {q:"In Wagner-Whitin Iteration 4, the minimum TC₄ covering Jan–April is:",o:["$398.37","$488.00","$427.25","$515.25"],a:2,e:"TC₄ = min(Option1=$708.25, Option2=$515.25, Option3=$427.25, Option4=$488.00) = $427.25 (Option 3: TC₂+March order covers Mar+Apr)."},
+      {q:"In Wagner-Whitin Iteration 5, the minimum TC₅ covering Jan–May is:",o:["$687.00","$541.38","$590.37","$754.13"],a:1,e:"TC₅ = min($1015.38, $754.13, $597.88, $590.37, $541.38) = $541.38 (Option 5: TC₄ + separate May order)."},
+      {q:"In Wagner-Whitin Iteration 6 (covering Jan–Jun), the minimum TC₆ is:",o:["$852.87","$738.25","$687.00","$991.63"],a:2,e:"TC₆ = min($1737.25, $1279.13, $991.63, $852.87, $738.25, $687.00) = $687.00 (Option 6: TC₅ + separate June order)."},
+      {q:"The Wagner-Whitin optimal solution for the corn flour example orders in which months?",o:["January, March, May, June","January, February, March, May, June","January, February, April, June","January, February, March (covers Mar+Apr), May, June"],a:3,e:"Optimal: separate orders for January (36) and February (60), one order in March covering March+April (96 units), separate orders in May (39) and June (75)."},
+      {q:"The Wagner-Whitin total inventory cost (TIC) for the corn flour example is:",o:["$747.75","$736.01","$687.00","$761.00"],a:2,e:"Wagner-Whitin achieves the globally optimal TIC = $687.00, which equals the Silver-Meal result in this example."},
+      {q:"In the MILP formulation of the DEL problem, the binary variable y_t indicates:",o:["Inventory level at end of period t","Whether an order/setup is placed (y_t=1) or not (y_t=0) in period t","The unit production cost in period t","The cumulative demand up to period t"],a:1,e:"y_t ∈ {0,1}: y_t=1 means an order/setup is placed in period t; y_t=0 means no order. It drives the setup cost s_t×y_t."},
+      {q:"The MILP DEL objective function minimises:",o:["Setup costs only","Holding costs only","Setup costs plus holding costs","Production costs + setup costs + inventory holding costs"],a:3,e:"Minimize Σ(p_t×q_t + s_t×y_t + h_t×I_t): unit production cost + setup cost + inventory holding cost across all T periods."},
+      {q:"The inventory balance constraint in the MILP DEL model is:",o:["I_t = I_(t-1) + q_t + d_t","I_(t-1) + q_t = d_t + I_t","q_t = d_t − I_(t-1)","I_t = q_t − d_t"],a:1,e:"Inventory balance: I_(t-1) + q_t = d_t + I_t, i.e., beginning inventory + quantity ordered = demand + ending inventory."},
+      {q:"The production/ordering capacity constraint in the MILP DEL model links q_t to y_t by:",o:["q_t ≥ D_t × y_t","q_t = D_t","q_t ≤ D_t × y_t","q_t ≤ d_t"],a:2,e:"q_t ≤ D_t × y_t, where D_t = Σd_t (total remaining demand). This ensures no quantity is ordered if y_t=0 (no setup)."},
+      {q:"In the DEL MILP model, the boundary condition on initial and final inventory is:",o:["I₀ = I_T = D_T","I₀ = 0 and I_T ≥ 0","I₀ = I_T = 0","I₀ ≥ 0 and I_T = 0"],a:2,e:"Boundary conditions: I₀ = I_T = 0. No initial inventory and no leftover inventory at the end of the planning horizon."},
+      {q:"In Excel Solver for the corn flour MILP, the binary constraint applies to which row?",o:["Inventory row","Ordering cost row","Order/Setup row (y_t)","Quantity row"],a:2,e:"The binary constraint is applied to the Order/Setup row (y_t variables), constraining them to {0,1}."},
+      {q:"IBM ILOG CPLEX uses which modelling language for formulating optimisation problems?",o:["Python","OPL (Optimization Programming Language)","MATLAB","AMPL"],a:1,e:"IBM ILOG CPLEX Optimization Studio uses OPL (Optimization Programming Language) to formulate and solve mathematical programming problems."},
+      {q:"In OPL for the Dynamic Lot Sizing problem, which variable type is used for the Setup variable?",o:["float+","int","boolean","interval"],a:2,e:"Setup variables y_t are declared as 'dvar boolean Setup[Periods]' — a boolean (binary) decision variable in OPL."},
+      {q:"In the OPL Dynamic Lot Sizing model, inventory is declared as:",o:["dvar boolean Inventory[Periods]","dvar float+ Inventory[0..NbPeriods]","dvar int Inventory[Periods]","dvar interval Inventory[Periods]"],a:1,e:"'dvar float+ Inventory[0..NbPeriods]' — a non-negative float variable indexed from 0 to NbPeriods to capture end-of-period inventory including I₀."},
+      {q:"In the OPL DEL model, the objective function is written as:",o:["minimize sum(t in Periods)(CC*Demand[t])","minimize sum(t in Periods)(CC*(Inventory[t]+Quantity[t])/2 + OC*Setup[t])","minimize sum(t in Periods)(OC*Demand[t] + CC*Quantity[t])","maximize sum(t in Periods)(Quantity[t])"],a:1,e:"The OPL objective: minimize sum(t in Periods)(CC*(Inventory[t]+Quantity[t])/2 + OC*Setup[t]), combining carrying cost (on average inventory) and ordering cost."},
+      {q:"The ordering quantity constraint in the OPL DEL model ensures:",o:["Quantity[t] ≥ 0","Quantity[t] = Demand[t]","Quantity[t] ≤ (sum of all Demand) × Setup[t]","Quantity[t] ≥ Demand[t] × Setup[t]"],a:2,e:"Quantity[t] ≤ (sum(t in Periods) Demand[t]) × Setup[t] — ensures no quantity is ordered in period t unless a setup is placed (Setup[t]=1)."},
+      {q:"The OPL DEL solution for the corn flour example shows Setup = [1 1 1 0 1 1], meaning:",o:["Orders are placed in all 6 periods","Orders are placed in Jan, Feb, Mar, May, Jun — no order in April","Orders are placed only in April and May","Orders are placed in Jan, Mar, Apr, Jun"],a:1,e:"Setup = [1 1 1 0 1 1]: orders in periods 1(Jan), 2(Feb), 3(Mar), 5(May), 6(Jun); period 4 (April) has no order — April demand is covered by the March order."},
+      {q:"The capacitated extension of the DEL problem adds which constraint compared to the basic model?",o:["Backorders are now permitted","A production capacity limit c_t limits the order quantity per period","The planning horizon becomes infinite","Unit production costs are removed from the objective"],a:1,e:"The Single-item Capacitated Lot Sizing Problem adds q_t ≤ c_t × z_t for all t, where c_t is the production/order capacity in period t."},
+      {q:"The LP-and-Fix heuristic for the capacitated lot sizing problem first:",o:["Solves the MILP directly with all binary constraints intact","Relaxes the binary constraints to 0 ≤ z_t ≤ 1 and solves the LP relaxation","Fixes all setup variables to 1 before solving","Uses Silver-Meal to initialise the solution"],a:1,e:"LP-and-Fix step 1: relax binary z_t ∈ {0,1} to continuous z_t ∈ [0,1] and solve the LP relaxation."},
+      {q:"In the Modified LP-and-Fix heuristic, binary variables are fixed by the rule:",o:["Fix all z_t = 0 if z_t ≤ 0.9, else fix z_t = 1","Fix z_t = 0 if z_t = 0 in LP solution; fix z_t = 1 if z_t > 0.5","Fix only variables with LP value exactly equal to 0 or 1","Fix z_t = 1 for all periods with positive demand"],a:1,e:"Modified LP-and-Fix: fix all LP solution values of 0 to 0, and all values > 0.5 to 1. Then solve the resulting reduced MILP."},
+      {q:"Which of the following is an extension of the basic Dynamic Lot Sizing problem mentioned in the lecture?",o:["Continuous review models","Multi-item lot sizing","Safety stock optimisation","Economic Order Quantity with discounts"],a:1,e:"Extensions of the DEL problem include Multiple Items, Backlogging, Production Capacities, Product Returns, Multi-echelon, Perishable goods, Supplier Selection, and many more."},
+      {q:"Comparing heuristic results for the corn flour example, which ranking of TIC from lowest to highest is correct?",o:["Lot-for-Lot < Silver-Meal < Part-Period Balancing < Least Unit Cost","Silver-Meal = Wagner-Whitin < Part-Period Balancing < Lot-for-Lot < Least Unit Cost","Wagner-Whitin < Silver-Meal < Part-Period Balancing < Lot-for-Lot","Silver-Meal < Lot-for-Lot < Part-Period Balancing < Least Unit Cost"],a:1,e:"TIC results: Silver-Meal=$687 (=Wagner-Whitin optimal), Part-Period Balancing=$736, Lot-for-Lot=$747.75, Least Unit Cost=$761."},
+      {q:"In the DEL model, what happens to the total number of orders placed when using Lot-for-Lot compared to methods that batch demands?",o:["Lot-for-Lot places fewer orders","Lot-for-Lot places the same number of orders","Lot-for-Lot places the maximum possible orders (one per period)","Lot-for-Lot skips periods with low demand"],a:2,e:"Lot-for-Lot places one order per demand period — the maximum possible number of orders. This minimises holding cost but maximises ordering cost."},
+      {q:"A heuristic approach to lot sizing is preferred over dynamic programming when:",o:["Optimal solutions are absolutely required","Problem size is small","Time, data, or computational resources are limited and a quick near-optimal solution is acceptable","The holding cost is higher than the ordering cost"],a:2,e:"Heuristics simplify complex problems when a fast, satisfactory, near-optimal solution is needed — especially when full optimality is not required or computationally too expensive."},
+      {q:"The carrying cost formula used in all four heuristics for a horizon starting at period 1 is:",o:["C_h × Σ d_t","C_h × Σ (2t-1)d_t / 2","C_h × max(d_t)","C_h × T × d̄"],a:1,e:"Holding cost = C_h × Σ_{t=1}^{T} (2t-1)d_t / 2. The factor (2t-1)/2 accounts for the time each unit spends in inventory within the period."},
+      {q:"In the Dynamic Lot Sizing context, the term 'order horizon' refers to:",o:["The total planning period for the entire problem","The number of future periods covered by a single order","The lead time before an order arrives","The safety stock coverage period"],a:1,e:"Order horizon T = the number of future periods a single order will cover. The heuristics determine the optimal T by evaluating costs."}
     ]
   }
 };
