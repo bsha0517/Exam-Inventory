@@ -19,8 +19,7 @@
     --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.12);
     --radius:12px;--radius-sm:8px;
     --orange:#f97316;--orange-dim:rgba(249,115,22,0.12);
-    --gold:#f59e0b;--gold-dim:rgba(245,158,11,0.12);
-    --gold-border:rgba(245,158,11,0.3);
+    --gold:#f59e0b;--gold-dim:rgba(245,158,11,0.13);--gold-border:rgba(245,158,11,0.32);
   }
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
@@ -163,9 +162,9 @@
     .results-actions .btn{text-align:center}
   }
 
-  /* ── EXAM ADDITIONS ─────────────────────────────────────── */
-  .topic-card.topic-gold{border-color:rgba(245,158,11,0.3)}
-  .topic-card.topic-gold:hover{border-color:rgba(245,158,11,.7);background:rgba(245,158,11,.06);transform:translateY(-2px)}
+  /* ═══ EXAM FEATURE CSS ═══════════════════════════════════════════════ */
+  .topic-card.topic-gold{border-color:rgba(245,158,11,.32)}
+  .topic-card.topic-gold:hover{border-color:rgba(245,158,11,.75);background:rgba(245,158,11,.06);transform:translateY(-2px)}
   .num-gold{color:var(--gold)}
   .pill-gold{color:var(--gold);border-color:var(--gold-border);background:var(--gold-dim)}
   .eyebrow-gold{color:var(--gold)}
@@ -173,53 +172,52 @@
   .badge-gold{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold)}
   .btn.primary-gold{background:var(--gold);border-color:var(--gold);color:#0f1117;font-weight:600}
   .btn.primary-gold:hover{background:#d97706;border-color:#d97706}
-  .btn.primary-gold:disabled{opacity:.35;cursor:default}
-  .exam-card-banner{
-    position:absolute;top:0;left:0;right:0;
-    background:linear-gradient(90deg,rgba(245,158,11,.15),transparent);
-    border-bottom:1px solid rgba(245,158,11,.2);
-    padding:5px 14px;font-size:10px;font-weight:700;
-    letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
-    display:flex;align-items:center;gap:5px
-  }
+  .btn.primary-gold:disabled{opacity:.4;cursor:default}
+  .exam-card-banner{position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,rgba(245,158,11,.18),transparent);border-bottom:1px solid rgba(245,158,11,.22);padding:6px 16px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px}
   /* Modal */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:999;padding:1rem;backdrop-filter:blur(6px)}
-  .modal-box{background:#1a1d27;border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:2rem;max-width:440px;width:100%;animation:slideIn .25s ease}
-  .modal-icon{font-size:2rem;margin-bottom:.75rem}
-  .modal-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:.4rem;color:var(--text)}
-  .modal-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem;backdrop-filter:blur(6px)}
+  .modal-box{background:#1a1d27;border:1px solid rgba(245,158,11,.42);border-radius:16px;padding:2rem;max-width:460px;width:100%;animation:slideIn .25s ease;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+  .modal-icon{font-size:2.2rem;margin-bottom:.8rem}
+  .modal-title{font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:700;margin-bottom:.4rem;color:var(--text)}
+  .modal-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.65}
   .modal-field{margin-bottom:1rem}
-  .modal-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;display:block}
-  .modal-input{width:100%;padding:11px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;outline:none;transition:border-color .15s}
+  .modal-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;display:block}
+  .modal-input{width:100%;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;outline:none;transition:border-color .15s}
   .modal-input:focus{border-color:var(--gold)}
   .modal-input.err{border-color:var(--red)}
-  .modal-rules{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px 14px;margin-bottom:1.25rem;font-size:12px;color:var(--muted);line-height:1.7}
-  .modal-rules li{margin-left:1rem}
+  .modal-err{font-size:12px;color:var(--red);margin-top:5px;display:none}
+  .modal-rules{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:12px 16px;margin-bottom:1.25rem;font-size:12.5px;color:var(--muted);line-height:1.75}
+  .modal-rules li{margin-left:1.2rem;margin-bottom:2px}
   .modal-actions{display:flex;gap:8px}
-  .modal-err{font-size:12px;color:var(--red);margin-top:-6px;margin-bottom:8px;display:none}
-  /* Timer */
-  .hud-timer{background:var(--surface);border:1px solid var(--gold-border);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--gold);font-family:monospace;letter-spacing:.05em;display:none}
-  .hud-timer.warn{color:var(--yellow);border-color:rgba(245,166,35,.4)}
-  .hud-timer.danger{color:var(--red);border-color:rgba(247,84,95,.4);animation:pulse .8s ease-in-out infinite}
   /* Resume banner */
-  .resume-banner{display:none;align-items:center;gap:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:12px 16px;margin-bottom:1.5rem;flex-wrap:wrap}
-  .resume-banner-text{flex:1;font-size:13px;color:var(--text)}
+  .resume-banner{display:none;align-items:center;gap:12px;background:rgba(245,158,11,.09);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:13px 16px;margin-bottom:1.5rem;flex-wrap:wrap}
+  .resume-banner-text{flex:1;font-size:13.5px;color:var(--text);line-height:1.5}
   .resume-banner-text b{color:var(--gold)}
-  .resume-banner-actions{display:flex;gap:8px}
+  .resume-banner-meta{font-size:12px;color:var(--muted);margin-top:2px}
+  .resume-banner-actions{display:flex;gap:8px;flex-shrink:0}
+  /* HUD timer */
+  .hud-timer{background:var(--surface);border:1px solid var(--gold-border);border-radius:99px;padding:4px 14px;font-size:13px;font-weight:600;color:var(--gold);font-family:'Courier New',monospace;letter-spacing:.05em;display:none;min-width:90px;text-align:center}
+  .hud-timer.warn{color:var(--yellow);border-color:rgba(245,166,35,.5);background:rgba(245,166,35,.08)}
+  .hud-timer.danger{color:var(--red);border-color:rgba(247,84,95,.5);background:rgba(247,84,95,.08);animation:pulse .7s ease-in-out infinite}
+  /* Save status dot in HUD */
+  .save-dot{width:7px;height:7px;border-radius:50%;display:none;flex-shrink:0}
+  .save-dot.saving{background:var(--gold);display:block;animation:pulse 1s infinite}
+  .save-dot.saved{background:var(--green);display:block}
+  .save-dot.fail{background:var(--red);display:block}
   /* Submit status */
-  .exam-submit-status{margin-top:1.25rem;padding:12px 16px;border-radius:8px;font-size:13px;line-height:1.6}
-  .exam-submit-status.esending{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold)}
-  .exam-submit-status.eok{background:var(--green-dim);border:1px solid rgba(34,201,131,.3);color:#6ee7b7}
-  .exam-submit-status.efail{background:var(--red-dim);border:1px solid rgba(247,84,95,.3);color:#fca5a5}
-  /* Topic score cards */
+  .exam-save-status{margin-top:1.25rem;padding:13px 16px;border-radius:8px;font-size:13px;line-height:1.6;display:flex;align-items:flex-start;gap:10px}
+  .exam-save-status.sending{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold)}
+  .exam-save-status.ok{background:var(--green-dim);border:1px solid rgba(34,201,131,.3);color:#6ee7b7}
+  .exam-save-status.fail{background:var(--red-dim);border:1px solid rgba(247,84,95,.3);color:#fca5a5}
+  /* Topic score breakdown */
   .topic-score-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.5rem}
   @media(max-width:500px){.topic-score-grid{grid-template-columns:1fr}}
   .topic-score-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
-  .tsc-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-  .tsc-bar-wrap{height:4px;background:var(--surface2);border-radius:99px;margin:6px 0}
-  .tsc-bar{height:4px;border-radius:99px;background:var(--gold)}
-  .tsc-score{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;color:var(--text)}
+  .tsc-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+  .tsc-score{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;color:var(--text)}
   .tsc-pct{font-size:12px;color:var(--muted)}
+  .tsc-bar-wrap{height:4px;background:var(--surface2);border-radius:99px;margin:6px 0 0}
+  .tsc-bar{height:4px;border-radius:99px;background:var(--gold);transition:width .8s ease}
   .hidden{display:none!important}
 </style>
 </head>
@@ -234,6 +232,7 @@
       <div class="hud-chip">✓ <b id="hud-right" style="color:var(--green)">0</b></div>
       <div class="hud-chip">✗ <b id="hud-wrong" style="color:var(--red)">0</b></div>
       <div class="hud-timer" id="hud-timer">02:00:00</div>
+      <div class="save-dot" id="save-dot" title="Saving..."></div>
     </div>
   </div>
 
@@ -301,25 +300,25 @@
         </div>
       </div>
 
-    <!-- RESUME BANNER -->
+    <!-- RESUME BANNER — shown if unfinished exam exists in Supabase/localStorage -->
     <div class="resume-banner" id="resume-banner">
-      <div class="resume-banner-text">
-        ⏱ You have an exam in progress — <b id="resume-name"></b>
-        <span style="color:var(--muted);font-size:12px"> · <span id="resume-time"></span></span>
+      <div style="flex:1">
+        <div class="resume-banner-text">⏱ Unfinished exam found — <b id="resume-name"></b></div>
+        <div class="resume-banner-meta" id="resume-meta"></div>
       </div>
       <div class="resume-banner-actions">
-        <button class="btn" style="font-size:13px;padding:7px 14px" onclick="dismissResume()">Discard</button>
+        <button class="btn" style="font-size:13px;padding:7px 14px" onclick="discardExam()">Discard</button>
         <button class="btn primary-gold" style="font-size:13px;padding:7px 14px" onclick="resumeExam()">Resume →</button>
       </div>
     </div>
 
-    <div class="topic-card topic-gold" onclick="startExamFlow()" style="grid-column:1/-1;padding-top:2.5rem">
-      <div class="exam-card-banner">⏱ Timed &nbsp;·&nbsp; Auto-graded &nbsp;·&nbsp; Result saved to instructor dashboard</div>
+    <div class="topic-card topic-gold" onclick="startExamFlow()" style="grid-column:1/-1;padding-top:2.75rem;overflow:visible">
+      <div class="exam-card-banner">⏱ Timed &nbsp;·&nbsp; Auto-graded &nbsp;·&nbsp; Every answer saved to database instantly</div>
       <span class="topic-card-q" style="background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)">100 Qs · 2 hrs</span>
       <span class="topic-card-icon">🎓</span>
       <div class="topic-card-num num-gold">Final Exam</div>
       <div class="topic-card-title">MS-Level Comprehensive Exam</div>
-      <div class="topic-card-sub">Full 100-question timed exam across all four topics. Enter your name to begin — your result is saved automatically to the instructor's private dashboard.</div>
+      <div class="topic-card-sub">Full 100-question timed exam. Every answer is saved to the database as you go — closing the window or refreshing will not lose your progress. Re-open the page to resume.</div>
       <div class="topic-pills">
         <span class="topic-pill pill-gold">25 × Warehouse Ops</span>
         <span class="topic-pill pill-gold">20 × Newsvendor</span>
@@ -372,34 +371,34 @@
     </div>
   </div>
 
-  <!-- EXAM NAME MODAL -->
+  <!-- ── EXAM NAME MODAL ───────────────────────────────────────────────── -->
   <div class="modal-overlay hidden" id="exam-modal">
     <div class="modal-box">
       <div class="modal-icon">🎓</div>
       <div class="modal-title">MS-Level Final Exam</div>
-      <div class="modal-sub">Enter your details. Your result will be saved to the instructor's private dashboard automatically on submission.</div>
+      <div class="modal-sub">Enter your details to begin. Every answer you select is saved to the database instantly — you can safely close the window and resume later.</div>
       <div class="modal-field">
         <label class="modal-label" for="exam-name">Full Name <span style="color:var(--red)">*</span></label>
         <input type="text" id="exam-name" class="modal-input" placeholder="e.g. Ahmed Raza Khan" autocomplete="name">
+        <p class="modal-err" id="exam-name-err">Please enter your full name to continue.</p>
       </div>
-      <p class="modal-err" id="exam-name-err">Please enter your full name to continue.</p>
       <div class="modal-field">
-        <label class="modal-label" for="exam-id">Student ID <span style="color:var(--muted)">(optional)</span></label>
+        <label class="modal-label" for="exam-id">Student ID <span style="color:var(--muted);font-weight:400;text-transform:none">(optional)</span></label>
         <input type="text" id="exam-id" class="modal-input" placeholder="e.g. 2023-MS-045">
       </div>
       <div class="modal-rules">
         <strong style="color:var(--text)">Before you begin:</strong>
         <ul>
           <li>100 questions · 2-hour countdown · auto-submits at zero</li>
-          <li>If you refresh, your progress is restored automatically</li>
-          <li>You can navigate back to review previous answers</li>
-          <li>Unanswered questions count as wrong on submit</li>
+          <li>Each answer is saved to the database the moment you select it</li>
+          <li>Closing the tab or refreshing will not lose your progress</li>
+          <li>Return to this page — your exam will resume exactly where you left off</li>
           <li>No negative marking — attempt every question</li>
         </ul>
       </div>
       <div class="modal-actions">
         <button class="btn" onclick="closeExamModal()">Cancel</button>
-        <button class="btn primary-gold" onclick="confirmExamStart()" style="flex:1">Begin Exam →</button>
+        <button class="btn primary-gold" id="exam-start-btn" onclick="confirmExamStart()" style="flex:1">Begin Exam →</button>
       </div>
     </div>
   </div>
@@ -775,14 +774,20 @@ function backToMenu(){
   activeTopic=null;
   window.scrollTo({top:0,behavior:'smooth'});
 }
-// ═══════════════════════════════════════════════════════════════════════════
-// SUPABASE CONFIG — fill these in after one-time setup (see README below)
-// ═══════════════════════════════════════════════════════════════════════════
-const SUPABASE_URL  = 'https://ofvftfckzduoyylhagie.supabase.co';   // e.g. https://xxxx.supabase.co
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mdmZ0ZmNremR1b3l5bGhhZ2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDQ0NTcsImV4cCI6MjA5NzAyMDQ1N30.e6MqAQrAnBVVMgHCuQ7YXB2VU9NsViRucHoByL8T-ew'; // safe to expose — read restricted by RLS
-const SUPABASE_TABLE = 'exam_results';
 
-// ── EXAM QUESTIONS ────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+//  SUPABASE CONFIG
+// ═══════════════════════════════════════════════════════════════════════════
+const SB_URL   = 'https://ofvftfckzduoyylhagie.supabase.co';
+const SB_ANON  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mdmZ0ZmNremR1b3l5bGhhZ2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDQ0NTcsImV4cCI6MjA5NzAyMDQ1N30.e6MqAQrAnBVVMgHCuQ7YXB2VU9NsViRucHoByL8T-ew';
+const SB_SESS  = 'exam_sessions';   // table: live session + per-answer upserts
+const SB_RES   = 'exam_results';    // table: final result on submit
+
+const TOPIC_LABELS = {wh:'Warehouse Operations',nv:'The Newsvendor Model',si:'Stochastic Inventory Models',dl:'Dynamic Lot Sizing'};
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  EXAM QUESTION BANK
+// ═══════════════════════════════════════════════════════════════════════════
 const EXAM_BANK = [
   {q:"What does 'Seiri' (Sort) mean in an industrial context?",o:["Keep the workplace swept and clean","Distinguish necessary from unnecessary items and eliminate what is not needed","Establish a neat layout for easy retrieval","Make a habit of maintaining established procedures"],a:1,e:"Seiri industrial definition: distinguish between necessary and unnecessary things, and get rid of what you do not need.",t:"Warehouse Operations",tk:"wh"},
   {q:"In Acceptance Sampling, 'Tightened' inspection is applied when:",o:["The vendor's quality history is exceptionally good","Inspection starts for the first time","The vendor's recent quality level has deteriorated","Five consecutive lots have been accepted"],a:2,e:"Tightened inspection is used when the vendor's recent quality level has declined (deteriorated).",t:"Warehouse Operations",tk:"wh"},
@@ -886,19 +891,66 @@ const EXAM_BANK = [
   {q:"The EOQ model assumes which type of planning horizon?",o:["Finite","Discrete","Infinite","Stochastic"],a:2,e:"The EOQ model assumes an infinite planning horizon with continuous time and constant demand.",t:"Dynamic Lot Sizing",tk:"dl"}
 ];
 
-const TOPIC_LABELS = {
-  wh:'Warehouse Operations', nv:'The Newsvendor Model',
-  si:'Stochastic Inventory Models', dl:'Dynamic Lot Sizing'
+// ═══════════════════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════════════════
+let E = {
+  student:'', studentId:'', sessionId:null,
+  cur:0, score:0, wrong:0, answered:new Array(100).fill(null),
+  questions:[], topicStats:{}, secondsLeft:7200,
+  timerInt:null, started:false, submitted:false
 };
 
-// ── EXAM STATE ────────────────────────────────────────────────────────────
-let examStudent='', examStudentId='';
-let examCur=0, examScore=0, examWrong=0;
-let examAnswered=[], examTimerInt=null, examSecondsLeft=7200;
-let examQuestions=[], examTopicStats={};
-let examMode=false, examSubmitted=false;
+// ── Supabase REST helper ──────────────────────────────────────────────────
+async function sbFetch(path, method='GET', body=null){
+  const opts = {
+    method,
+    headers:{'Content-Type':'application/json','apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}
+  };
+  if(body) opts.body = JSON.stringify(body);
+  const r = await fetch(SB_URL+'/rest/v1/'+path, opts);
+  if(!r.ok && r.status!==201 && r.status!==204){
+    const t=await r.text(); throw new Error(r.status+': '+t);
+  }
+  try{ return await r.json(); }catch(e){ return null; }
+}
 
-// ── MODAL ─────────────────────────────────────────────────────────────────
+// ── Save dot indicator ────────────────────────────────────────────────────
+function showDot(state){ // 'saving'|'saved'|'fail'|'hide'
+  const d=document.getElementById('save-dot');
+  if(!d) return;
+  d.className='save-dot'+(state==='hide'?'':' '+state);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  ON PAGE LOAD — check for unfinished session
+// ═══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', async ()=>{
+  // 1. Check localStorage for a session_id
+  const localId = localStorage.getItem('iwm_exam_session_id');
+  if(!localId) return;
+  // 2. Try to fetch it from Supabase
+  try{
+    const rows = await sbFetch(`${SB_SESS}?session_id=eq.${localId}&select=*&limit=1`);
+    if(!rows||!rows.length) { localStorage.removeItem('iwm_exam_session_id'); return; }
+    const sess = rows[0];
+    if(sess.submitted){ localStorage.removeItem('iwm_exam_session_id'); return; }
+    // 3. Show resume banner
+    const used = 7200 - sess.seconds_left;
+    const m = Math.floor(used/60);
+    const answered_count = (sess.answered_map ? Object.keys(sess.answered_map).length : 0);
+    document.getElementById('resume-name').textContent = sess.student_name;
+    document.getElementById('resume-meta').textContent =
+      `${m} min elapsed · ${answered_count}/100 answered · ${sess.seconds_left > 0 ? Math.floor(sess.seconds_left/60)+'m remaining' : 'time expired'}`;
+    document.getElementById('resume-banner').style.display='flex';
+    // Store for resumeExam()
+    window._resumeSession = sess;
+  }catch(e){ console.warn('Resume check failed:',e); }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  MODAL
+// ═══════════════════════════════════════════════════════════════════════════
 function startExamFlow(){
   document.getElementById('exam-modal').classList.remove('hidden');
   setTimeout(()=>document.getElementById('exam-name').focus(),80);
@@ -918,263 +970,391 @@ function confirmExamStart(){
     document.getElementById('exam-name-err').style.display='block';
     nameEl.focus(); return;
   }
-  examStudent=name;
-  examStudentId=document.getElementById('exam-id').value.trim();
+  E.student=name;
+  E.studentId=document.getElementById('exam-id').value.trim();
   document.getElementById('exam-modal').classList.add('hidden');
-  launchExam();
+  launchExam(null);
 }
 
-// ── LAUNCH ────────────────────────────────────────────────────────────────
-function launchExam(){
-  examMode=true; examSubmitted=false;
-  examCur=0; examScore=0; examWrong=0;
-  examAnswered=new Array(100).fill(undefined);
-  examTopicStats={}; examSecondsLeft=7200;
+// ═══════════════════════════════════════════════════════════════════════════
+//  RESUME
+// ═══════════════════════════════════════════════════════════════════════════
+async function resumeExam(){
+  const sess = window._resumeSession;
+  if(!sess) return;
+  document.getElementById('resume-banner').style.display='none';
 
-  // Interleave-shuffle by topic
+  E.student    = sess.student_name;
+  E.studentId  = sess.student_id||'';
+  E.sessionId  = sess.session_id;
+  E.secondsLeft= Math.max(0, sess.seconds_left);
+  E.score      = sess.score||0;
+  E.wrong      = sess.wrong||0;
+  E.topicStats = sess.topic_stats||{};
+  E.submitted  = false;
+
+  // Rebuild questions array from saved order
+  const savedOrder = sess.question_order; // array of EXAM_BANK indices
+  E.questions = savedOrder.map(i=>({...EXAM_BANK[i], _bankIdx:i}));
+
+  // Rebuild answered array
+  E.answered = new Array(100).fill(null);
+  const am = sess.answered_map||{};
+  Object.entries(am).forEach(([idx,val])=>{ E.answered[parseInt(idx)]=val; });
+
+  // Find last answered question to resume from
+  E.cur = 0;
+  for(let i=E.answered.length-1;i>=0;i--){
+    if(E.answered[i]!==null){ E.cur=Math.min(i,99); break; }
+  }
+
+  startExamUI();
+}
+
+async function discardExam(){
+  const localId=localStorage.getItem('iwm_exam_session_id');
+  document.getElementById('resume-banner').style.display='none';
+  window._resumeSession=null;
+  localStorage.removeItem('iwm_exam_session_id');
+  if(localId){
+    try{ await sbFetch(`${SB_SESS}?session_id=eq.${localId}`,
+      'PATCH',{submitted:true,submitted_at:new Date().toISOString()}); }catch(e){}
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  LAUNCH NEW EXAM
+// ═══════════════════════════════════════════════════════════════════════════
+async function launchExam(){
+  E.cur=0; E.score=0; E.wrong=0; E.answered=new Array(100).fill(null);
+  E.topicStats={}; E.secondsLeft=7200; E.submitted=false; E.sessionId=null;
+
+  // Interleave-shuffle exam questions by topic
   const byTopic={};
-  EXAM_BANK.forEach(q=>{ if(!byTopic[q.tk]) byTopic[q.tk]=[]; byTopic[q.tk].push({...q}); });
-  Object.values(byTopic).forEach(arr=>{
-    for(let i=arr.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [arr[i],arr[j]]=[arr[j],arr[i]];
-    }
+  EXAM_BANK.forEach((q,i)=>{
+    if(!byTopic[q.tk]) byTopic[q.tk]=[];
+    byTopic[q.tk].push({...q,_bankIdx:i});
   });
-  examQuestions=[];
+  Object.values(byTopic).forEach(arr=>{
+    for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  });
+  E.questions=[];
   const keys=Object.keys(byTopic); let go=true;
-  while(go){ go=false; keys.forEach(k=>{ if(byTopic[k].length){ examQuestions.push(byTopic[k].shift()); go=true; } }); }
+  while(go){go=false;keys.forEach(k=>{if(byTopic[k].length){E.questions.push(byTopic[k].shift());go=true;}});}
 
-  // Save in-progress state so refresh doesn't lose answers
-  saveProgress();
+  // Create session row in Supabase
+  const sessionId = 'sess_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+  E.sessionId = sessionId;
+  localStorage.setItem('iwm_exam_session_id', sessionId);
 
+  try{
+    await sbFetch(SB_SESS,'POST',{
+      session_id:   sessionId,
+      student_name: E.student,
+      student_id:   E.studentId||null,
+      score:        0,
+      wrong:        0,
+      seconds_left: 7200,
+      submitted:    false,
+      question_order: E.questions.map(q=>q._bankIdx),
+      answered_map: {},
+      topic_stats:  {},
+      started_at:   new Date().toISOString()
+    });
+  }catch(err){ console.warn('Session create failed:',err); }
+
+  startExamUI();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  START EXAM UI
+// ═══════════════════════════════════════════════════════════════════════════
+function startExamUI(){
+  E.started=true;
   document.getElementById('screen-start').classList.add('hidden');
   document.getElementById('screen-quiz').classList.remove('hidden');
   document.getElementById('screen-results').style.display='none';
   document.getElementById('hud').style.display='flex';
   document.getElementById('hud-timer').style.display='block';
   document.getElementById('hud-total').textContent='100';
-
+  // hijack practice quiz progress bar colour
+  document.getElementById('prog-fill').className='progress-fill fill-gold';
   startExamTimer();
   renderExam();
 }
 
-// ── PROGRESS PERSISTENCE (survives refresh) ───────────────────────────────
-function saveProgress(){
-  try{
-    localStorage.setItem('iwm_exam_progress', JSON.stringify({
-      student:examStudent, studentId:examStudentId,
-      cur:examCur, score:examScore, wrong:examWrong,
-      answered:examAnswered, secondsLeft:examSecondsLeft,
-      questions:examQuestions, topicStats:examTopicStats,
-      submitted:examSubmitted, ts:Date.now()
-    }));
-  }catch(e){}
-}
-function clearProgress(){ try{ localStorage.removeItem('iwm_exam_progress'); }catch(e){} }
-
-function checkResume(){
-  try{
-    const raw=localStorage.getItem('iwm_exam_progress');
-    if(!raw) return;
-    const p=JSON.parse(raw);
-    // Ignore if older than 3 hours or already submitted
-    if(p.submitted || Date.now()-p.ts>3*3600*1000){ clearProgress(); return; }
-    if(!p.student || !p.questions || !p.questions.length) return;
-    // Show resume banner
-    const banner=document.getElementById('resume-banner');
-    if(banner){
-      banner.style.display='flex';
-      document.getElementById('resume-name').textContent=p.student;
-      const used=7200-p.secondsLeft;
-      const m=Math.floor(used/60);
-      document.getElementById('resume-time').textContent=m+' min in, '+p.answered.filter(x=>x!==undefined).length+' of 100 answered';
-    }
-  }catch(e){}
-}
-
-function resumeExam(){
-  try{
-    const p=JSON.parse(localStorage.getItem('iwm_exam_progress'));
-    examStudent=p.student; examStudentId=p.studentId||'';
-    examCur=p.cur; examScore=p.score; examWrong=p.wrong;
-    examAnswered=p.answered; examSecondsLeft=p.secondsLeft;
-    examQuestions=p.questions; examTopicStats=p.topicStats||{};
-    examSubmitted=false; examMode=true;
-    document.getElementById('resume-banner').style.display='none';
-    document.getElementById('screen-start').classList.add('hidden');
-    document.getElementById('screen-quiz').classList.remove('hidden');
-    document.getElementById('hud').style.display='flex';
-    document.getElementById('hud-timer').style.display='block';
-    document.getElementById('hud-total').textContent='100';
-    startExamTimer();
-    renderExam();
-  }catch(e){ clearProgress(); }
-}
-function dismissResume(){ clearProgress(); document.getElementById('resume-banner').style.display='none'; }
-
-// ── TIMER ─────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+//  TIMER
+// ═══════════════════════════════════════════════════════════════════════════
 function startExamTimer(){
-  examTimerInt=setInterval(()=>{
-    examSecondsLeft--;
-    const h=String(Math.floor(examSecondsLeft/3600)).padStart(2,'0');
-    const m=String(Math.floor((examSecondsLeft%3600)/60)).padStart(2,'0');
-    const s=String(examSecondsLeft%60).padStart(2,'0');
-    const el=document.getElementById('hud-timer');
-    el.textContent=h+':'+m+':'+s;
-    el.className='hud-timer';
-    if(examSecondsLeft<=600) el.className+=' warn';
-    if(examSecondsLeft<=120) el.className+=' danger';
-    if(examSecondsLeft<=0){ clearInterval(examTimerInt); submitExam(true); return; }
-    // Save progress every 30 seconds
-    if(examSecondsLeft%30===0) saveProgress();
+  if(E.timerInt) clearInterval(E.timerInt);
+  updateTimerDisplay();
+  E.timerInt=setInterval(async ()=>{
+    E.secondsLeft--;
+    updateTimerDisplay();
+    // Push seconds_left every 15 s
+    if(E.secondsLeft>0 && E.secondsLeft%15===0) pushSessionHeartbeat();
+    if(E.secondsLeft<=0){ clearInterval(E.timerInt); autoSubmit(); }
   },1000);
 }
-
-function examTimeUsed(){
-  const used=7200-examSecondsLeft;
-  const h=Math.floor(used/3600), m=Math.floor((used%3600)/60), s=used%60;
-  return h>0 ? `${h}h ${m}m` : `${m}m ${s}s`;
+function updateTimerDisplay(){
+  const h=String(Math.floor(E.secondsLeft/3600)).padStart(2,'0');
+  const m=String(Math.floor((E.secondsLeft%3600)/60)).padStart(2,'0');
+  const s=String(E.secondsLeft%60).padStart(2,'0');
+  const el=document.getElementById('hud-timer');
+  if(!el) return;
+  el.textContent=h+':'+m+':'+s;
+  el.className='hud-timer'+(E.secondsLeft<=600?' warn':'')+(E.secondsLeft<=120?' danger':'');
+}
+async function pushSessionHeartbeat(){
+  if(!E.sessionId) return;
+  try{
+    await sbFetch(`${SB_SESS}?session_id=eq.${E.sessionId}`,'PATCH',{
+      seconds_left:E.secondsLeft,score:E.score,wrong:E.wrong,
+      topic_stats:E.topicStats
+    });
+  }catch(e){}
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+//  RENDER QUESTION
+// ═══════════════════════════════════════════════════════════════════════════
 function renderExam(){
-  const q=examQuestions[examCur];
-  const prev=examAnswered[examCur];
-  const total=examQuestions.length;
-  const pct=Math.round(((examCur+1)/total)*100);
-  const answeredCount=examAnswered.filter(x=>x!==undefined).length;
+  const q=E.questions[E.cur];
+  const prev=E.answered[E.cur];
+  const total=E.questions.length;
+  const pct=Math.round(((E.cur+1)/total)*100);
+  const answeredCount=E.answered.filter(x=>x!==null).length;
   const KEYS=['A','B','C','D'];
 
-  document.getElementById('hud-q').textContent=examCur+1;
-  document.getElementById('hud-right').textContent=examScore;
-  document.getElementById('hud-wrong').textContent=examWrong;
+  document.getElementById('hud-q').textContent=E.cur+1;
+  document.getElementById('hud-right').textContent=E.score;
+  document.getElementById('hud-wrong').textContent=E.wrong;
   document.getElementById('prog-fill').style.width=pct+'%';
-  document.getElementById('prog-label').textContent='Question '+(examCur+1)+' of '+total;
+  document.getElementById('prog-label').textContent='Question '+(E.cur+1)+' of '+total;
   document.getElementById('prog-pct').textContent=pct+'%';
 
   const opts=q.o.map((o,i)=>{
     let cls='opt';
-    if(prev!==undefined){ if(i===q.a) cls+=' correct'; else if(i===prev) cls+=' wrong'; }
-    return `<button class="${cls}" onclick="examPick(${i})" ${prev!==undefined?'disabled':''}>
-      <span class="opt-letter">${KEYS[i]}</span><span>${o}</span>
-    </button>`;
+    if(prev!==null){if(i===q.a)cls+=' correct';else if(i===prev)cls+=' wrong';}
+    return `<button class="${cls}" onclick="examPick(${i})" ${prev!==null?'disabled':''}><span class="opt-letter">${KEYS[i]}</span><span>${o}</span></button>`;
   }).join('');
 
   let fb='';
-  if(prev!==undefined){
+  if(prev!==null){
     const ok=prev===q.a;
-    fb=`<div class="feedback ${ok?'correct-fb':'wrong-fb'}">
-      <span class="feedback-icon">${ok?'✓':'✗'}</span>
-      <div class="feedback-text"><strong>${ok?'Correct!':'Incorrect.'}</strong> ${q.e}</div>
-    </div>`;
+    fb=`<div class="feedback ${ok?'correct-fb':'wrong-fb'}"><span class="feedback-icon">${ok?'✓':'✗'}</span><div class="feedback-text"><strong>${ok?'Correct!':'Incorrect.'}</strong> ${q.e}</div></div>`;
   }
 
-  const isLast=examCur===total-1;
-  let navHtml=`<button class="btn" onclick="examGo(-1)" ${examCur===0?'disabled':''}>← Prev</button>`;
-  if(!isLast) navHtml+=`<button class="btn primary-gold" onclick="examGo(1)" ${prev===undefined?'disabled':''}>Next →</button>`;
-  if(isLast&&prev!==undefined) navHtml+=`<button class="btn primary-gold" onclick="examGoToSubmit()">Submit Exam ✓</button>`;
+  const isLast=E.cur===total-1;
+  let navHtml=`<button class="btn" onclick="examGo(-1)" ${E.cur===0?'disabled':''}>← Prev</button>`;
+  if(!isLast) navHtml+=`<button class="btn primary-gold" onclick="examGo(1)" ${prev===null?'disabled':''}>Next →</button>`;
+  if(isLast&&prev!==null) navHtml+=`<button class="btn primary-gold" onclick="examGoToSubmit()">Submit Exam ✓</button>`;
 
   const unanswered=total-answeredCount;
   const progressNote=unanswered>0
-    ? `${answeredCount}/${total} answered &nbsp;·&nbsp; <span style="color:var(--yellow)">${unanswered} unanswered</span>`
-    : `<span style="color:var(--green)">✓ All ${total} questions answered</span>`;
+    ?`${answeredCount}/${total} answered &nbsp;·&nbsp; <span style="color:var(--yellow)">${unanswered} remaining</span>`
+    :`<span style="color:var(--green)">✓ All ${total} answered</span>`;
 
   document.getElementById('q-area').innerHTML=`
     <div class="q-card">
-      <div class="q-eyebrow eyebrow-gold">Final Exam &nbsp;·&nbsp; ${q.t} &nbsp;·&nbsp; Q${examCur+1}/${total}</div>
+      <div class="q-eyebrow eyebrow-gold">Final Exam &nbsp;·&nbsp; ${q.t} &nbsp;·&nbsp; Q${E.cur+1}/${total}</div>
       <div class="q-text">${q.q}</div>
       <div class="options">${opts}</div>
       ${fb}
     </div>
     <div class="nav">${navHtml}</div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);text-align:center">${progressNote}</div>`;
-
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function examPick(i){
-  if(examAnswered[examCur]!==undefined) return;
-  examAnswered[examCur]=i;
-  const q=examQuestions[examCur];
-  if(i===q.a) examScore++;
-  else examWrong++;
+// ═══════════════════════════════════════════════════════════════════════════
+//  ANSWER — saved to Supabase immediately
+// ═══════════════════════════════════════════════════════════════════════════
+async function examPick(i){
+  if(E.answered[E.cur]!==null) return;
+  E.answered[E.cur]=i;
+  const q=E.questions[E.cur];
+  const correct=i===q.a;
+  if(correct) E.score++; else E.wrong++;
   const tk=q.tk;
-  if(!examTopicStats[tk]) examTopicStats[tk]={correct:0,total:0};
-  examTopicStats[tk].total++;
-  if(i===q.a) examTopicStats[tk].correct++;
-  saveProgress();
+  if(!E.topicStats[tk]) E.topicStats[tk]={correct:0,total:0};
+  E.topicStats[tk].total++;
+  if(correct) E.topicStats[tk].correct++;
+
+  // Show saving indicator
+  showDot('saving');
+
+  // Build answered_map as {0:2, 1:0, ...}
+  const am={};
+  E.answered.forEach((v,idx)=>{ if(v!==null) am[idx]=v; });
+
+  try{
+    await sbFetch(`${SB_SESS}?session_id=eq.${E.sessionId}`,'PATCH',{
+      answered_map:   am,
+      score:          E.score,
+      wrong:          E.wrong,
+      seconds_left:   E.secondsLeft,
+      topic_stats:    E.topicStats,
+      last_answered_at: new Date().toISOString()
+    });
+    showDot('saved');
+    setTimeout(()=>showDot('hide'),2000);
+  }catch(err){
+    showDot('fail');
+    console.warn('Save answer failed:',err);
+    // Retry once after 3s
+    setTimeout(async ()=>{
+      try{
+        await sbFetch(`${SB_SESS}?session_id=eq.${E.sessionId}`,'PATCH',{
+          answered_map:am,score:E.score,wrong:E.wrong,
+          seconds_left:E.secondsLeft,topic_stats:E.topicStats
+        });
+        showDot('saved');
+        setTimeout(()=>showDot('hide'),2000);
+      }catch(e2){ console.warn('Retry save failed:',e2); }
+    },3000);
+  }
+
   renderExam();
 }
 
 function examGo(dir){
-  examCur=Math.max(0,Math.min(examQuestions.length-1,examCur+dir));
+  E.cur=Math.max(0,Math.min(E.questions.length-1,E.cur+dir));
   renderExam();
 }
 
 function examGoToSubmit(){
-  const unanswered=examAnswered.filter(x=>x===undefined).length;
+  const unanswered=E.answered.filter(x=>x===null).length;
   if(unanswered>0){
-    const go=confirm(`You have ${unanswered} unanswered question(s).\nThey will be marked as wrong.\n\nSubmit anyway?`);
+    const go=confirm(`You have ${unanswered} unanswered question(s).\nThey will count as wrong.\n\nSubmit now?`);
     if(!go) return;
   }
   submitExam(false);
 }
+function autoSubmit(){ submitExam(true); }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────
-function submitExam(timeout){
-  if(examSubmitted) return;
-  examSubmitted=true;
-  clearInterval(examTimerInt);
-  examQuestions.forEach((q,i)=>{
-    if(examAnswered[i]===undefined){
+// ═══════════════════════════════════════════════════════════════════════════
+//  SUBMIT
+// ═══════════════════════════════════════════════════════════════════════════
+async function submitExam(timeout){
+  if(E.submitted) return;
+  E.submitted=true;
+  if(E.timerInt) clearInterval(E.timerInt);
+
+  // Count unanswered questions in topicStats
+  E.questions.forEach((q,i)=>{
+    if(E.answered[i]===null){
       const tk=q.tk;
-      if(!examTopicStats[tk]) examTopicStats[tk]={correct:0,total:0};
-      examTopicStats[tk].total++;
+      if(!E.topicStats[tk]) E.topicStats[tk]={correct:0,total:0};
+      E.topicStats[tk].total++;
     }
   });
-  clearProgress();
+
+  // Clear local session pointer
+  localStorage.removeItem('iwm_exam_session_id');
+
   showExamResults(timeout);
+
+  // Fire final save to Supabase in background
+  finalSaveToSupabase(timeout);
 }
 
-// ── RESULTS ───────────────────────────────────────────────────────────────
+async function finalSaveToSupabase(timeout){
+  const pct=Math.round((E.score/100)*100);
+  let grade;
+  if(pct>=80) grade='A — Distinction';
+  else if(pct>=65) grade='B — Merit';
+  else if(pct>=50) grade='C — Pass';
+  else grade='D — Fail';
+
+  const skipped=E.answered.filter(x=>x===null).length;
+  const used=7200-E.secondsLeft;
+  const h=Math.floor(used/3600),m=Math.floor((used%3600)/60),s=used%60;
+  const timeUsed=h>0?`${h}h ${m}m`:`${m}m ${s}s`;
+  const now=new Date().toISOString();
+
+  const statusEl=document.getElementById('exam-save-status');
+
+  try{
+    // 1. Mark session as submitted
+    await sbFetch(`${SB_SESS}?session_id=eq.${E.sessionId}`,'PATCH',{
+      submitted:true, submitted_at:now,
+      score:E.score, wrong:E.wrong, seconds_left:E.secondsLeft,
+      topic_stats:E.topicStats
+    });
+
+    // 2. Write final result row
+    await sbFetch(SB_RES,'POST',{
+      session_id:   E.sessionId,
+      student_name: E.student,
+      student_id:   E.studentId||null,
+      score:        E.score,
+      total:        100,
+      percentage:   pct,
+      grade:        grade+(timeout?' (Time Expired)':''),
+      wrong:        E.wrong,
+      skipped:      skipped,
+      time_used:    timeUsed,
+      timed_out:    timeout,
+      topic_breakdown: E.topicStats,
+      submitted_at: now
+    });
+
+    if(statusEl){
+      statusEl.className='exam-save-status ok';
+      statusEl.innerHTML='✓ &nbsp;Result saved to the instructor\'s dashboard. <span style="color:var(--muted)">Session ID: '+E.sessionId+'</span>';
+    }
+  }catch(err){
+    console.error('Final save failed:',err);
+    if(statusEl){
+      statusEl.className='exam-save-status fail';
+      statusEl.innerHTML='⚠️ &nbsp;Could not reach the database right now. Your answers were saved per-question during the exam — the instructor can still view them in the sessions table.';
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  RESULTS SCREEN
+// ═══════════════════════════════════════════════════════════════════════════
 function showExamResults(timeout){
   document.getElementById('screen-quiz').classList.add('hidden');
   document.getElementById('screen-results').style.display='block';
   document.getElementById('hud').style.display='none';
   document.getElementById('hud-timer').style.display='none';
-  examMode=false;
+  showDot('hide');
 
-  const total=examQuestions.length;
-  const pct=Math.round((examScore/total)*100);
-  const skipped=examAnswered.filter(x=>x===undefined).length;
+  const total=E.questions.length;
+  const pct=Math.round((E.score/total)*100);
+  const skipped=E.answered.filter(x=>x===null).length;
 
   let grade,gradeColor,gradeSub;
-  if(pct>=80){grade='A — Distinction';gradeColor='var(--green)';gradeSub='Outstanding. You have demonstrated mastery across all four topics.';}
-  else if(pct>=65){grade='B — Merit';gradeColor='var(--accent)';gradeSub='Very good performance. A strong grasp of core concepts.';}
+  if(pct>=80){grade='A — Distinction';gradeColor='var(--green)';gradeSub='Outstanding. Mastery demonstrated across all four topics.';}
+  else if(pct>=65){grade='B — Merit';gradeColor='var(--accent)';gradeSub='Very good performance. Strong grasp of core concepts.';}
   else if(pct>=50){grade='C — Pass';gradeColor='var(--yellow)';gradeSub='You passed the MS threshold. Some topics need further revision.';}
   else{grade='D — Fail';gradeColor='var(--red)';gradeSub='Below passing grade. A focused review of all topics is recommended.';}
 
   document.getElementById('res-pct').textContent=pct+'%';
-  document.getElementById('res-fraction').textContent=examScore+'/'+total;
-  document.getElementById('res-correct').textContent=examScore;
-  document.getElementById('res-wrong').textContent=examWrong;
+  document.getElementById('res-fraction').textContent=E.score+'/'+total;
+  document.getElementById('res-correct').textContent=E.score;
+  document.getElementById('res-wrong').textContent=E.wrong;
   document.getElementById('res-score-pct').textContent=pct+'%';
 
   const badge=document.getElementById('res-topic-badge');
   badge.className='results-topic-badge badge-gold';
-  badge.textContent='🎓 Final Exam — '+examStudent+(examStudentId?' · '+examStudentId:'');
+  badge.textContent='🎓 Final Exam — '+E.student+(E.studentId?' · '+E.studentId:'');
 
   document.getElementById('res-grade').textContent=grade+(timeout?' (Time Expired)':'');
   document.getElementById('res-grade').style.color=gradeColor;
-  document.getElementById('res-sub').textContent=gradeSub+(timeout?' The exam was auto-submitted when time ran out.':'');
+  document.getElementById('res-sub').textContent=gradeSub;
 
   const ring=document.getElementById('ring-fill');
   ring.style.stroke=gradeColor;
-  setTimeout(()=>{ ring.style.strokeDashoffset=364.4-(pct/100*364.4); },100);
+  setTimeout(()=>{ring.style.strokeDashoffset=364.4-(pct/100*364.4);},100);
 
-  // Topic breakdown
+  // Per-topic scores
   let topicHtml='<div class="section-title">Score by Topic</div><div class="topic-score-grid">';
-  Object.entries(examTopicStats).forEach(([tk,ts])=>{
+  Object.entries(E.topicStats).forEach(([tk,ts])=>{
     const tp=ts.total>0?Math.round((ts.correct/ts.total)*100):0;
     topicHtml+=`<div class="topic-score-card">
       <div class="tsc-label">${TOPIC_LABELS[tk]||tk}</div>
@@ -1185,11 +1365,11 @@ function showExamResults(timeout){
   topicHtml+='</div>';
 
   // Wrong-answer review
-  const wrongItems=examQuestions.map((q,i)=>({q,i,ans:examAnswered[i]})).filter(x=>x.ans!==undefined&&x.ans!==x.q.a);
+  const wrongItems=E.questions.map((q,i)=>({q,i,ans:E.answered[i]})).filter(x=>x.ans!==null&&x.ans!==x.q.a);
   let reviewHtml='';
   if(wrongItems.length===0){
     reviewHtml='<div class="all-correct">🎉 Perfect score — every answer was correct!</div>';
-  } else {
+  }else{
     reviewHtml=`<div class="section-title">Questions to Review (${wrongItems.length})</div>`;
     wrongItems.forEach(({q,i,ans})=>{
       reviewHtml+=`<div class="review-card wrong-card">
@@ -1205,83 +1385,15 @@ function showExamResults(timeout){
 
   document.getElementById('review-section').innerHTML=topicHtml+reviewHtml;
 
-  // Inject save-status banner
+  // Inject save-status div above results-actions
   const statusDiv=document.createElement('div');
-  statusDiv.id='exam-submit-status';
-  statusDiv.className='exam-submit-status esending';
-  statusDiv.innerHTML='⏳ Saving result...';
+  statusDiv.id='exam-save-status';
+  statusDiv.className='exam-save-status sending';
+  statusDiv.innerHTML='⏳ &nbsp;Saving final result to database...';
   document.querySelector('.results-actions').before(statusDiv);
 
-  saveResultToSupabase(pct, grade, skipped, timeout);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-// ── SUPABASE SAVE ─────────────────────────────────────────────────────────
-async function saveResultToSupabase(pct, grade, skipped, timeout){
-  const statusEl=document.getElementById('exam-submit-status');
-  const dateStr=new Date().toISOString();
-  const timeUsed=examTimeUsed();
-
-  const topicBreakdown={};
-  Object.entries(examTopicStats).forEach(([tk,ts])=>{
-    topicBreakdown[TOPIC_LABELS[tk]||tk]={correct:ts.correct,total:ts.total,pct:ts.total>0?Math.round((ts.correct/ts.total)*100):0};
-  });
-
-  const payload={
-    student_name: examStudent,
-    student_id:   examStudentId||null,
-    score:        examScore,
-    total:        100,
-    percentage:   pct,
-    grade:        grade,
-    wrong:        examWrong,
-    skipped:      skipped,
-    time_used:    timeUsed,
-    timed_out:    timeout,
-    topic_breakdown: topicBreakdown,
-    submitted_at: dateStr
-  };
-
-  // Always keep a local copy
-  try{
-    const prev=JSON.parse(localStorage.getItem('iwm_results_local')||'[]');
-    prev.unshift(payload);
-    localStorage.setItem('iwm_results_local', JSON.stringify(prev.slice(0,50)));
-  }catch(e){}
-
-  if(SUPABASE_URL==='YOUR_SUPABASE_URL'){
-    statusEl.className='exam-submit-status efail';
-    statusEl.innerHTML='ℹ️ Supabase not configured yet — result saved locally on this device only. <span style="color:var(--muted)">See setup instructions below.</span>';
-    return;
-  }
-
-  try{
-    const resp=await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`,{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'apikey': SUPABASE_ANON,
-        'Authorization': `Bearer ${SUPABASE_ANON}`,
-        'Prefer':'return=minimal'
-      },
-      body: JSON.stringify(payload)
-    });
-    if(resp.ok || resp.status===201){
-      statusEl.className='exam-submit-status eok';
-      statusEl.innerHTML='✓ Result saved successfully. Your instructor can view it in the results dashboard.';
-    } else {
-      const err=await resp.text();
-      throw new Error(err);
-    }
-  }catch(e){
-    statusEl.className='exam-submit-status efail';
-    statusEl.innerHTML='⚠️ Could not save to database — result stored locally on this device as backup.';
-    console.error('Supabase error:', e);
-  }
-}
-
-// Run on page load to offer resume
-window.addEventListener('DOMContentLoaded', checkResume);
 
 </script>
 </body>
