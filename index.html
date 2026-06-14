@@ -19,7 +19,8 @@
     --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.12);
     --radius:12px;--radius-sm:8px;
     --orange:#f97316;--orange-dim:rgba(249,115,22,0.12);
-    --rose:#fb7185;--rose-dim:rgba(251,113,133,0.12);
+    --gold:#f59e0b;--gold-dim:rgba(245,158,11,0.12);
+    --gold-border:rgba(245,158,11,0.3);
   }
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
@@ -90,33 +91,24 @@
   .topic-card.topic-purple:hover{border-color:rgba(167,139,250,0.5);background:rgba(167,139,250,0.05)}
   .topic-card.topic-teal:hover{border-color:rgba(45,212,191,0.5);background:rgba(45,212,191,0.05)}
   .topic-card.topic-orange:hover{border-color:rgba(249,115,22,0.5);background:rgba(249,115,22,0.05)}
-  .topic-card.topic-rose:hover{border-color:rgba(251,113,133,0.5);background:rgba(251,113,133,0.05)}
   .topic-card-icon{font-size:22px;margin-bottom:10px;display:block}
   .topic-card-num{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
   .num-blue{color:var(--accent)}
   .num-purple{color:var(--purple)}
   .num-teal{color:var(--teal)}
   .num-orange{color:var(--orange)}
-  .num-rose{color:var(--rose)}
   .fill-teal{background:linear-gradient(90deg,var(--teal),#22c983)}
   .fill-orange{background:linear-gradient(90deg,var(--orange),#f59e0b)}
-  .fill-rose{background:linear-gradient(90deg,var(--rose),#a78bfa)}
   .eyebrow-teal{color:var(--teal)}
   .eyebrow-orange{color:var(--orange)}
-  .eyebrow-rose{color:var(--rose)}
   .btn.primary-teal{background:var(--teal);border-color:var(--teal);color:#0f1117}
   .btn.primary-teal:hover{background:#14b8a6;border-color:#14b8a6}
   .btn.primary-teal:disabled{opacity:.35;cursor:default}
   .btn.primary-orange{background:var(--orange);border-color:var(--orange);color:#fff}
   .btn.primary-orange:hover{background:#ea6c00;border-color:#ea6c00}
   .btn.primary-orange:disabled{opacity:.35;cursor:default}
-  .btn.primary-rose{background:var(--rose);border-color:var(--rose);color:#fff}
-  .btn.primary-rose:hover{background:#f43f5e;border-color:#f43f5e}
-  .btn.primary-rose:disabled{opacity:.35;cursor:default}
   .pill-orange{color:var(--orange);border-color:rgba(249,115,22,0.3);background:var(--orange-dim)}
-  .pill-rose{color:var(--rose);border-color:rgba(251,113,133,0.3);background:var(--rose-dim)}
   .badge-orange{background:var(--orange-dim);border:1px solid rgba(249,115,22,0.3);color:var(--orange)}
-  .badge-rose{background:var(--rose-dim);border:1px solid rgba(251,113,133,0.3);color:var(--rose)}
   .topic-card-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3}
   .topic-card-sub{font-size:12px;color:var(--muted);line-height:1.5}
   .topic-card-q{position:absolute;top:1rem;right:1rem;font-size:11px;color:var(--muted);background:var(--surface2);border-radius:99px;padding:3px 10px;border:1px solid var(--border)}
@@ -170,6 +162,64 @@
     .results-actions{flex-direction:column}
     .results-actions .btn{text-align:center}
   }
+
+  /* ── EXAM ADDITIONS ─────────────────────────────────────── */
+  .topic-card.topic-gold{border-color:rgba(245,158,11,0.3)}
+  .topic-card.topic-gold:hover{border-color:rgba(245,158,11,.7);background:rgba(245,158,11,.06);transform:translateY(-2px)}
+  .num-gold{color:var(--gold)}
+  .pill-gold{color:var(--gold);border-color:var(--gold-border);background:var(--gold-dim)}
+  .eyebrow-gold{color:var(--gold)}
+  .fill-gold{background:linear-gradient(90deg,var(--gold),#fb923c)}
+  .badge-gold{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold)}
+  .btn.primary-gold{background:var(--gold);border-color:var(--gold);color:#0f1117;font-weight:600}
+  .btn.primary-gold:hover{background:#d97706;border-color:#d97706}
+  .btn.primary-gold:disabled{opacity:.35;cursor:default}
+  .exam-card-banner{
+    position:absolute;top:0;left:0;right:0;
+    background:linear-gradient(90deg,rgba(245,158,11,.15),transparent);
+    border-bottom:1px solid rgba(245,158,11,.2);
+    padding:5px 14px;font-size:10px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:5px
+  }
+  /* Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:999;padding:1rem;backdrop-filter:blur(6px)}
+  .modal-box{background:#1a1d27;border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:2rem;max-width:440px;width:100%;animation:slideIn .25s ease}
+  .modal-icon{font-size:2rem;margin-bottom:.75rem}
+  .modal-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:.4rem;color:var(--text)}
+  .modal-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6}
+  .modal-field{margin-bottom:1rem}
+  .modal-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;display:block}
+  .modal-input{width:100%;padding:11px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;outline:none;transition:border-color .15s}
+  .modal-input:focus{border-color:var(--gold)}
+  .modal-input.err{border-color:var(--red)}
+  .modal-rules{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px 14px;margin-bottom:1.25rem;font-size:12px;color:var(--muted);line-height:1.7}
+  .modal-rules li{margin-left:1rem}
+  .modal-actions{display:flex;gap:8px}
+  .modal-err{font-size:12px;color:var(--red);margin-top:-6px;margin-bottom:8px;display:none}
+  /* Timer */
+  .hud-timer{background:var(--surface);border:1px solid var(--gold-border);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--gold);font-family:monospace;letter-spacing:.05em;display:none}
+  .hud-timer.warn{color:var(--yellow);border-color:rgba(245,166,35,.4)}
+  .hud-timer.danger{color:var(--red);border-color:rgba(247,84,95,.4);animation:pulse .8s ease-in-out infinite}
+  /* Resume banner */
+  .resume-banner{display:none;align-items:center;gap:12px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:12px 16px;margin-bottom:1.5rem;flex-wrap:wrap}
+  .resume-banner-text{flex:1;font-size:13px;color:var(--text)}
+  .resume-banner-text b{color:var(--gold)}
+  .resume-banner-actions{display:flex;gap:8px}
+  /* Submit status */
+  .exam-submit-status{margin-top:1.25rem;padding:12px 16px;border-radius:8px;font-size:13px;line-height:1.6}
+  .exam-submit-status.esending{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold)}
+  .exam-submit-status.eok{background:var(--green-dim);border:1px solid rgba(34,201,131,.3);color:#6ee7b7}
+  .exam-submit-status.efail{background:var(--red-dim);border:1px solid rgba(247,84,95,.3);color:#fca5a5}
+  /* Topic score cards */
+  .topic-score-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.5rem}
+  @media(max-width:500px){.topic-score-grid{grid-template-columns:1fr}}
+  .topic-score-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+  .tsc-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+  .tsc-bar-wrap{height:4px;background:var(--surface2);border-radius:99px;margin:6px 0}
+  .tsc-bar{height:4px;border-radius:99px;background:var(--gold)}
+  .tsc-score{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;color:var(--text)}
+  .tsc-pct{font-size:12px;color:var(--muted)}
   .hidden{display:none!important}
 </style>
 </head>
@@ -183,6 +233,7 @@
       <div class="hud-chip">Q <b id="hud-q">1</b>/<b id="hud-total">50</b></div>
       <div class="hud-chip">✓ <b id="hud-right" style="color:var(--green)">0</b></div>
       <div class="hud-chip">✗ <b id="hud-wrong" style="color:var(--red)">0</b></div>
+      <div class="hud-timer" id="hud-timer">02:00:00</div>
     </div>
   </div>
 
@@ -191,7 +242,7 @@
     <div class="start-hero">
       <div class="start-badge">📦 Inventory &amp; Warehouse Management</div>
       <h1 class="start-title">MCQ Practice<br>Final Exam Prep</h1>
-      <p class="start-sub">Five topics, five quizzes. Pick a topic below to start practicing.<br>Created by Haroon ur Rasheed... You are welcome</p>
+      <p class="start-sub">Four practice topics + a timed Final Exam. Pick a topic below.<br>Created by Haroon ur Rasheed... You are welcome</p>
     </div>
     <div class="topic-section-title">Choose a topic</div>
     <div class="topic-cards">
@@ -249,19 +300,33 @@
           <span class="topic-pill pill-orange">MILP</span>
         </div>
       </div>
-      <div class="topic-card topic-rose" onclick="startQuiz('num')">
-        <span class="topic-card-q">103 Qs</span>
-        <span class="topic-card-icon">🧮</span>
-        <div class="topic-card-num num-rose">Topic 5</div>
-        <div class="topic-card-title">Numerical Practice (All Topics)</div>
-        <div class="topic-card-sub">Original calculation-based problems covering Warehouse KPIs, the Newsvendor Model, Stochastic Inventory Models, and Dynamic Lot Sizing.</div>
-        <div class="topic-pills">
-          <span class="topic-pill pill-rose">Warehouse KPIs</span>
-          <span class="topic-pill pill-rose">Newsvendor</span>
-          <span class="topic-pill pill-rose">Safety Stock</span>
-          <span class="topic-pill pill-rose">Lot Sizing</span>
-        </div>
+
+    <!-- RESUME BANNER -->
+    <div class="resume-banner" id="resume-banner">
+      <div class="resume-banner-text">
+        ⏱ You have an exam in progress — <b id="resume-name"></b>
+        <span style="color:var(--muted);font-size:12px"> · <span id="resume-time"></span></span>
       </div>
+      <div class="resume-banner-actions">
+        <button class="btn" style="font-size:13px;padding:7px 14px" onclick="dismissResume()">Discard</button>
+        <button class="btn primary-gold" style="font-size:13px;padding:7px 14px" onclick="resumeExam()">Resume →</button>
+      </div>
+    </div>
+
+    <div class="topic-card topic-gold" onclick="startExamFlow()" style="grid-column:1/-1;padding-top:2.5rem">
+      <div class="exam-card-banner">⏱ Timed &nbsp;·&nbsp; Auto-graded &nbsp;·&nbsp; Result saved to instructor dashboard</div>
+      <span class="topic-card-q" style="background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)">100 Qs · 2 hrs</span>
+      <span class="topic-card-icon">🎓</span>
+      <div class="topic-card-num num-gold">Final Exam</div>
+      <div class="topic-card-title">MS-Level Comprehensive Exam</div>
+      <div class="topic-card-sub">Full 100-question timed exam across all four topics. Enter your name to begin — your result is saved automatically to the instructor's private dashboard.</div>
+      <div class="topic-pills">
+        <span class="topic-pill pill-gold">25 × Warehouse Ops</span>
+        <span class="topic-pill pill-gold">20 × Newsvendor</span>
+        <span class="topic-pill pill-gold">25 × Stochastic</span>
+        <span class="topic-pill pill-gold">30 × Lot Sizing</span>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -304,6 +369,38 @@
       <button class="btn" id="btn-retake" onclick="retake()">Retake This Quiz</button>
       <button class="btn" onclick="backToMenu()">← Back to Topics</button>
       <button class="btn" onclick="window.print()">Print Results</button>
+    </div>
+  </div>
+
+  <!-- EXAM NAME MODAL -->
+  <div class="modal-overlay hidden" id="exam-modal">
+    <div class="modal-box">
+      <div class="modal-icon">🎓</div>
+      <div class="modal-title">MS-Level Final Exam</div>
+      <div class="modal-sub">Enter your details. Your result will be saved to the instructor's private dashboard automatically on submission.</div>
+      <div class="modal-field">
+        <label class="modal-label" for="exam-name">Full Name <span style="color:var(--red)">*</span></label>
+        <input type="text" id="exam-name" class="modal-input" placeholder="e.g. Ahmed Raza Khan" autocomplete="name">
+      </div>
+      <p class="modal-err" id="exam-name-err">Please enter your full name to continue.</p>
+      <div class="modal-field">
+        <label class="modal-label" for="exam-id">Student ID <span style="color:var(--muted)">(optional)</span></label>
+        <input type="text" id="exam-id" class="modal-input" placeholder="e.g. 2023-MS-045">
+      </div>
+      <div class="modal-rules">
+        <strong style="color:var(--text)">Before you begin:</strong>
+        <ul>
+          <li>100 questions · 2-hour countdown · auto-submits at zero</li>
+          <li>If you refresh, your progress is restored automatically</li>
+          <li>You can navigate back to review previous answers</li>
+          <li>Unanswered questions count as wrong on submit</li>
+          <li>No negative marking — attempt every question</li>
+        </ul>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeExamModal()">Cancel</button>
+        <button class="btn primary-gold" onclick="confirmExamStart()" style="flex:1">Begin Exam →</button>
+      </div>
     </div>
   </div>
 
@@ -526,120 +623,6 @@ const TOPICS={
       {q:"The carrying cost formula used in all four heuristics for a horizon starting at period 1 is:",o:["C_h × Σ d_t","C_h × Σ (2t-1)d_t / 2","C_h × max(d_t)","C_h × T × d̄"],a:1,e:"Holding cost = C_h × Σ_{t=1}^{T} (2t-1)d_t / 2. The factor (2t-1)/2 accounts for the time each unit spends in inventory within the period."},
       {q:"In the Dynamic Lot Sizing context, the term 'order horizon' refers to:",o:["The total planning period for the entire problem","The number of future periods covered by a single order","The lead time before an order arrives","The safety stock coverage period"],a:1,e:"Order horizon T = the number of future periods a single order will cover. The heuristics determine the optimal T by evaluating costs."}
     ]
-  },
-  num:{
-    label:'Numerical Practice (All Topics)',
-    color:'rose',
-    accent:'var(--rose)',
-    fillClass:'fill-rose',
-    eyebrowClass:'eyebrow-rose',
-    primaryBtn:'primary-rose',
-    badgeClass:'badge-rose',
-    questions:[
-      {q:"A warehouse has a total floor space of 24,000 sq ft, of which 18,000 sq ft is currently occupied by inventory. What is the Warehouse Capacity Utilization (WCU)?",o:["60%","70%","75%","80%"],a:2,e:"WCU = (Occupied Space / Total Space) × 100 = (18,000/24,000) × 100 = 75%."},
-      {q:"An order was placed on March 3 and shipped on March 11. What is the Order Lead Time (OLT)?",o:["6 days","7 days","8 days","9 days"],a:2,e:"OLT = Shipment Date − Order Date = March 11 − March 3 = 8 days."},
-      {q:"A shipment arrives at the dock at 7:00 AM and is stocked & recorded in the system at 1:00 PM the same day. What is the Dock-to-Stock Time (DST)?",o:["4 hours","5 hours","6 hours","7 hours"],a:2,e:"DST = Time Stocked − Time Arrived at Dock = 1:00 PM − 7:00 AM = 6 hours."},
-      {q:"Over a shift, warehouse workers process 540 orders using a total of 90 labour-hours. What is the Warehouse Labour Productivity (WLP)?",o:["4.5 orders/hour","5 orders/hour","6 orders/hour","7.5 orders/hour"],a:2,e:"WLP = Orders Processed / Labour Hours Worked = 540 / 90 = 6 orders per hour."},
-      {q:"Goods are received at 10:00 AM and stored in their designated locations by 12:45 PM the same day. What is the Putaway Cycle Time (PCT)?",o:["2 hours","2.25 hours","2.5 hours","2.75 hours"],a:3,e:"PCT = Time Stored − Time Received = 12:45 PM − 10:00 AM = 2 hours 45 minutes = 2.75 hours."},
-      {q:"A warehouse measures 180 ft (length) × 90 ft (width) × 24 ft (height). What is its Nominal (Theoretical) Capacity?",o:["259,200 cubic ft","324,000 cubic ft","388,800 cubic ft","432,000 cubic ft"],a:2,e:"Nominal Capacity = Length × Width × Height = 180 × 90 × 24 = 388,800 cubic ft."},
-      {q:"Using the warehouse above (nominal capacity = 388,800 cubic ft), if 68,800 cubic ft is taken up by non-storage areas (offices, aisles for equipment, etc.), what is the Maximum Storage Capacity?",o:["280,000 cubic ft","300,000 cubic ft","320,000 cubic ft","340,000 cubic ft"],a:2,e:"Maximum Storage Capacity = Nominal Capacity − Non-Storage Areas = 388,800 − 68,800 = 320,000 cubic ft."},
-      {q:"A storage row is 220 ft long, and each pallet position (including spacing) takes up 4.4 ft. If there are 4 such rows stacked 5 pallets high, what is the total pallet capacity?",o:["800 pallets","900 pallets","1000 pallets","1100 pallets"],a:2,e:"Pallets per row = 220/4.4 = 50. Total capacity = 50 pallets × 4 rows × 5 high = 1000 pallets."},
-      {q:"Using the storage area above (capacity = 1000 pallet positions), if 850 pallets are currently stored, what is the cube (storage) utilization?",o:["75%","80%","85%","90%"],a:2,e:"Cube Utilization = (Pallets Stored / Pallet Capacity) × 100 = (850/1000) × 100 = 85%."},
-      {q:"In the same storage area (1000 pallet positions, 850 occupied), what percentage of storage space is lost to honeycombing?",o:["10%","12%","15%","18%"],a:2,e:"Honeycombing % = (Empty Positions / Total Positions) × 100 = (150/1000) × 100 = 15%."},
-      {q:"A warehouse has a total area of 42,000 sq ft, of which 10,500 sq ft is taken up by aisles. What is the aisle allowance?",o:["20%","22.5%","25%","30%"],a:2,e:"Aisle Allowance = (Aisle Space / Total Space) × 100 = (10,500/42,000) × 100 = 25%."},
-      {q:"A picking team of 25 workers each work an 8-hour shift and together process 1,100 orders. What is the Warehouse Labour Productivity (WLP)?",o:["5 orders/hour","5.5 orders/hour","6 orders/hour","6.5 orders/hour"],a:1,e:"Total labour hours = 25 × 8 = 200. WLP = Orders Processed / Labour Hours = 1100/200 = 5.5 orders per hour."},
-      {q:"A container arrives at the dock on Day 1 but is not stocked and recorded in the inventory system until Day 4. What is the Dock-to-Stock Time (DST)?",o:["1 day","2 days","3 days","4 days"],a:2,e:"DST = Time Stocked − Time Arrived = Day 4 − Day 1 = 3 days."},
-      {q:"A distribution centre has a total storage space of 60,000 sq ft, with 39,000 sq ft currently occupied. What is the Warehouse Capacity Utilization (WCU)?",o:["55%","60%","65%","70%"],a:2,e:"WCU = (Occupied Space / Total Space) × 100 = (39,000/60,000) × 100 = 65%."},
-      {q:"A warehouse is 100 ft long, 50 ft wide, and 32 ft high. What is its Nominal (Theoretical) Capacity?",o:["140,000 cubic ft","150,000 cubic ft","160,000 cubic ft","170,000 cubic ft"],a:2,e:"Nominal Capacity = Length × Width × Height = 100 × 50 × 32 = 160,000 cubic ft."},
-      {q:"For the warehouse above (nominal capacity = 160,000 cubic ft), if 28,000 cubic ft is non-storage space, what is the Maximum Storage Capacity?",o:["122,000 cubic ft","128,000 cubic ft","132,000 cubic ft","138,000 cubic ft"],a:2,e:"Maximum Storage Capacity = 160,000 − 28,000 = 132,000 cubic ft."},
-      {q:"A storage row is 160 ft long with each pallet position taking 4 ft. There are 3 such rows, stacked 6 pallets high. What is the total pallet storage capacity?",o:["600 pallets","660 pallets","720 pallets","780 pallets"],a:2,e:"Pallets per row = 160/4 = 40. Total capacity = 40 × 3 rows × 6 high = 720 pallets."},
-      {q:"Using the storage area above (capacity = 720 pallet positions), if 612 pallets are stored, what is the cube utilization?",o:["80%","82.5%","85%","88%"],a:2,e:"Cube Utilization = (612/720) × 100 = 85%."},
-      {q:"A warehouse has a total area of 30,000 sq ft, of which 7,500 sq ft is used for aisles. What is the aisle allowance?",o:["20%","22.5%","25%","27.5%"],a:2,e:"Aisle Allowance = (7,500/30,000) × 100 = 25%."},
-      {q:"Goods are received at 2:20 PM and are stored in their designated rack locations by 3:50 PM the same day. What is the Putaway Cycle Time (PCT) in minutes?",o:["60 minutes","75 minutes","90 minutes","105 minutes"],a:2,e:"PCT = 3:50 PM − 2:20 PM = 1 hour 30 minutes = 90 minutes."},
-      {q:"A boutique selling designer scarves sells for $150, costs $90 to acquire, and unsold units are salvaged for $50. What is the underage cost (Cu)?",o:["$40","$100","$60","$90"],a:2,e:"Cu = Selling Price − Cost = $150 − $90 = $60."},
-      {q:"For the same boutique selling designer scarves (Price=$150, Cost=$90, Salvage=$50), what is the overage cost (Co)?",o:["$60","$40","$90","$50"],a:1,e:"Co = Cost − Salvage = $90 − $50 = $40."},
-      {q:"For the same boutique selling designer scarves (Cu=$60, Co=$40), the Critical Ratio (CR) is:",o:["0.40","0.60","1.50","0.70"],a:1,e:"CR = Cu / (Cu+Co) = 60 / (60+40) = 0.60."},
-      {q:"Demand for the boutique selling designer scarves is normally distributed with mean μ=400 and σ=50. Given CR=0.60 (Z≈0.25), the optimal order quantity Q* is approximately:",o:["392 units","402 units","412 units","422 units"],a:2,e:"Q* = μ + Zσ = 400 + (0.25)×50 ≈ 412 units."},
-      {q:"If instead demand for the boutique selling designer scarves is UNIFORMLY distributed between 300 and 500 units, and CR=0.60, the optimal order quantity Q* is:",o:["380 units","400 units","420 units","440 units"],a:2,e:"Q* = BL + CR×(BU−BL) = 300 + 0.60×(500−300) = 300 + 0.60×200 = 420 units."},
-      {q:"A electronics store selling a holiday gadget sells for $200, costs $130 to acquire, and unsold units are salvaged for $100. What is the underage cost (Cu)?",o:["$30","$100","$70","$130"],a:2,e:"Cu = Selling Price − Cost = $200 − $130 = $70."},
-      {q:"For the same electronics store selling a holiday gadget (Price=$200, Cost=$130, Salvage=$100), what is the overage cost (Co)?",o:["$70","$30","$130","$100"],a:1,e:"Co = Cost − Salvage = $130 − $100 = $30."},
-      {q:"For the same electronics store selling a holiday gadget (Cu=$70, Co=$30), the Critical Ratio (CR) is:",o:["0.30","0.70","2.33","0.80"],a:1,e:"CR = Cu / (Cu+Co) = 70 / (70+30) = 0.70."},
-      {q:"Demand for the electronics store selling a holiday gadget is normally distributed with mean μ=1000 and σ=100. Given CR=0.70 (Z≈0.52), the optimal order quantity Q* is approximately:",o:["1032 units","1042 units","1052 units","1062 units"],a:2,e:"Q* = μ + Zσ = 1000 + (0.52)×100 ≈ 1052 units."},
-      {q:"If instead demand for the electronics store selling a holiday gadget is UNIFORMLY distributed between 800 and 1200 units, and CR=0.70, the optimal order quantity Q* is:",o:["1040 units","1060 units","1080 units","1100 units"],a:2,e:"Q* = BL + CR×(BU−BL) = 800 + 0.70×(1200−800) = 800 + 0.70×400 = 1080 units."},
-      {q:"A bakery selling artisan cakes sells for $180, costs $105 to acquire, and unsold units are salvaged for $80. What is the underage cost (Cu)?",o:["$25","$100","$75","$105"],a:2,e:"Cu = Selling Price − Cost = $180 − $105 = $75."},
-      {q:"For the same bakery selling artisan cakes (Price=$180, Cost=$105, Salvage=$80), what is the overage cost (Co)?",o:["$75","$25","$105","$80"],a:1,e:"Co = Cost − Salvage = $105 − $80 = $25."},
-      {q:"For the same bakery selling artisan cakes (Cu=$75, Co=$25), the Critical Ratio (CR) is:",o:["0.25","0.75","3.00","0.85"],a:1,e:"CR = Cu / (Cu+Co) = 75 / (75+25) = 0.75."},
-      {q:"Demand for the bakery selling artisan cakes is normally distributed with mean μ=250 and σ=30. Given CR=0.75 (Z≈0.67), the optimal order quantity Q* is approximately:",o:["250 units","260 units","270 units","280 units"],a:2,e:"Q* = μ + Zσ = 250 + (0.67)×30 ≈ 270 units."},
-      {q:"If instead demand for the bakery selling artisan cakes is UNIFORMLY distributed between 150 and 350 units, and CR=0.75, the optimal order quantity Q* is:",o:["260 units","280 units","300 units","320 units"],a:2,e:"Q* = BL + CR×(BU−BL) = 150 + 0.75×(350−150) = 150 + 0.75×200 = 300 units."},
-      {q:"A sports store selling event T-shirts sells for $200, costs $120 to acquire, and unsold units are salvaged for $100. What is the underage cost (Cu)?",o:["$20","$100","$80","$120"],a:2,e:"Cu = Selling Price − Cost = $200 − $120 = $80."},
-      {q:"For the same sports store selling event T-shirts (Price=$200, Cost=$120, Salvage=$100), what is the overage cost (Co)?",o:["$80","$20","$120","$100"],a:1,e:"Co = Cost − Salvage = $120 − $100 = $20."},
-      {q:"For the same sports store selling event T-shirts (Cu=$80, Co=$20), the Critical Ratio (CR) is:",o:["0.20","0.80","4.00","0.90"],a:1,e:"CR = Cu / (Cu+Co) = 80 / (80+20) = 0.80."},
-      {q:"Demand for the sports store selling event T-shirts is normally distributed with mean μ=500 and σ=60. Given CR=0.80 (Z≈0.84), the optimal order quantity Q* is approximately:",o:["530 units","540 units","550 units","560 units"],a:2,e:"Q* = μ + Zσ = 500 + (0.84)×60 ≈ 550 units."},
-      {q:"If instead demand for the sports store selling event T-shirts is UNIFORMLY distributed between 400 and 600 units, and CR=0.80, the optimal order quantity Q* is:",o:["520 units","540 units","560 units","580 units"],a:2,e:"Q* = BL + CR×(BU−BL) = 400 + 0.80×(600−400) = 400 + 0.80×200 = 560 units."},
-      {q:"Daily demand for an item averages 40 units with a standard deviation of 6 units. The lead time is a constant 9 days. For a 95% service level (Z = 1.65), the reorder point R is approximately:",o:["359.7 units","374.7 units","389.7 units","404.7 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (40×9) + (1.65×6×√9) = 360 + 29.7 ≈ 389.7 units."},
-      {q:"Daily demand for an item averages 75 units with a standard deviation of 9 units. The lead time is a constant 4 days. For a 90% service level (Z = 1.28), the reorder point R is approximately:",o:["293.04 units","308.04 units","323.04 units","338.04 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (75×4) + (1.28×9×√4) = 300 + 23.04 ≈ 323.04 units."},
-      {q:"Daily demand for an item averages 150 units with a standard deviation of 18 units. The lead time is a constant 16 days. For a 85% service level (Z = 1.04), the reorder point R is approximately:",o:["2444.88 units","2459.88 units","2474.88 units","2489.88 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (150×16) + (1.04×18×√16) = 2400 + 74.88 ≈ 2474.88 units."},
-      {q:"Daily demand for an item averages 90 units with a standard deviation of 10 units. The lead time is a constant 25 days. For a 80% service level (Z = 0.84), the reorder point R is approximately:",o:["2262.0 units","2277.0 units","2292.0 units","2307.0 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (90×25) + (0.84×10×√25) = 2250 + 42.0 ≈ 2292.0 units."},
-      {q:"Daily demand for an item averages 250 units with a standard deviation of 30 units. The lead time is a constant 9 days. For a 99% service level (Z = 2.33), the reorder point R is approximately:",o:["2429.7 units","2444.7 units","2459.7 units","2474.7 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (250×9) + (2.33×30×√9) = 2250 + 209.7 ≈ 2459.7 units."},
-      {q:"Daily demand for an item averages 35 units with a standard deviation of 5 units. The lead time is a constant 4 days. For a 95% service level (Z = 1.65), the reorder point R is approximately:",o:["126.5 units","141.5 units","156.5 units","171.5 units"],a:2,e:"R = d̄L + Z·σ_d·√L = (35×4) + (1.65×5×√4) = 140 + 16.5 ≈ 156.5 units."},
-      {q:"A product has a constant demand of 35 units/day. The average lead time is 5 days with a standard deviation of 1.2 days. For a 95% service level (Z = 1.65), the reorder point R is approximately:",o:["219.3 units","232.3 units","244.3 units","256.3 units"],a:2,e:"R = d×L̄ + Z×d×σ_L = (35×5) + (1.65×35×1.2) = 175 + 69.3 ≈ 244.3 units."},
-      {q:"A product has a constant demand of 60 units/day. The average lead time is 8 days with a standard deviation of 1 days. For a 90% service level (Z = 1.28), the reorder point R is approximately:",o:["531.8 units","544.8 units","556.8 units","568.8 units"],a:2,e:"R = d×L̄ + Z×d×σ_L = (60×8) + (1.28×60×1) = 480 + 76.8 ≈ 556.8 units."},
-      {q:"A product has a constant demand of 45 units/day. The average lead time is 6 days with a standard deviation of 1.5 days. For a 85% service level (Z = 1.04), the reorder point R is approximately:",o:["315.2 units","328.2 units","340.2 units","352.2 units"],a:2,e:"R = d×L̄ + Z×d×σ_L = (45×6) + (1.04×45×1.5) = 270 + 70.2 ≈ 340.2 units."},
-      {q:"A product has a constant demand of 20 units/day. The average lead time is 9 days with a standard deviation of 2 days. For a 99% service level (Z = 2.33), the reorder point R is approximately:",o:["248.2 units","261.2 units","273.2 units","285.2 units"],a:2,e:"R = d×L̄ + Z×d×σ_L = (20×9) + (2.33×20×2) = 180 + 93.2 ≈ 273.2 units."},
-      {q:"A product has a constant demand of 90 units/day. The average lead time is 4 days with a standard deviation of 0.6 days. For a 80% service level (Z = 0.84), the reorder point R is approximately:",o:["380.36 units","393.36 units","405.36 units","417.36 units"],a:2,e:"R = d×L̄ + Z×d×σ_L = (90×4) + (0.84×90×0.6) = 360 + 45.36 ≈ 405.36 units."},
-      {q:"An item has d̄ = 70 units/day, σ_d = 7, average lead time L̄ = 4 days, and σ_L = 1 days. For a 95% service level (Z = 1.65), the reorder point R = d̄L̄ + Z√(L̄σ_d² + d̄²σ_L²) is approximately:",o:["357.79 units","377.79 units","397.79 units","417.79 units"],a:2,e:"√(L̄σ_d² + d̄²σ_L²) = √(4×7² + 70²×1²) = √5096 ≈ 71.386. SS = 1.65×71.386 ≈ 117.79. R = (70×4) + 117.79 ≈ 397.79 units."},
-      {q:"An item has d̄ = 90 units/day, σ_d = 9, average lead time L̄ = 9 days, and σ_L = 1 days. For a 90% service level (Z = 1.28), the reorder point R = d̄L̄ + Z√(L̄σ_d² + d̄²σ_L²) is approximately:",o:["890.27 units","910.27 units","930.27 units","950.27 units"],a:2,e:"√(L̄σ_d² + d̄²σ_L²) = √(9×9² + 90²×1²) = √8829 ≈ 93.963. SS = 1.28×93.963 ≈ 120.27. R = (90×9) + 120.27 ≈ 930.27 units."},
-      {q:"An item has d̄ = 35 units/day, σ_d = 4, average lead time L̄ = 16 days, and σ_L = 1.5 days. For a 85% service level (Z = 1.04), the reorder point R = d̄L̄ + Z√(L̄σ_d² + d̄²σ_L²) is approximately:",o:["577.08 units","597.08 units","617.08 units","637.08 units"],a:2,e:"√(L̄σ_d² + d̄²σ_L²) = √(16×4² + 35²×1.5²) = √3012.25 ≈ 54.884. SS = 1.04×54.884 ≈ 57.08. R = (35×16) + 57.08 ≈ 617.08 units."},
-      {q:"An item has d̄ = 150 units/day, σ_d = 12, average lead time L̄ = 4 days, and σ_L = 0.5 days. For a 80% service level (Z = 0.84), the reorder point R = d̄L̄ + Z√(L̄σ_d² + d̄²σ_L²) is approximately:",o:["626.15 units","646.15 units","666.15 units","686.15 units"],a:2,e:"√(L̄σ_d² + d̄²σ_L²) = √(4×12² + 150²×0.5²) = √6201.0 ≈ 78.746. SS = 0.84×78.746 ≈ 66.15. R = (150×4) + 66.15 ≈ 666.15 units."},
-      {q:"An item has d̄ = 25 units/day, σ_d = 3, average lead time L̄ = 25 days, and σ_L = 1.5 days. For a 99% service level (Z = 2.33), the reorder point R = d̄L̄ + Z√(L̄σ_d² + d̄²σ_L²) is approximately:",o:["679.11 units","699.11 units","719.11 units","739.11 units"],a:2,e:"√(L̄σ_d² + d̄²σ_L²) = √(25×3² + 25²×1.5²) = √1631.25 ≈ 40.389. SS = 2.33×40.389 ≈ 94.11. R = (25×25) + 94.11 ≈ 719.11 units."},
-      {q:"Annual demand for an item is 12000 units, the ordering cost is $35 per order, and the annual carrying cost is $6 per unit. The economic order quantity Q* is approximately:",o:["314.17 units","344.17 units","374.17 units","404.17 units"],a:2,e:"Q* = √(2C₀D/Cc) = √(2×35×12000/6) = √140000.0 ≈ 374.17 units."},
-      {q:"Annual demand for an item is 24000 units, the ordering cost is $55 per order, and the annual carrying cost is $15 per unit. The economic order quantity Q* is approximately:",o:["359.52 units","389.52 units","419.52 units","449.52 units"],a:2,e:"Q* = √(2C₀D/Cc) = √(2×55×24000/15) = √176000.0 ≈ 419.52 units."},
-      {q:"Annual demand for an item is 9000 units, the ordering cost is $28 per order, and the annual carrying cost is $3.5 per unit. The economic order quantity Q* is approximately:",o:["319.47 units","349.47 units","379.47 units","409.47 units"],a:2,e:"Q* = √(2C₀D/Cc) = √(2×28×9000/3.5) = √144000.0 ≈ 379.47 units."},
-      {q:"Annual demand for an item is 18000 units, the ordering cost is $42 per order, and the annual carrying cost is $24 per unit. The economic order quantity Q* is approximately:",o:["191.0 units","221.0 units","251.0 units","281.0 units"],a:2,e:"Q* = √(2C₀D/Cc) = √(2×42×18000/24) = √63000.0 ≈ 251.0 units."},
-      {q:"A reorder level of 850 units is set when lead time demand averages 800 units with a standard deviation of 40 units. The Cycle Service Level (using NORM.DIST) is approximately:",o:["79.44%","84.44%","89.44%","94.44%"],a:2,e:"z = (850−800)/40 = 1.25. CSL = NORM.DIST(850,800,40,TRUE) = Φ(1.25) ≈ 89.44%."},
-      {q:"A reorder level of 1150 units is set when lead time demand averages 1000 units with a standard deviation of 150 units. The Cycle Service Level (using NORM.DIST) is approximately:",o:["74.13%","79.13%","84.13%","89.13%"],a:2,e:"z = (1150−1000)/150 = 1.00. CSL = NORM.DIST(1150,1000,150,TRUE) = Φ(1.00) ≈ 84.13%."},
-      {q:"A reorder level of 320 units is set when lead time demand averages 300 units with a standard deviation of 25 units. The Cycle Service Level (using NORM.DIST) is approximately:",o:["68.81%","73.81%","78.81%","83.81%"],a:2,e:"z = (320−300)/25 = 0.80. CSL = NORM.DIST(320,300,25,TRUE) = Φ(0.80) ≈ 78.81%."},
-      {q:"A reorder level of 700 units is set when lead time demand averages 650 units with a standard deviation of 80 units. The Cycle Service Level (using NORM.DIST) is approximately:",o:["63.4%","68.4%","73.4%","78.4%"],a:2,e:"z = (700−650)/80 = 0.62. CSL = NORM.DIST(700,650,80,TRUE) = Φ(0.62) ≈ 73.4%."},
-      {q:"A safety stock of 40 units is held when the standard deviation of lead time demand is 30 units. The Expected Shortage per cycle (Es) is approximately:",o:["0.27 units","0.77 units","1.27 units","2.27 units"],a:2,e:"SS/σ = 40/30 = 1.333. Es = σ×NORMDIST(1.33,0,1,0) − SS×[1−NORMDIST(1.33,0,1,1)] ≈ 1.27 units."},
-      {q:"A safety stock of 90 units is held when the standard deviation of lead time demand is 45 units. The Expected Shortage per cycle (Es) is approximately:",o:["0 units","0.38 units","1.38 units","1.88 units"],a:1,e:"SS/σ = 90/45 = 2.000. Es = σ×NORMDIST(2.00,0,1,0) − SS×[1−NORMDIST(2.00,0,1,1)] ≈ 0.38 units."},
-      {q:"A safety stock of 15 units is held when the standard deviation of lead time demand is 30 units. The Expected Shortage per cycle (Es) is approximately:",o:["4.93 units","5.43 units","5.93 units","6.93 units"],a:2,e:"SS/σ = 15/30 = 0.500. Es = σ×NORMDIST(0.50,0,1,0) − SS×[1−NORMDIST(0.50,0,1,1)] ≈ 5.93 units."},
-      {q:"An order quantity of 700 units is used with a safety stock of 40 units and a lead time demand standard deviation of 30 units (Es ≈ 1.27 units). The Fill Rate is approximately:",o:["97.82%","98.82%","99.82%","100.32%"],a:2,e:"Fill Rate = (Q − Es)/Q = (700 − 1.27)/700 ≈ 99.82%."},
-      {q:"An order quantity of 900 units is used with a safety stock of 90 units and a lead time demand standard deviation of 45 units (Es ≈ 0.38 units). The Fill Rate is approximately:",o:["97.96%","98.96%","99.96%","100.46%"],a:2,e:"Fill Rate = (Q − Es)/Q = (900 − 0.38)/900 ≈ 99.96%."},
-      {q:"In a periodic review system, daily demand has d̄ = 25 units and σ_d = 4 units. The review period T = 8 days and lead time L = 6 days. For a 95% service level (Z = 1.65), the safety stock SS = Zσ_d√(T+L) is approximately:",o:["16.69 units","20.69 units","24.69 units","28.69 units"],a:2,e:"SS = Zσ_d√(T+L) = 1.65×4×√(8+6) = 1.65×4×√14 ≈ 24.69 units."},
-      {q:"Using the same data (d̄ = 25, σ_d = 4, T = 8, L = 6, Z = 1.65), the maximum inventory level S = d̄(T+L) + SS is approximately:",o:["354.69 units","364.69 units","374.69 units","384.69 units"],a:2,e:"S = d̄(T+L) + SS = 25×14 + 24.69 = 350 + 24.69 ≈ 374.69 units."},
-      {q:"In a periodic review system, daily demand has d̄ = 70 units and σ_d = 10 units. The review period T = 6 days and lead time L = 9 days. For a 90% service level (Z = 1.28), the safety stock SS = Zσ_d√(T+L) is approximately:",o:["41.57 units","45.57 units","49.57 units","53.57 units"],a:2,e:"SS = Zσ_d√(T+L) = 1.28×10×√(6+9) = 1.28×10×√15 ≈ 49.57 units."},
-      {q:"Using the same data (d̄ = 70, σ_d = 10, T = 6, L = 9, Z = 1.28), the maximum inventory level S = d̄(T+L) + SS is approximately:",o:["1079.57 units","1089.57 units","1099.57 units","1109.57 units"],a:2,e:"S = d̄(T+L) + SS = 70×15 + 49.57 = 1050 + 49.57 ≈ 1099.57 units."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Lot-for-Lot, what is the carrying cost for Week 1 (where the order quantity equals Week 1's demand)?",o:["$25.00","$50.00","$75.00","$100.00"],a:1,e:"Carrying cost = CC × (average inventory) = $2 × (50/2) = $2 × 25 = $50.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Lot-for-Lot (ordering exactly the period's demand each week), what is the TOTAL carrying (holding) cost over all 4 weeks?",o:["$180.00","$230.00","$260.00","$300.00"],a:1,e:"Total holding cost = CC × Σ(d_t/2) = 2 × [(50+80+30+70)/2] = 2 × 115 = $230.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Lot-for-Lot, the total inventory cost (TIC) over the 4-week horizon is:",o:["$800.00","$1,030.00","$1,130.00","$1,230.00"],a:1,e:"Ordering cost = 4 orders × $200 = $800. Holding cost = $230. TIC(LFL) = $800 + $230 = $1,030.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using the Silver-Meal heuristic, the Per Period Cost (PPC) for ordering ONLY for Week 1 is:",o:["$170.00","$200.00","$245.00","$250.00"],a:3,e:"PPC(Week1) = [OC + holding(Week1)] / 1 = ($200 + $50) / 1 = $250.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Silver-Meal, the PPC for an order covering Weeks 1–2 is $245.00, which is LESS than PPC(Week1)=$250.00. The correct next step is to:",o:["Stop and order only for Week 1","Extend the order horizon to include Week 3","Place separate orders for Week 1 and Week 2","Switch to the Least Unit Cost method"],a:1,e:"Since PPC decreased from $250 to $245, extend the order horizon — check PPC for Weeks 1–3 next."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Silver-Meal, PPC(Weeks 1-2) = $245.00 and PPC(Weeks 1-3) = $213.33. Since PPC decreased again, the order horizon is extended to check PPC(Weeks 1-4), which equals:",o:["$213.33","$245.00","$250.00","$282.50"],a:3,e:"PPC(Weeks 1-4) = [OC + holding(Weeks1-4)] / 4 = ($200 + $930) / 4 = $1130/4 = $282.50."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Given PPC(1)=$250, PPC(1-2)=$245, PPC(1-3)=$213.33, and PPC(1-4)=$282.50 (which increased), the Silver-Meal order placed at the start of Week 1 covers:",o:["Week 1 only","Weeks 1-2","Weeks 1-3","Weeks 1-4"],a:2,e:"PPC decreases through T=3 then increases at T=4, so stop at T=3. The Week-1 order covers Weeks 1-3, with quantity Q = 50+80+30 = 160 bags."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. After the Week-1 order covers Weeks 1-3 (160 bags), Week 4's demand (70 bags) is ordered separately. The TOTAL INVENTORY COST (TIC) for the Silver-Meal solution is:",o:["$850.00","$910.00","$930.00","$1,030.00"],a:1,e:"TIC(SM) = 2 orders × $200 + holding cost (Weeks1-3: $440 + Week4: $70) = $400 + $510 = $910.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using the Least Unit Cost (LUC) method, the Per Unit Cost (PUC) for an order covering Week 1 only (50 bags) is:",o:["$3.0769","$3.40","$4.00","$5.00"],a:3,e:"PUC(Week1) = [OC + holding(Week1)] / Units in order = ($200 + $50) / 50 = $250/50 = $5.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using LUC, PUC(Week1)=$5.00 and PUC(Weeks1-2)≈$3.769, which is LOWER. The correct next step is to:",o:["Stop and order only for Week 1 (50 bags)","Extend the order horizon to Weeks 1-3","Place separate orders for each week","Switch to Silver-Meal"],a:1,e:"Since PUC decreased from $5.00 to $3.769, extend the order horizon and check PUC(Weeks 1-3) next."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using LUC, PUC(Weeks1-2)≈$3.769 and PUC(Weeks1-3)=$4.00, which is HIGHER. The LUC order placed at the start of Week 1 covers:",o:["Week 1 only","Weeks 1-2","Weeks 1-3","Weeks 1-4"],a:1,e:"Since PUC increased from $3.769 (Weeks1-2) to $4.00 (Weeks1-3), stop at T=2. The Week-1 order covers Weeks 1-2, Q = 50+80 = 130 bags."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. For the remaining horizon (Weeks 3-4), LUC gives PUC(Week3 only)≈$7.667 and PUC(Weeks3-4)=$4.40. The order placed at the start of Week 3 therefore covers:",o:["Week 3 only","Weeks 3-4","Weeks 3-4-1 (wraps around)","No order is needed"],a:1,e:"PUC decreases from $7.667 to $4.40 when extending to Weeks 3-4 (only 2 weeks remain, so this is the final horizon). Order covers Weeks 3-4, Q = 30+70 = 100 bags."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. The LUC solution places 2 orders: Weeks1-2 (130 bags) and Weeks3-4 (100 bags). The TOTAL INVENTORY COST (TIC) for the LUC solution is:",o:["$910.00","$930.00","$960.00","$1,030.00"],a:1,e:"TIC(LUC) = 2 orders × $200 + holding cost (Weeks1-2: $290 + Weeks3-4: $240) = $400 + $530 = $930.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Part-Period Balancing (PPB), the holding cost for a 1-week (Week 1 only) horizon is $50, which is LESS than the ordering cost of $200. The correct step is to:",o:["Stop here and order only for Week 1","Extend the horizon to Weeks 1-2 and recompute holding cost","Switch immediately to LUC","Place the order for the entire 4-week horizon"],a:1,e:"PPB rule: as long as holding cost < ordering cost, extend the horizon. Since $50 < $200, extend to Weeks 1-2."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. For PPB, the holding cost for Weeks 1-2 is $290, which now EXCEEDS the ordering cost of $200. The closeness factors are C_r(1week)=|200−50|=$150 and C_r(2weeks)=|200−290|=$90. The order horizon chosen for the Week-1 order is:",o:["Week 1 only (1 week)","Weeks 1-2 (2 weeks)","Weeks 1-3 (3 weeks)","Weeks 1-4 (4 weeks)"],a:1,e:"Since C_r(2 weeks)=$90 < C_r(1 week)=$150, the 2-week horizon is closer to balancing — choose Weeks 1-2 (Q=130 bags)."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. For the remaining horizon (Weeks 3-4) under PPB, holding cost for Week 3 alone is $30 (< $200, extend) and holding cost for Weeks 3-4 is $240 (> $200). With C_r(1week)=$170 and C_r(2weeks)=$40, the order horizon for Week 3 is:",o:["Week 3 only","Weeks 3-4","Weeks 3-4-1","No order needed"],a:1,e:"Since C_r(2 weeks)=$40 < C_r(1 week)=$170, choose the 2-week horizon — Weeks 3-4 (Q=100 bags)."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. The PPB solution also places 2 orders: Weeks1-2 (130 bags) and Weeks3-4 (100 bags) — identical to LUC in this case. The TOTAL INVENTORY COST (TIC) for PPB is:",o:["$910.00","$930.00","$960.00","$1030.00"],a:1,e:"TIC(PPB) = 2 orders × $200 + holding cost ($290 + $240) = $400 + $530 = $930.00 — same solution and cost as LUC for this dataset."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Wagner-Whitin (DP), TC₁ — the minimum cost to cover Week 1's demand alone — is:",o:["$200.00","$230.00","$250.00","$270.00"],a:2,e:"TC₁ = OC + holding(Week1) = $200 + $50 = $250.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Wagner-Whitin, TC₂ (minimum cost to cover Weeks 1-2) is computed by comparing: Option A = TC₀ + cost(1-2) = $0+$490=$490, and Option B = TC₁ + cost(2-2) = $250+$280=$530. TC₂ equals:",o:["$280.00","$490.00","$530.00","$770.00"],a:1,e:"TC₂ = min($490, $530) = $490.00 — the cheaper option is a single order at Week 1 covering both Weeks 1-2."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Wagner-Whitin, TC₃ (minimum cost to cover Weeks 1-3) is computed from three options: Option A=TC₀+cost(1-3)=$640, Option B=TC₁+cost(2-3)=$250+$370=$620, Option C=TC₂+cost(3-3)=$490+$230=$720. TC₃ equals:",o:["$620.00","$640.00","$680.00","$720.00"],a:0,e:"TC₃ = min($640, $620, $720) = $620.00 — corresponds to ordering for Week 1 alone, then a separate order covering Weeks 2-3."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Using Wagner-Whitin, TC₄ (the OPTIMAL total cost for all 4 weeks) is computed from four options, the smallest of which is Option D = TC₃ + cost(4-4) = $620 + $270 = $890. TC₄ equals:",o:["$890.00","$930.00","$970.00","$1130.00"],a:0,e:"TC₄ = min($1130, $970, $930, $890) = $890.00 — this is the GLOBAL OPTIMUM, lower than all heuristic solutions (LFL=$1030, SM=$910, LUC=PPB=$930)."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. The Wagner-Whitin OPTIMAL ordering plan places orders in which weeks, and what quantities?",o:["Week1=160 (covers W1-3), Week4=70","Week1=50, Week2=110 (covers W2-3), Week4=70","Week1=130 (covers W1-2), Week3=100 (covers W3-4)","Week1=50, Week2=80, Week3=30, Week4=70 (order every week)"],a:1,e:"The optimal path is: Week1 orders 50 (covers Week1 only), Week2 orders 110 (covers Weeks2-3), Week4 orders 70 (covers Week4 only). 3 orders total, TIC=$890."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Ranking the four methods by Total Inventory Cost from LOWEST to HIGHEST, the correct order is:",o:["Wagner-Whitin ($890) < Silver-Meal ($910) < LUC=PPB ($930) < Lot-for-Lot ($1030)","Lot-for-Lot ($1030) < Silver-Meal ($910) < LUC=PPB ($930) < Wagner-Whitin ($890)","Silver-Meal ($910) < Wagner-Whitin ($890) < Lot-for-Lot ($1030) < LUC=PPB ($930)","LUC=PPB ($930) < Silver-Meal ($910) < Wagner-Whitin ($890) < Lot-for-Lot ($1030)"],a:0,e:"TIC summary: Wagner-Whitin (optimal) = $890 < Silver-Meal = $910 < LUC = PPB = $930 < Lot-for-Lot = $1030."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. Comparing the heuristics (excluding Wagner-Whitin), which heuristic achieves the LOWEST total inventory cost for this dataset?",o:["Lot-for-Lot","Silver-Meal","Least Unit Cost","Part-Period Balancing"],a:1,e:"Silver-Meal gives TIC=$910, which is lower than Lot-for-Lot ($1030), LUC ($930), and PPB ($930)."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. What is the holding cost (in $) for an order placed at the start of Week 2 that covers Weeks 2-3 (Q = 80+30 = 110 bags)?",o:["$140.00","$170.00","$190.00","$210.00"],a:1,e:"avg_2 = (d2+d3) − d2/2 = 110 − 40 = 70. avg_3 = d3 − d3/2 = 30 − 15 = 15. Holding cost = CC×(70+15) = 2×85 = $170.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. What is the TOTAL cost (ordering + holding) of an order placed at the start of Week 2 covering Weeks 2-4 (Q = 80+30+70 = 180 bags)?",o:["$520.00","$640.00","$720.00","$760.00"],a:2,e:"avg_2=180−40=140, avg_3=100−15=85, avg_4=70−35=35. Holding=2×(140+85+35)=2×260=$520. Total cost = $200+$520=$720.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. For Week 4 alone (demand=70 bags), what is the carrying cost if it is ordered separately (CC=$2/bag/week)?",o:["$35.00","$50.00","$70.00","$140.00"],a:2,e:"Carrying cost = CC × (d4/2) = $2 × (70/2) = $2 × 35 = $70.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. If the bakery used a SINGLE order at the start of Week 1 to cover all 4 weeks' demand (Q = 50+80+30+70 = 230 bags), what would the TOTAL holding cost be?",o:["$760.00","$840.00","$930.00","$1,030.00"],a:2,e:"avg1=230−25=205, avg2=180−40=140, avg3=100−15=85, avg4=70−35=35. Sum=205+140+85+35=465. Holding=2×465=$930.00."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. For the single-order-covers-everything scenario (Q=230 bags, holding cost=$930), the Total Inventory Cost (1 order + holding) would be:",o:["$1,030.00","$1,130.00","$1,230.00","$1,330.00"],a:1,e:"TIC = OC + holding cost = $200 + $930 = $1,130.00 — this is the worst of all the options computed (PPC(Weeks1-4)=$1130/4=$282.50/week)."},
-      {q:"A bakery's flour demand (in 50kg bags) over a 4-week planning horizon is: Week 1 = 50, Week 2 = 80, Week 3 = 30, Week 4 = 70 bags. The ordering cost is $200 per order and the holding cost is $2 per bag per week. The Lot-for-Lot method places how many separate orders over the 4-week horizon, and what is the resulting total ordering cost?",o:["2 orders, $400.00","3 orders, $600.00","4 orders, $800.00","1 order, $200.00"],a:2,e:"Lot-for-Lot orders exactly the period's demand every week → 4 orders × $200 = $800.00 in ordering costs."}
-    ]
   }
 };
 
@@ -792,6 +775,514 @@ function backToMenu(){
   activeTopic=null;
   window.scrollTo({top:0,behavior:'smooth'});
 }
+// ═══════════════════════════════════════════════════════════════════════════
+// SUPABASE CONFIG — fill these in after one-time setup (see README below)
+// ═══════════════════════════════════════════════════════════════════════════
+const SUPABASE_URL  = 'https://ofvftfckzduoyylhagie.supabase.co';   // e.g. https://xxxx.supabase.co
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mdmZ0ZmNremR1b3l5bGhhZ2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDQ0NTcsImV4cCI6MjA5NzAyMDQ1N30.e6MqAQrAnBVVMgHCuQ7YXB2VU9NsViRucHoByL8T-ew'; // safe to expose — read restricted by RLS
+const SUPABASE_TABLE = 'exam_results';
+
+// ── EXAM QUESTIONS ────────────────────────────────────────────────────────
+const EXAM_BANK = [
+  {q:"What does 'Seiri' (Sort) mean in an industrial context?",o:["Keep the workplace swept and clean","Distinguish necessary from unnecessary items and eliminate what is not needed","Establish a neat layout for easy retrieval","Make a habit of maintaining established procedures"],a:1,e:"Seiri industrial definition: distinguish between necessary and unnecessary things, and get rid of what you do not need.",t:"Warehouse Operations",tk:"wh"},
+  {q:"In Acceptance Sampling, 'Tightened' inspection is applied when:",o:["The vendor's quality history is exceptionally good","Inspection starts for the first time","The vendor's recent quality level has deteriorated","Five consecutive lots have been accepted"],a:2,e:"Tightened inspection is used when the vendor's recent quality level has declined (deteriorated).",t:"Warehouse Operations",tk:"wh"},
+  {q:"How is Warehouse Capacity Utilization (WCU) calculated?",o:["Total Space / Occupied Space × 100","Occupied Space / Total Warehouse Space × 100","Orders Processed / Labour Hours","Shipment Date − Order Date"],a:1,e:"WCU = (Occupied Space / Total Warehouse Space) × 100.",t:"Warehouse Operations",tk:"wh"},
+  {q:"In floor marking color coding standards, YELLOW markings designate:",o:["Material storage areas","Aisleways, traffic lanes, and work cells","QA inspection areas","Defects and scrap"],a:1,e:"Yellow markings designate aisleways & traffic lanes and work cells.",t:"Warehouse Operations",tk:"wh"},
+  {q:"The four principles of Warehouse Design are summarized by the acronym:",o:["FLOW","FACT","LEAN","RACK"],a:1,e:"FACT = Flow, Accessibility, Capacity, Traceability — the four warehouse design principles.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Which warehouse layout type has receiving and shipping on the SAME wall?",o:["I-shaped layout","L-shaped layout","U-shaped layout","T-shaped layout"],a:2,e:"The U-shaped layout has both receiving and shipping on the same wall.",t:"Warehouse Operations",tk:"wh"},
+  {q:"For a lot of 40,000 shoes under General Inspection Level II, the Sample Size Code Letter is:",o:["K","M","N","P"],a:2,e:"For lot size 35,001–150,000 under General Inspection Level II, the code letter is N.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Which inspection level is used at the START of inspection activity?",o:["Tightened","Reduced","Normal","Accelerated"],a:2,e:"Normal inspection is used at the start of inspection activity.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Cross-Docking in a warehouse means:",o:["Storing goods at maximum height","Transferring goods directly from receiving to shipping","Inspecting goods for quality defects","Picking items in batches"],a:1,e:"Cross-Docking transfers goods directly from receiving to shipping, bypassing storage entirely.",t:"Warehouse Operations",tk:"wh"},
+  {q:"An important layout principle for optimizing picking efficiency is:",o:["Honeycombing","Moving goods in a straight line (one-directional flow)","Zone-based colour coding","Using only gravity conveyors"],a:1,e:"Moving goods in a straight line increases movement velocities, reduces travel time and distance, and improves safety.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Which of the following is NOT one of the key warehouse processes?",o:["Receiving","Procurement","Picking","Cross-Docking"],a:1,e:"Procurement is a supply chain activity outside the warehouse. The key processes include Receiving, Storage, Put-Away, Picking, Packing, Shipping, Inventory Control, and Cross-Docking.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Reach trucks are designed to work primarily in:",o:["Wide open floor areas","Narrow aisles","Outdoor yards","Cross-docking areas"],a:1,e:"Reach trucks are designed for narrow aisles, with the operator riding in a stand-up position.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Aisle allowance is defined as:",o:["Maximum weight a forklift can carry","Percentage of warehouse space occupied by aisles","Height clearance above pallet racks","Distance between receiving and shipping docks"],a:1,e:"Aisle allowance is the percentage of warehouse space occupied by aisles within a storage area.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Dock-to-Stock Time (DST) measures the duration from when a shipment arrives at the dock until:",o:["The invoice is paid","The items are stocked and recorded in the inventory system","The items are shipped to customers","The quality inspection is complete"],a:1,e:"DST = Time goods are stocked & recorded − Time goods arrived at dock.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Shitsuke (Sustain) is defined as:",o:["A one-time deep cleaning event","Doing the right things as a matter of course; maintaining what has been accomplished","Sorting items by frequency of use","Installing new shelving systems"],a:1,e:"Shitsuke (Self-discipline/Sustain): doing the right things as a matter of course, purpose is to maintain what has been accomplished.",t:"Warehouse Operations",tk:"wh"},
+  {q:"In the tricolour material pull indicator system, what does a RED indicator signal?",o:["Stock level is healthy","Stock is getting low — prepare to restock","Resupply is needed immediately","Item is expired and must be discarded"],a:2,e:"Red = resupply needed immediately. Green = healthy stock. Yellow = warning, stock getting low.",t:"Warehouse Operations",tk:"wh"},
+  {q:"The FIRST step in selecting a sampling plan is:",o:["Choose the sample size from the master table","Decide AQL and choice of sampling plan","Determine the acceptance number","Perform 100% inspection"],a:1,e:"Step 1 is to decide the AQL and choose the type of sampling plan.",t:"Warehouse Operations",tk:"wh"},
+  {q:"The Three F Standard for properly storing items includes Fixed Location, Fixed Item, and:",o:["Fixed Label","Fixed Quantity","Fixed Worker","Fixed Zone"],a:1,e:"Three F Standard: Fixed location, Fixed item, and Fixed quantity — only a pre-determined amount of items is allowed.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Batch Picking is described as:",o:["Picking one order at a time completely before moving on","Picking multiple orders simultaneously by grouping items in the same area","Dividing pickers into zones","Using only automated systems"],a:1,e:"Batch picking: a worker collects SKUs for several orders in a single trip, grouping items in the same area.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Products with IRREGULAR surfaces are best suited for which conveyor type?",o:["Roller conveyors","Belt conveyors","Gravity roller conveyors","Towline conveyors"],a:1,e:"Products with irregular surfaces use belt conveyors; heavy, regular items use roller (automated) conveyors.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Seiketsu (Standardize) is the result of:",o:["Hiring experienced warehouse staff","Doing Sort, Set-in-Order, and Shine properly","Installing automated storage systems","Conducting annual audits"],a:1,e:"Standardize is the result of properly completing the first three steps: Sort (Seiri), Set-in-Order (Seiton), and Shine (Seiso).",t:"Warehouse Operations",tk:"wh"},
+  {q:"Seiton (Set in Order) is industrially defined as:",o:["A way of eliminating search","A cleaning schedule","A standard for inspection","A method for tracking inventory"],a:0,e:"Seiton industrial definition: it is a way of eliminating search, ensuring everything has a designated place.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Drive-in pallet racks are designed so that:",o:["Goods slide automatically to the front","Forklifts can drive into the racks between uprights","Each pallet is individually accessible","Items are sorted by weight"],a:1,e:"Drive-in pallet racks allow forklifts to drive into the racks between structure uprights and pallet support rails.",t:"Warehouse Operations",tk:"wh"},
+  {q:"Flow racks primarily enable which inventory management principle?",o:["LIFO (Last In, First Out)","FIFO (First In, First Out)","ABC analysis","Random access"],a:1,e:"Flow racks use conveyors allowing easy FIFO control — items loaded at the back come out first at the front.",t:"Warehouse Operations",tk:"wh"},
+  {q:"A warehouse stores 37 pallets across 14 positions stacked 3 high. What is the cube utilization?",o:["37%","42%","88%","100%"],a:2,e:"14 positions × 3 high = 42 capacity. Cube utilization = 37/42 × 100 = 88%.",t:"Warehouse Operations",tk:"wh"},
+  {q:"In the Mrs. Kandell example, what is the expected demand E(D)?",o:["28","29","30","31"],a:1,e:"E(D) = 22×0.05 + 24×0.10 + 26×0.15 + 28×0.20 + 30×0.20 + 32×0.15 + 34×0.10 + 36×0.05 = 29 trees.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"The optimal order quantity Q* is obtained from:",o:["The mean of the demand distribution only","The corresponding percentile of the demand distribution matching the Critical Ratio","The maximum possible demand","The mode of the demand distribution"],a:1,e:"Q* is obtained from the percentile of the demand distribution that equals the Critical Ratio F(Q*) = Cu/(Co+Cu).",t:"The Newsvendor Model",tk:"nv"},
+  {q:"If demand D > order quantity Q in the Newsvendor Model, the result is:",o:["Overstock — excess inventory remains","Stockout — unmet demand occurs","No cost is incurred","Salvage value is collected"],a:1,e:"When D > Q, a stockout (shortage) occurs. The underage cost Cu × (D − Q) is incurred.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the Mrs. Kandell Christmas Tree example: Cost = $25, Price = $55, Salvage = $15. What is Cu?",o:["$10","$25","$30","$40"],a:2,e:"Cu = Revenue − Cost = $55 − $25 = $30 (unrealized profit per unit if a tree is not available).",t:"The Newsvendor Model",tk:"nv"},
+  {q:"Given CR = 0.75 and the cumulative distribution F(D) for the Christmas tree problem, the optimal Q* is approximately:",o:["28","30","31","32"],a:2,e:"The first demand value where F(D) ≥ 0.75 is D = 32, where F(32) = 0.85. But interpolating between F(30)=0.70 and F(32)=0.85, optimum ≈ 31.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"If demand D < order quantity Q in the Newsvendor Model, the result is:",o:["Stockout — unmet demand occurs","Overstock — leftover units must be salvaged or discarded","No cost is incurred","Additional orders are placed"],a:1,e:"When D < Q, overstock occurs. The overage cost Co × (Q − D) is incurred for the leftover units.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"The Newsvendor Model is primarily used for:",o:["Continuous replenishment of fast-moving goods","Ordering perishables and items with limited useful lives in a single period","Planning annual production schedules","Managing multi-location inventory networks"],a:1,e:"The Newsvendor Model is a single-period stochastic inventory model designed for perishables and items with limited useful lives.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"Underage cost (Cu) in the Newsvendor Model is generally defined as:",o:["Cost per unit minus salvage value per unit","Revenue per unit minus cost per unit (unrealized profit per unit)","Total revenue divided by units sold","Holding cost per unsold unit"],a:1,e:"Cu (Underage cost) = Revenue per unit − Cost per unit. It represents the unrealized profit per unit when a stockout occurs.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"The formula for optimal order quantity under uniformly distributed demand is:",o:["Q* = BL + Cr × BU","Q* = BL + Cr × (BU − BL)","Q* = (BL + BU) / 2","Q* = BU − Cr × (BU − BL)"],a:1,e:"For uniform distribution: Q* = BL + [Cr × (BU − BL)], where BL is lower bound, BU is upper bound, and Cr is the Critical Ratio.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In terms of revenue, cost, and salvage, the Critical Ratio can be written as:",o:["(Cost − Salvage) / (Revenue − Salvage)","(Revenue − Cost) / (Revenue − Salvage)","(Revenue − Salvage) / (Revenue − Cost)","(Cost − Revenue) / (Revenue − Salvage)"],a:1,e:"CR = Cu / (Co + Cu) = (Revenue − Cost) / (Revenue − Salvage).",t:"The Newsvendor Model",tk:"nv"},
+  {q:"The Newsvendor Model assumes the setup (ordering) cost is:",o:["Equal to the purchase cost","Proportional to order quantity","Zero","Fixed regardless of quantity"],a:2,e:"One of the model's assumptions is zero setup (ordering) cost.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"What is the probable lifetime of blood stored in a blood bank?",o:["7 days","14 days","21 days","30 days"],a:2,e:"Blood stored in a blood bank has a probable lifetime of 21 days.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"Which of the following is a key element of the Newsvendor Model?",o:["Multiple replenishment opportunities throughout the period","Certain and known demand","One chance to order before demand is realized","Zero holding cost for leftover inventory"],a:2,e:"A key element is that the decision-maker has only ONE chance to order (long) before demand is realized.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the H&N shirt example with uniform distribution (min=100, max=300) and CR=0.80, Q* equals:",o:["180 shirts","200 shirts","240 shirts","260 shirts"],a:3,e:"Q* = BL + Cr × (BU − BL) = 100 + 0.80 × (300 − 100) = 100 + 0.80 × 200 = 100 + 160 = 260 shirts.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"Which of the following items has a probable lifetime of just ONE DAY according to the lecture?",o:["Smartphone","Seasonal clothing","Newspaper","Vegetables"],a:2,e:"A newspaper has a probable lifetime of just 1 day — the classic motivation for the Newsvendor Model.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the Mrs. Kandell Christmas Tree example, what is Co (overage cost)?",o:["$30","$15","$10","$25"],a:2,e:"Co = Cost − Salvage = $25 − $15 = $10 (loss per unsold tree).",t:"The Newsvendor Model",tk:"nv"},
+  {q:"Overage cost (Co) in the Newsvendor Model is defined as:",o:["Revenue per unit minus cost per unit","Cost per unit minus salvage value per unit","Purchase price plus holding cost","Shortage penalty per unit"],a:1,e:"Co (Overage cost) = Cost per unit − Salvage value per unit. It is the loss per unit left over at the end of the period.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"The Critical Ratio formula is:",o:["F(Q*) = Co / (Co + Cu)","F(Q*) = Cu / (Co + Cu)","F(Q*) = Cu × Co","F(Q*) = (Co − Cu) / Co"],a:1,e:"The Critical Ratio CR = Cu / (Co + Cu). This is the optimal cumulative probability (service level) the order quantity Q* must satisfy.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the Mrs. Kandell example, the Critical Ratio is:",o:["0.25","0.50","0.75","0.85"],a:2,e:"CR = Cu / (Co + Cu) = 30 / (10 + 30) = 30/40 = 0.75.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the H&N shirt example (Cost=$35, Price=$55, Salvage=$30), the Critical Ratio is:",o:["0.57","0.67","0.80","0.90"],a:2,e:"CR = (Revenue − Cost)/(Revenue − Salvage) = (55−35)/(55−30) = 20/25 = 0.80.",t:"The Newsvendor Model",tk:"nv"},
+  {q:"In the variable demand / constant lead time full example (d̄=100, σ_d=8, L=5, Q=424, SS=19, σ_LT=17.9), the fill rate is approximately:",o:["95.0%","97.5%","99.0%","99.68%"],a:3,e:"Es = 17.9 × NORM.DIST(19/17.9, 0,1,0) − 19×[1−NORM.DIST(19/17.9,0,1,1)] ≈ 1.32. Fill rate = (424−1.32)/424 = 0.9968 = 99.68%.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"For the variable lead time example with 40 observations, the average lead time (50th percentile) was found to be:",o:["4.0 days","4.7 days","5.0 days","7.0 days"],a:1,e:"From the CPD graph, the average lead time at the 50th percentile = 4.7 days.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the Single-Stage Stochastic Lot-Sizing MILP Model, the binary variable y_t represents:",o:["The inventory level at end of period t","Whether a setup (order) is placed (=1) or not (=0) in period t","The probability of stockout in period t","The demand forecast for period t"],a:1,e:"y_t ∈ {0,1} is a binary variable: y_t=1 indicates a setup or order is placed in period t; y_t=0 means no order.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"Safety (buffer) stock is defined as:",o:["The maximum amount of inventory ever held","On-hand inventory during lead time plus an additional buffer to guard against uncertainty","The difference between reorder point and order quantity","Average daily demand multiplied by lead time"],a:1,e:"Safety (buffer) stock = on-hand inventory expected during lead time + buffer. It reduces the probability of a stockout.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the same periodic review example, Safety Stock SS is approximately:",o:["9 units","13.6 units","20 units","27 units"],a:1,e:"SS = Z×σ_d×√(T+L) = 1.28×3×√(7.7+5) = 1.28×3×√12.7 ≈ 1.28×3×3.56 ≈ 13.6 units.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"Using MS Excel, the Cycle Service Level is calculated with the function:",o:["NORM.S.INV(s, d̄L, σ_d)","NORM.DIST(s, d̄L, σ_d, TRUE)","NORM.DIST(SS/σ, 0, 1, 0)","NORMINV(CR, μ, σ)"],a:1,e:"Cycle Service Level = NORM.DIST(s, d̄L, σ_d, TRUE), where s = reorder level, d̄L = lead time demand, σ_d = standard deviation of lead time demand.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the Es example (Q=500, SS=75, σ=60), the Expected Shortage per cycle Es ≈:",o:["1.5 units","3.0 units","5.0 units","7.5 units"],a:1,e:"Es = 60 × NORMDIST(1.25, 0,1,0) − 75 × [1 − NORMDIST(1.25, 0,1,1)] = 60×0.1827 − 75×(1−0.8944) ≈ 10.96 − 7.92 ≈ 3.0 units.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"Cycle Service Level (CSL) is defined as:",o:["The proportion of customer demands met from stock on hand","The proportion of order cycles in which NO stockout occurs","Total items delivered on time divided by total items ordered","The probability that an order is placed"],a:1,e:"Cycle Service Level (Beta) = proportion of replenishment cycles in which no stockout occurs. If no stockout in 8 of 12 cycles, CSL = 8/12 = 67%.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"When BOTH demand and lead time are variable, the safety stock is:",o:["Z × σ_d × √L̄","Z × d × σ_L","Z × √(L̄ × σ_d² + d̄² × σ_L²)","d̄ × L̄ + Z × σ_d"],a:2,e:"Variable demand AND variable lead time: SS = Z × √(L̄·σ_d² + d̄²·σ_L²). Both demand and lead time variabilities are combined.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"A stockout occurs when:",o:["Inventory exceeds the reorder point","On-hand inventory falls to zero before a replenishment order arrives","Safety stock is too high","The order quantity is larger than demand"],a:1,e:"A stockout is an inventory shortage — demand exceeds available inventory. Safety stock is maintained to reduce this risk.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the Periodic Review example (D=5500/yr, C₀=$43, C_c=35%×$100, d̄=15/day, σ_d=3, L=5 days, Z=1.28), the optimal review period T* in days is:",o:["5.0 days","7.7 days","10.0 days","14.0 days"],a:1,e:"T* = √(2×43/(5500×35)) = 0.0211 years × 365 = 7.7 days.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the variable lead time example, the safety stock needed for an 85% service level is:",o:["1.0 days","2.3 days","4.7 days","7.0 days"],a:1,e:"SS₈₅% = LT_sl − L̄ = 7 − 4.7 = 2.3 days' usage.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"When demand is CONSTANT and lead time is variable, the safety stock formula is:",o:["Z × σ_d × √L","Z × d × σ_L","Z × √(L̄σ_d² + d̄²σ_L²)","d̄ × L̄"],a:1,e:"Constant demand, variable lead time: SS = Z × d × σ_L, where σ_L is the standard deviation of lead time.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the empirical distribution method for safety stock with variable demand, the safety stock for an 85% service level is:",o:["Maximum demand at 85th percentile","The difference between demand at the 85th percentile and the average demand","Average demand minus minimum demand","Standard deviation of demand × Z-value"],a:1,e:"SS = D_sl − d̄. From the CPD graph, SS₈₅% = P₈₅ − d̄ = 390 − 250 = 140 units.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the Es example (Q=500, SS=75, σ=60), the standardized value SS/σ is:",o:["0.80","1.00","1.25","1.50"],a:2,e:"Standardized value = SS/σ = 75/60 = 1.25. This z-value is used to compute both PDF and CDF in the Es formula.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"The Chance Constraint in the single-stage stochastic lot-sizing model is expressed as:",o:["I_t ≥ α for all t","P(I_t ≥ 0) ≥ α for all t","q_t ≤ D_t × y_t for all t","Σd_t = D_T"],a:1,e:"The chance constraint P(I_t ≥ 0) ≥ α ensures that the probability of non-negative inventory in each period meets the service level α.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"What distinguishes stochastic inventory models from deterministic models?",o:["Stochastic models assume zero lead time","Stochastic models treat demand and/or lead time as random variables","Stochastic models always use periodic review","Stochastic models require larger order quantities"],a:1,e:"In stochastic models, demand and/or lead time are random variables with known probability distributions, unlike deterministic models which assume certainty.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"When demand is variable and lead time is CONSTANT, the reorder point formula is:",o:["R = d̄ × L + Z × σ_d × L","R = d̄ × L + Z × σ_d × √L","R = d × L̄ + Z × d × σ_L","R = d̄ × L̄ + Z × √(L̄σ_d² + d̄²σ_L²)"],a:1,e:"Variable demand, constant lead time: R = d̄·L + Z·σ_d·√L. The safety stock is Z·σ_d·√L.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"The Maximum Inventory Level S in the periodic review (variable demand, constant lead time) model is:",o:["d̄(T+L) + Z×σ_d×√(T+L)","d̄×T + Z×σ_d×√L","d̄×L + Z×σ_d×√T","Z×σ_d×√(T+L)"],a:0,e:"S = d̄(T+L) + Z×σ_d×√(T+L). It covers expected demand over the review period plus lead time, plus safety stock.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"Fill Rate (Alpha Service Level) is defined as:",o:["Proportion of cycles with no stockout","Proportion of customer demands satisfied from inventory on hand","Number of orders placed per year","Reorder point divided by lead time demand"],a:1,e:"Fill Rate (Alpha) = total units delivered on time / total units ordered. Example: 259/300 = 86%.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the variable demand / constant lead time example (d̄=100, σ_d=8, L=5 days, Z=1.04 for 85%), the reorder point R is:",o:["500","509","519","524"],a:2,e:"R = d̄×L + Z×σ_d×√L = 100×5 + 1.04×8×√5 = 500 + 1.04×8×2.236 = 500 + 18.6 ≈ 519 units.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"Order quantity in the periodic review model when on-hand inventory I=24 units and S=204 units is:",o:["24 units","90 units","180 units","204 units"],a:2,e:"Order Quantity Q = S − I = 204 − 24 = 180 units.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the cycle service level example (reorder level=1000, lead time demand=500, σ=300), the CSL is:",o:["0.75","0.85","0.90","0.95"],a:3,e:"CSL = NORM.DIST(1000, 500, 300, TRUE) = 0.95. The Z-value is (1000−500)/300 = 1.67, which corresponds to ~0.95.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the Periodic Review model with variable demand and constant lead time, the optimal review period T* is:",o:["√(2C₀/DC_c)","2C₀/(DC_c)","√(DC_c/2C₀)","C₀/DC_c"],a:0,e:"T* = √(2C₀/DC_c). This is analogous to the EOQ-derived cycle time.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In the empirical demand example (item cost $50, carrying rate 20%), the carrying cost of safety stock at 95% service level is:",o:["$1,400","$2,000","$1,000","$2,500"],a:1,e:"CSS = Cc × SS₉₅% = (20% × $50) × 200 = $10 × 200 = $2,000.",t:"Stochastic Inventory Models",tk:"si"},
+  {q:"In Part-Period Balancing, when the holding cost for Jan+Feb horizon equals $189 (> OC=$80), the decision is to:",o:["Order for both January and February from the start","Place a separate order just for January (36 units)","Cancel the February order","Use Lot-for-Lot for the remaining periods"],a:1,e:"Since C_r for 1 period ($48.5) < C_r for 2 periods ($109), the smallest C_r is for the 1-period horizon, so order 36 units for January only.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In LUC for the corn flour example, when PUC(Jan+Feb) = $2.802 < PUC(Jan) = $3.097, the decision is:",o:["Order for January only","Extend to consider 3 months (Jan+Feb+Mar)","Stop and order 96 units for January","Switch to Lot-for-Lot"],a:1,e:"PUC decreased when extending to 2 months, so continue extending. Check 3-month horizon (Jan+Feb+Mar).",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Wagner-Whitin Iteration 5, the minimum TC₅ covering Jan–May is:",o:["$687.00","$541.38","$590.37","$754.13"],a:1,e:"TC₅ = min($1015.38, $754.13, $597.88, $590.37, $541.38) = $541.38 (Option 5: TC₄ + separate May order).",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The capacitated extension of the DEL problem adds which constraint compared to the basic model?",o:["Backorders are now permitted","A production capacity limit c_t limits the order quantity per period","The planning horizon becomes infinite","Unit production costs are removed from the objective"],a:1,e:"The Single-item Capacitated Lot Sizing Problem adds q_t ≤ c_t × z_t for all t, where c_t is the production/order capacity in period t.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Silver-Meal, when PPC(Jan+Feb) = $134.50 > PPC(Jan) = $111.50, the decision is:",o:["Order for Jan and Feb together","Order for January only (36 units)","Continue extending to a 3-month horizon","Skip January and start from February"],a:1,e:"PPC increased when extending to 2 months, so stop at 1 month. Order 36 units for January only.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Lot-for-Lot heuristic places an order at the start of each period for:",o:["The average demand across all periods","Exactly the demand of that specific period only","The cumulative remaining demand","Half the total planning horizon demand"],a:1,e:"Lot-for-Lot: place an order at the start of each period for a quantity equal to the demand for that period. Holding cost = 0 per period, but ordering cost is paid every period.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"Comparing heuristic results for the corn flour example, which ranking of TIC from lowest to highest is correct?",o:["Lot-for-Lot < Silver-Meal < Part-Period Balancing < Least Unit Cost","Silver-Meal = Wagner-Whitin < Part-Period Balancing < Lot-for-Lot < Least Unit Cost","Wagner-Whitin < Silver-Meal < Part-Period Balancing < Lot-for-Lot","Silver-Meal < Lot-for-Lot < Part-Period Balancing < Least Unit Cost"],a:1,e:"TIC results: Silver-Meal=$687 (=Wagner-Whitin optimal), Part-Period Balancing=$736, Lot-for-Lot=$747.75, Least Unit Cost=$761.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Silver-Meal (corn flour, OC=$80, CC=$1.75), the Per Period Cost for a January-only horizon is:",o:["$269.00","$134.50","$111.50","$80.00"],a:2,e:"PPC(Jan) = (OC + Holding cost) / 1 = ($80 + $31.50) / 1 = $111.50.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Part-Period Balancing heuristic is based on the concept of:",o:["Minimising the number of orders placed","Balancing the ordering cost with the holding cost","Minimising per-period cost across an order horizon","Ordering enough for the fewest periods possible"],a:1,e:"Part-Period Balancing balances the total holding cost over an order horizon against the order cost, choosing the horizon where they are closest.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Wagner-Whitin optimal solution for the corn flour example orders in which months?",o:["January, March, May, June","January, February, March, May, June","January, February, April, June","January, February, March (covers Mar+Apr), May, June"],a:3,e:"Optimal: separate orders for January (36) and February (60), one order in March covering March+April (96 units), separate orders in May (39) and June (75).",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In the Dynamic Lot Sizing context, the term 'order horizon' refers to:",o:["The total planning period for the entire problem","The number of future periods covered by a single order","The lead time before an order arrives","The safety stock coverage period"],a:1,e:"Order horizon T = the number of future periods a single order will cover. The heuristics determine the optimal T by evaluating costs.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In the MILP formulation of the DEL problem, the binary variable y_t indicates:",o:["Inventory level at end of period t","Whether an order/setup is placed (y_t=1) or not (y_t=0) in period t","The unit production cost in period t","The cumulative demand up to period t"],a:1,e:"y_t ∈ {0,1}: y_t=1 means an order/setup is placed in period t; y_t=0 means no order. It drives the setup cost s_t×y_t.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Wagner-Whitin total inventory cost (TIC) for the corn flour example is:",o:["$747.75","$736.01","$687.00","$761.00"],a:2,e:"Wagner-Whitin achieves the globally optimal TIC = $687.00, which equals the Silver-Meal result in this example.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Wagner-Whitin Iteration 6 (covering Jan–Jun), the minimum TC₆ is:",o:["$852.87","$738.25","$687.00","$991.63"],a:2,e:"TC₆ = min($1737.25, $1279.13, $991.63, $852.87, $738.25, $687.00) = $687.00 (Option 6: TC₅ + separate June order).",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"Which of the following is an assumption of the Dynamic Economic Lot-size (DEL) model?",o:["Demand is constant and uniform across all periods","Replenishment lead time is zero","Backorders are permitted","Storage capacity is limited"],a:1,e:"A key DEL assumption is zero replenishment lead time — products ordered are received in full instantaneously at the start of the period.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Wagner-Whitin Iteration 3, the minimum cost to cover January through March (TC₃) is:",o:["$398.37","$640.88","$467.13","$244.00"],a:0,e:"Option 3 (TC₂ + March order alone) = $244 + $80 + $74.375 = $398.37. This beats Option 1 ($640.88) and Option 2 ($467.13). TC₃ = $398.37.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"A heuristic approach to lot sizing is preferred over dynamic programming when:",o:["Optimal solutions are absolutely required","Problem size is small","Time, data, or computational resources are limited and a quick near-optimal solution is acceptable","The holding cost is higher than the ordering cost"],a:2,e:"Heuristics simplify complex problems when a fast, satisfactory, near-optimal solution is needed — especially when full optimality is not required or computationally too expensive.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"Which of the following is an extension of the basic Dynamic Lot Sizing problem mentioned in the lecture?",o:["Continuous review models","Multi-item lot sizing","Safety stock optimisation","Economic Order Quantity with discounts"],a:1,e:"Extensions of the DEL problem include Multiple Items, Backlogging, Production Capacities, Product Returns, Multi-echelon, Perishable goods, Supplier Selection, and many more.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Wagner-Whitin Property states that under an optimal policy:",o:["Every period must have a positive production quantity","Either the inventory carried into period t+1 is zero OR the production quantity in t+1 is zero","Orders must be placed every period","Inventory at the end of the planning horizon must be maximised"],a:1,e:"The Wagner-Whitin Property: in an optimal solution, either the carryover inventory into period t+1 is zero OR the order quantity in period t+1 is zero — you never carry stock and order simultaneously.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Part-Period Balancing, the Closeness Factor C_r is computed as:",o:["C_r = C_h × Σ(2t-1)d_t/2","C_r = |C_0 − C_h × Σ(2t-1)d_t/2|","C_r = C_0 / C_h","C_r = C_h × d_t"],a:1,e:"C_r = |C_0 − C_h × Σ(2t-1)d_t/2|. The order horizon with the smallest C_r (closest total holding cost to order cost) is selected.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"IBM ILOG CPLEX uses which modelling language for formulating optimisation problems?",o:["Python","OPL (Optimization Programming Language)","MATLAB","AMPL"],a:1,e:"IBM ILOG CPLEX Optimization Studio uses OPL (Optimization Programming Language) to formulate and solve mathematical programming problems.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The carrying cost formula used in all four heuristics for a horizon starting at period 1 is:",o:["C_h × Σ d_t","C_h × Σ (2t-1)d_t / 2","C_h × max(d_t)","C_h × T × d̄"],a:1,e:"Holding cost = C_h × Σ_{t=1}^{T} (2t-1)d_t / 2. The factor (2t-1)/2 accounts for the time each unit spends in inventory within the period.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Silver-Meal for the corn flour example, the March order covers which months?",o:["March only","March and April","March, April, and May","March and February"],a:1,e:"PPC(Mar)=$154.38, PPC(Mar+Apr)=$91.63 (decreases), PPC(Mar+Apr+May)=$117.96 (increases). So order covers March and April — 96 units.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In OPL for the Dynamic Lot Sizing problem, which variable type is used for the Setup variable?",o:["float+","int","boolean","interval"],a:2,e:"Setup variables y_t are declared as 'dvar boolean Setup[Periods]' — a boolean (binary) decision variable in OPL.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Wagner-Whitin (corn flour example), TC₁ for covering January's demand (36 units) alone is:",o:["$52.50","$80.00","$111.50","$269.00"],a:2,e:"TC₁ = OC + Holding cost = $80 + $1.75×(36/2) = $80 + $31.50 = $111.50.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Part-Period Balancing, iteration continues until:",o:["All periods are covered","Total holding cost exceeds the order cost","The carrying cost equals zero","The order quantity reaches the total demand"],a:1,e:"Stop the iteration when total holding costs > order cost. The order horizon with holding cost closest to the order cost is selected.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The Silver-Meal heuristic selects an order horizon by minimising:",o:["Total inventory cost over the planning horizon","Total holding cost per period","Total inventory cost per period (Per Period Cost)","Total ordering cost across all periods"],a:2,e:"Silver-Meal minimises the Per Period Cost (PPC) = Total inventory cost / number of periods. Extend the order horizon as long as PPC decreases.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In the DEL model, inventory is reviewed:",o:["Continuously at any point in time","Only at the beginning of each period","Randomly based on demand triggers","Only at the end of the planning horizon"],a:1,e:"The DEL model is a periodic review system — inventory is reviewed only at the beginning of each period.",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"In Wagner-Whitin Iteration 2, Option 1 covers Jan & Feb with one January order. The total cost for this option is:",o:["$244.00","$269.00","$111.50","$132.50"],a:1,e:"Option 1 (Jan order covers Jan+Feb): OC + $1.75×(36/2 + 3×60/2) = $80 + $189 = $269. Option 2 (TC₁ + Feb order): $111.5+$80+$52.5=$244. Min = $244 (Option 2).",t:"Dynamic Lot Sizing",tk:"dl"},
+  {q:"The EOQ model assumes which type of planning horizon?",o:["Finite","Discrete","Infinite","Stochastic"],a:2,e:"The EOQ model assumes an infinite planning horizon with continuous time and constant demand.",t:"Dynamic Lot Sizing",tk:"dl"}
+];
+
+const TOPIC_LABELS = {
+  wh:'Warehouse Operations', nv:'The Newsvendor Model',
+  si:'Stochastic Inventory Models', dl:'Dynamic Lot Sizing'
+};
+
+// ── EXAM STATE ────────────────────────────────────────────────────────────
+let examStudent='', examStudentId='';
+let examCur=0, examScore=0, examWrong=0;
+let examAnswered=[], examTimerInt=null, examSecondsLeft=7200;
+let examQuestions=[], examTopicStats={};
+let examMode=false, examSubmitted=false;
+
+// ── MODAL ─────────────────────────────────────────────────────────────────
+function startExamFlow(){
+  document.getElementById('exam-modal').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('exam-name').focus(),80);
+}
+function closeExamModal(){
+  document.getElementById('exam-modal').classList.add('hidden');
+  document.getElementById('exam-name').value='';
+  document.getElementById('exam-id').value='';
+  document.getElementById('exam-name-err').style.display='none';
+  document.getElementById('exam-name').classList.remove('err');
+}
+function confirmExamStart(){
+  const nameEl=document.getElementById('exam-name');
+  const name=nameEl.value.trim();
+  if(!name){
+    nameEl.classList.add('err');
+    document.getElementById('exam-name-err').style.display='block';
+    nameEl.focus(); return;
+  }
+  examStudent=name;
+  examStudentId=document.getElementById('exam-id').value.trim();
+  document.getElementById('exam-modal').classList.add('hidden');
+  launchExam();
+}
+
+// ── LAUNCH ────────────────────────────────────────────────────────────────
+function launchExam(){
+  examMode=true; examSubmitted=false;
+  examCur=0; examScore=0; examWrong=0;
+  examAnswered=new Array(100).fill(undefined);
+  examTopicStats={}; examSecondsLeft=7200;
+
+  // Interleave-shuffle by topic
+  const byTopic={};
+  EXAM_BANK.forEach(q=>{ if(!byTopic[q.tk]) byTopic[q.tk]=[]; byTopic[q.tk].push({...q}); });
+  Object.values(byTopic).forEach(arr=>{
+    for(let i=arr.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+  });
+  examQuestions=[];
+  const keys=Object.keys(byTopic); let go=true;
+  while(go){ go=false; keys.forEach(k=>{ if(byTopic[k].length){ examQuestions.push(byTopic[k].shift()); go=true; } }); }
+
+  // Save in-progress state so refresh doesn't lose answers
+  saveProgress();
+
+  document.getElementById('screen-start').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  document.getElementById('screen-results').style.display='none';
+  document.getElementById('hud').style.display='flex';
+  document.getElementById('hud-timer').style.display='block';
+  document.getElementById('hud-total').textContent='100';
+
+  startExamTimer();
+  renderExam();
+}
+
+// ── PROGRESS PERSISTENCE (survives refresh) ───────────────────────────────
+function saveProgress(){
+  try{
+    localStorage.setItem('iwm_exam_progress', JSON.stringify({
+      student:examStudent, studentId:examStudentId,
+      cur:examCur, score:examScore, wrong:examWrong,
+      answered:examAnswered, secondsLeft:examSecondsLeft,
+      questions:examQuestions, topicStats:examTopicStats,
+      submitted:examSubmitted, ts:Date.now()
+    }));
+  }catch(e){}
+}
+function clearProgress(){ try{ localStorage.removeItem('iwm_exam_progress'); }catch(e){} }
+
+function checkResume(){
+  try{
+    const raw=localStorage.getItem('iwm_exam_progress');
+    if(!raw) return;
+    const p=JSON.parse(raw);
+    // Ignore if older than 3 hours or already submitted
+    if(p.submitted || Date.now()-p.ts>3*3600*1000){ clearProgress(); return; }
+    if(!p.student || !p.questions || !p.questions.length) return;
+    // Show resume banner
+    const banner=document.getElementById('resume-banner');
+    if(banner){
+      banner.style.display='flex';
+      document.getElementById('resume-name').textContent=p.student;
+      const used=7200-p.secondsLeft;
+      const m=Math.floor(used/60);
+      document.getElementById('resume-time').textContent=m+' min in, '+p.answered.filter(x=>x!==undefined).length+' of 100 answered';
+    }
+  }catch(e){}
+}
+
+function resumeExam(){
+  try{
+    const p=JSON.parse(localStorage.getItem('iwm_exam_progress'));
+    examStudent=p.student; examStudentId=p.studentId||'';
+    examCur=p.cur; examScore=p.score; examWrong=p.wrong;
+    examAnswered=p.answered; examSecondsLeft=p.secondsLeft;
+    examQuestions=p.questions; examTopicStats=p.topicStats||{};
+    examSubmitted=false; examMode=true;
+    document.getElementById('resume-banner').style.display='none';
+    document.getElementById('screen-start').classList.add('hidden');
+    document.getElementById('screen-quiz').classList.remove('hidden');
+    document.getElementById('hud').style.display='flex';
+    document.getElementById('hud-timer').style.display='block';
+    document.getElementById('hud-total').textContent='100';
+    startExamTimer();
+    renderExam();
+  }catch(e){ clearProgress(); }
+}
+function dismissResume(){ clearProgress(); document.getElementById('resume-banner').style.display='none'; }
+
+// ── TIMER ─────────────────────────────────────────────────────────────────
+function startExamTimer(){
+  examTimerInt=setInterval(()=>{
+    examSecondsLeft--;
+    const h=String(Math.floor(examSecondsLeft/3600)).padStart(2,'0');
+    const m=String(Math.floor((examSecondsLeft%3600)/60)).padStart(2,'0');
+    const s=String(examSecondsLeft%60).padStart(2,'0');
+    const el=document.getElementById('hud-timer');
+    el.textContent=h+':'+m+':'+s;
+    el.className='hud-timer';
+    if(examSecondsLeft<=600) el.className+=' warn';
+    if(examSecondsLeft<=120) el.className+=' danger';
+    if(examSecondsLeft<=0){ clearInterval(examTimerInt); submitExam(true); return; }
+    // Save progress every 30 seconds
+    if(examSecondsLeft%30===0) saveProgress();
+  },1000);
+}
+
+function examTimeUsed(){
+  const used=7200-examSecondsLeft;
+  const h=Math.floor(used/3600), m=Math.floor((used%3600)/60), s=used%60;
+  return h>0 ? `${h}h ${m}m` : `${m}m ${s}s`;
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+function renderExam(){
+  const q=examQuestions[examCur];
+  const prev=examAnswered[examCur];
+  const total=examQuestions.length;
+  const pct=Math.round(((examCur+1)/total)*100);
+  const answeredCount=examAnswered.filter(x=>x!==undefined).length;
+  const KEYS=['A','B','C','D'];
+
+  document.getElementById('hud-q').textContent=examCur+1;
+  document.getElementById('hud-right').textContent=examScore;
+  document.getElementById('hud-wrong').textContent=examWrong;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent='Question '+(examCur+1)+' of '+total;
+  document.getElementById('prog-pct').textContent=pct+'%';
+
+  const opts=q.o.map((o,i)=>{
+    let cls='opt';
+    if(prev!==undefined){ if(i===q.a) cls+=' correct'; else if(i===prev) cls+=' wrong'; }
+    return `<button class="${cls}" onclick="examPick(${i})" ${prev!==undefined?'disabled':''}>
+      <span class="opt-letter">${KEYS[i]}</span><span>${o}</span>
+    </button>`;
+  }).join('');
+
+  let fb='';
+  if(prev!==undefined){
+    const ok=prev===q.a;
+    fb=`<div class="feedback ${ok?'correct-fb':'wrong-fb'}">
+      <span class="feedback-icon">${ok?'✓':'✗'}</span>
+      <div class="feedback-text"><strong>${ok?'Correct!':'Incorrect.'}</strong> ${q.e}</div>
+    </div>`;
+  }
+
+  const isLast=examCur===total-1;
+  let navHtml=`<button class="btn" onclick="examGo(-1)" ${examCur===0?'disabled':''}>← Prev</button>`;
+  if(!isLast) navHtml+=`<button class="btn primary-gold" onclick="examGo(1)" ${prev===undefined?'disabled':''}>Next →</button>`;
+  if(isLast&&prev!==undefined) navHtml+=`<button class="btn primary-gold" onclick="examGoToSubmit()">Submit Exam ✓</button>`;
+
+  const unanswered=total-answeredCount;
+  const progressNote=unanswered>0
+    ? `${answeredCount}/${total} answered &nbsp;·&nbsp; <span style="color:var(--yellow)">${unanswered} unanswered</span>`
+    : `<span style="color:var(--green)">✓ All ${total} questions answered</span>`;
+
+  document.getElementById('q-area').innerHTML=`
+    <div class="q-card">
+      <div class="q-eyebrow eyebrow-gold">Final Exam &nbsp;·&nbsp; ${q.t} &nbsp;·&nbsp; Q${examCur+1}/${total}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${opts}</div>
+      ${fb}
+    </div>
+    <div class="nav">${navHtml}</div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);text-align:center">${progressNote}</div>`;
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function examPick(i){
+  if(examAnswered[examCur]!==undefined) return;
+  examAnswered[examCur]=i;
+  const q=examQuestions[examCur];
+  if(i===q.a) examScore++;
+  else examWrong++;
+  const tk=q.tk;
+  if(!examTopicStats[tk]) examTopicStats[tk]={correct:0,total:0};
+  examTopicStats[tk].total++;
+  if(i===q.a) examTopicStats[tk].correct++;
+  saveProgress();
+  renderExam();
+}
+
+function examGo(dir){
+  examCur=Math.max(0,Math.min(examQuestions.length-1,examCur+dir));
+  renderExam();
+}
+
+function examGoToSubmit(){
+  const unanswered=examAnswered.filter(x=>x===undefined).length;
+  if(unanswered>0){
+    const go=confirm(`You have ${unanswered} unanswered question(s).\nThey will be marked as wrong.\n\nSubmit anyway?`);
+    if(!go) return;
+  }
+  submitExam(false);
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────────────
+function submitExam(timeout){
+  if(examSubmitted) return;
+  examSubmitted=true;
+  clearInterval(examTimerInt);
+  examQuestions.forEach((q,i)=>{
+    if(examAnswered[i]===undefined){
+      const tk=q.tk;
+      if(!examTopicStats[tk]) examTopicStats[tk]={correct:0,total:0};
+      examTopicStats[tk].total++;
+    }
+  });
+  clearProgress();
+  showExamResults(timeout);
+}
+
+// ── RESULTS ───────────────────────────────────────────────────────────────
+function showExamResults(timeout){
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-results').style.display='block';
+  document.getElementById('hud').style.display='none';
+  document.getElementById('hud-timer').style.display='none';
+  examMode=false;
+
+  const total=examQuestions.length;
+  const pct=Math.round((examScore/total)*100);
+  const skipped=examAnswered.filter(x=>x===undefined).length;
+
+  let grade,gradeColor,gradeSub;
+  if(pct>=80){grade='A — Distinction';gradeColor='var(--green)';gradeSub='Outstanding. You have demonstrated mastery across all four topics.';}
+  else if(pct>=65){grade='B — Merit';gradeColor='var(--accent)';gradeSub='Very good performance. A strong grasp of core concepts.';}
+  else if(pct>=50){grade='C — Pass';gradeColor='var(--yellow)';gradeSub='You passed the MS threshold. Some topics need further revision.';}
+  else{grade='D — Fail';gradeColor='var(--red)';gradeSub='Below passing grade. A focused review of all topics is recommended.';}
+
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('res-fraction').textContent=examScore+'/'+total;
+  document.getElementById('res-correct').textContent=examScore;
+  document.getElementById('res-wrong').textContent=examWrong;
+  document.getElementById('res-score-pct').textContent=pct+'%';
+
+  const badge=document.getElementById('res-topic-badge');
+  badge.className='results-topic-badge badge-gold';
+  badge.textContent='🎓 Final Exam — '+examStudent+(examStudentId?' · '+examStudentId:'');
+
+  document.getElementById('res-grade').textContent=grade+(timeout?' (Time Expired)':'');
+  document.getElementById('res-grade').style.color=gradeColor;
+  document.getElementById('res-sub').textContent=gradeSub+(timeout?' The exam was auto-submitted when time ran out.':'');
+
+  const ring=document.getElementById('ring-fill');
+  ring.style.stroke=gradeColor;
+  setTimeout(()=>{ ring.style.strokeDashoffset=364.4-(pct/100*364.4); },100);
+
+  // Topic breakdown
+  let topicHtml='<div class="section-title">Score by Topic</div><div class="topic-score-grid">';
+  Object.entries(examTopicStats).forEach(([tk,ts])=>{
+    const tp=ts.total>0?Math.round((ts.correct/ts.total)*100):0;
+    topicHtml+=`<div class="topic-score-card">
+      <div class="tsc-label">${TOPIC_LABELS[tk]||tk}</div>
+      <div class="tsc-score">${ts.correct}/${ts.total} <span class="tsc-pct">(${tp}%)</span></div>
+      <div class="tsc-bar-wrap"><div class="tsc-bar" style="width:${tp}%"></div></div>
+    </div>`;
+  });
+  topicHtml+='</div>';
+
+  // Wrong-answer review
+  const wrongItems=examQuestions.map((q,i)=>({q,i,ans:examAnswered[i]})).filter(x=>x.ans!==undefined&&x.ans!==x.q.a);
+  let reviewHtml='';
+  if(wrongItems.length===0){
+    reviewHtml='<div class="all-correct">🎉 Perfect score — every answer was correct!</div>';
+  } else {
+    reviewHtml=`<div class="section-title">Questions to Review (${wrongItems.length})</div>`;
+    wrongItems.forEach(({q,i,ans})=>{
+      reviewHtml+=`<div class="review-card wrong-card">
+        <div class="review-q"><span class="q-num-badge">#${i+1}</span>${q.q}</div>
+        <div class="review-answers">
+          <div class="review-your">✗ Your answer: ${String.fromCharCode(65+ans)}. ${q.o[ans]}</div>
+          <div class="review-correct">✓ Correct: ${String.fromCharCode(65+q.a)}. ${q.o[q.a]}</div>
+        </div>
+        <div class="review-exp">${q.e}</div>
+      </div>`;
+    });
+  }
+
+  document.getElementById('review-section').innerHTML=topicHtml+reviewHtml;
+
+  // Inject save-status banner
+  const statusDiv=document.createElement('div');
+  statusDiv.id='exam-submit-status';
+  statusDiv.className='exam-submit-status esending';
+  statusDiv.innerHTML='⏳ Saving result...';
+  document.querySelector('.results-actions').before(statusDiv);
+
+  saveResultToSupabase(pct, grade, skipped, timeout);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── SUPABASE SAVE ─────────────────────────────────────────────────────────
+async function saveResultToSupabase(pct, grade, skipped, timeout){
+  const statusEl=document.getElementById('exam-submit-status');
+  const dateStr=new Date().toISOString();
+  const timeUsed=examTimeUsed();
+
+  const topicBreakdown={};
+  Object.entries(examTopicStats).forEach(([tk,ts])=>{
+    topicBreakdown[TOPIC_LABELS[tk]||tk]={correct:ts.correct,total:ts.total,pct:ts.total>0?Math.round((ts.correct/ts.total)*100):0};
+  });
+
+  const payload={
+    student_name: examStudent,
+    student_id:   examStudentId||null,
+    score:        examScore,
+    total:        100,
+    percentage:   pct,
+    grade:        grade,
+    wrong:        examWrong,
+    skipped:      skipped,
+    time_used:    timeUsed,
+    timed_out:    timeout,
+    topic_breakdown: topicBreakdown,
+    submitted_at: dateStr
+  };
+
+  // Always keep a local copy
+  try{
+    const prev=JSON.parse(localStorage.getItem('iwm_results_local')||'[]');
+    prev.unshift(payload);
+    localStorage.setItem('iwm_results_local', JSON.stringify(prev.slice(0,50)));
+  }catch(e){}
+
+  if(SUPABASE_URL==='YOUR_SUPABASE_URL'){
+    statusEl.className='exam-submit-status efail';
+    statusEl.innerHTML='ℹ️ Supabase not configured yet — result saved locally on this device only. <span style="color:var(--muted)">See setup instructions below.</span>';
+    return;
+  }
+
+  try{
+    const resp=await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+        'Prefer':'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    if(resp.ok || resp.status===201){
+      statusEl.className='exam-submit-status eok';
+      statusEl.innerHTML='✓ Result saved successfully. Your instructor can view it in the results dashboard.';
+    } else {
+      const err=await resp.text();
+      throw new Error(err);
+    }
+  }catch(e){
+    statusEl.className='exam-submit-status efail';
+    statusEl.innerHTML='⚠️ Could not save to database — result stored locally on this device as backup.';
+    console.error('Supabase error:', e);
+  }
+}
+
+// Run on page load to offer resume
+window.addEventListener('DOMContentLoaded', checkResume);
+
 </script>
 </body>
 </html>
